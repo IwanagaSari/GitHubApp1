@@ -8,11 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var personalAccessToken: UITextField!
+    
+    @IBOutlet weak var caution: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapGesture(_:)))
+        personalAccessToken.delegate = self
+        self.view.addGestureRecognizer(tapRecognizer)
+
+        caution.text = "Select scope \n ☑︎rep  \n ☑︎user"
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -37,10 +46,22 @@ class ViewController: UIViewController {
         let userListViewController = segue.destination as!UserListViewController
         userListViewController.accessToken = personalAccessToken.text ?? ""
         
-        
     }
+    
+    
+    @objc func tapGesture(_ sender: UITapGestureRecognizer) {
+        personalAccessToken.resignFirstResponder()
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        personalAccessToken.resignFirstResponder()
+         return true
+    }
+        
 
 }
 
 //4fae2eda5cd06f4c1657f9c5706211f0dad11ae4
+//b9aa84c7035d9ff9a4824ee6d60ae1568830bc6e
 

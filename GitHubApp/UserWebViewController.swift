@@ -38,6 +38,21 @@ class UserWebViewController: UIViewController, UIWebViewDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 
+    @IBAction func backButton(_ sender: UIButton) {
+        userWebView.goBack()
+    }
+    
+    @IBAction func pressButton(_ sender: UIButton) {
+        userWebView.goForward()
+    }
+    
+    @IBAction func reloadButton(_ sender: UIButton) {
+        userWebView.reload()
+    }
+    
+    @IBAction func cancelButton(_ sender: UIButton) {
+        userWebView.stopLoading()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
