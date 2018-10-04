@@ -47,6 +47,9 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         repoTableView.rowHeight = UITableViewAutomaticDimension
         
         fullname.numberOfLines = 0
+        fullname.textColor = UIColor.white
+        follower.textColor = UIColor.white
+        following.textColor = UIColor.white
         name.text = nameLabel
         
         var req = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel!)")!)
@@ -136,6 +139,13 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         //}
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.title = "Repository"
+    }
+    
     //行数の指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return repositries.count

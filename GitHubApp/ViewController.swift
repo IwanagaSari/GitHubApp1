@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         personalAccessToken.delegate = self
         self.view.addGestureRecognizer(tapRecognizer)
 
-        caution.text = "Select scope \n ☑︎rep  \n ☑︎user"
+        caution.text = "If you don't have personal access token, please create via your Personal access tokens settings page. \n \n Select scope \n ☑︎rep  \n ☑︎user"
         
         // Do any additional setup after loading the view, typically from a nib.
     }

@@ -13,6 +13,8 @@ class UserWebViewController: UIViewController, UIWebViewDelegate {
     var webURL: String?
    
     @IBOutlet weak var userWebView: UIWebView!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,8 @@ class UserWebViewController: UIViewController, UIWebViewDelegate {
         
         print(myURLRequest)
         userWebView.loadRequest(myURLRequest)
+    
+        
 
         // Do any additional setup after loading the view.
     }
@@ -37,6 +41,7 @@ class UserWebViewController: UIViewController, UIWebViewDelegate {
         //3.インジケータを非表示
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
+    
 
     @IBAction func backButton(_ sender: UIButton) {
         userWebView.goBack()

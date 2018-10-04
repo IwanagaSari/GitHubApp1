@@ -27,7 +27,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         userListTabelView.delegate = self
         userListTabelView.dataSource = self
         
-        
         var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
         req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
         
@@ -54,6 +53,12 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         })
         task.resume() //実行する
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.title = "User"
     }
     
     //行数の指定
