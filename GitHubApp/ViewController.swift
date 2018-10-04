@@ -13,6 +13,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var caution: UITextView!
     
+    let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,22 +24,40 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
         caution.text = "If you don't have personal access token, please create via your Personal access tokens settings page. \n \n Select scope \n ☑︎rep  \n ☑︎user"
         
+        // デフォルト値を設定
+        defaults.register(defaults: ["personalAccessToken": ""])
+        //前回保存したデータを読み込み、表示する
+        personalAccessToken.text = readData()
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    //データを読み込む
+    func readData() -> String {
+        let token = defaults.object(forKey: "personalAccessToken") as! String
+        return token
+    }
+    //データを保存
+    func saveData(str: String){
+        defaults.set(str, forKey: "personalAccessToken")
+        defaults.synchronize()
+        
     }
     
     @IBAction func enterButton(_ sender: UIButton) {
         if personalAccessToken.text!.isEmpty {
-            let alertController = UIAlertController(title: "Error", message: "personalAccessTokenを入力して下さい。", preferredStyle: UIAlertControllerStyle.alert)
+            let alertController = UIAlertController(title: "Error", message: "personalAccessTokenを入力して下さい。", preferredStyle: UIAlertController.Style.alert)
             
-            let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
             alertController.addAction(action)
             present(alertController, animated: true, completion: nil)
         } else {
+            self.performSegue(withIdentifier: "toUserListView", sender: nil)
             
+            let tokenText = personalAccessToken.text
+            saveData(str: tokenText!)
         }
-        
-        self.performSegue(withIdentifier: "toUserListView", sender: nil)
-        
+
     }
     
     //次のページへ値の受け渡し
@@ -64,4 +84,4 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
 //4fae2eda5cd06f4c1657f9c5706211f0dad11ae4
 //b9aa84c7035d9ff9a4824ee6d60ae1568830bc6e
-
+//895f3f40fe3be9d9a2eb8f0a1ad2a4c280b409af

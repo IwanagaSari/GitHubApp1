@@ -43,8 +43,8 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         
         //セルの高さを自動で計算
         self.repoTableView.estimatedRowHeight = 135
-        //repoTableView.rowHeight = UITableView.automaticDimension
-        repoTableView.rowHeight = UITableViewAutomaticDimension
+        repoTableView.rowHeight = UITableView.automaticDimension
+        //repoTableView.rowHeight = UITableViewAutomaticDimension
         
         fullname.numberOfLines = 0
         fullname.textColor = UIColor.white
@@ -128,16 +128,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         task2.resume() //実行する
         }
      
-        
-        //let repositrie = repositries[indexPath.row]
-        //let nonforked = repositries["fork"] as! String
-        //if let fork = repositries[1]["fork"]  {
-           // if fork = "false"{
-             //   print("nonforked")
-            //}
-            
-        //}
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -164,11 +154,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         //myパソコン
         //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
         let cell = repoTableView.dequeueReusableCell(withIdentifier: "userCell")!
-        
-        //let repo = repositries[0]
-        //let fork = repo["fork"] as! String
-        //print(repo)
-        
+       
         let repository = repositries[indexPath.row]
         
         let repoLabel = cell.viewWithTag(1) as! UILabel
