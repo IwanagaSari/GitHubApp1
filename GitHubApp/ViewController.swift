@@ -81,7 +81,3 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
 
 }
-
-//4fae2eda5cd06f4c1657f9c5706211f0dad11ae4
-//b9aa84c7035d9ff9a4824ee6d60ae1568830bc6e
-//895f3f40fe3be9d9a2eb8f0a1ad2a4c280b409af
