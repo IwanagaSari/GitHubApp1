@@ -12,7 +12,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var userListTabelView: UITableView!
     
-    var articles: [[String: Any]] = []{
+    var users: [[String: Any]] = []{
         didSet {
             userListTabelView.reloadData()
         }
@@ -40,9 +40,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                     return article as! [String: Any]
                 }
                 DispatchQueue.main.async() { () -> Void in
-                self.articles = articles
-                    
-                    //print("image: \(articles[0]["avatar_url"])")
+                self.users = articles
+                   
                 }
             
             }
@@ -63,7 +62,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     
     //行数の指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return articles.count
+        return users.count
     }
      //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -71,13 +70,11 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //moneyfowardパソコン
         //let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "myCell")
-        
-        //myパソコン
+       
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
         
-        let article = articles[indexPath.row]
+        let article = users[indexPath.row]
         let userName = article["login"] as! String
         let userImage = article["avatar_url"] as! String
         let userImageURL: URL = URL(string: "\(userImage)")!
@@ -91,13 +88,13 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(80)
+        return 80
     }
     
     //セル選択時
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let article = articles[indexPath.row]
+        let article = users[indexPath.row]
         selectedUserName = article["login"] as? String
         
         performSegue(withIdentifier: "toUserRepositoryList", sender: IndexPath.self)

@@ -25,7 +25,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             repoTableView.reloadData()
         }
     }
-    var articles: [String: Any] = [:]{
+    var user: [String: Any] = [:]{
         didSet {
             repoTableView.reloadData()
         }
@@ -82,17 +82,17 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
                 let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)as! [String: Any]
                 
                 DispatchQueue.main.async() { () -> Void in
-                    self.articles = json
+                    self.user = json
                     
-                    let fullNameLabel = self.articles["name"] as? String
+                    let fullNameLabel = self.user["name"] as? String
                     self.fullname.text = fullNameLabel
-                    let follower = self.articles["followers"] as? Int
+                    let follower = self.user["followers"] as? Int
                         self.follower.text = "\(follower!)"
                     
-                    let following = self.articles["following"] as? Int
+                    let following = self.user["following"] as? Int
                     self.following.text = "\(following!)"
                     
-                    let userImage = self.articles["avatar_url"] as? String ?? ""
+                    let userImage = self.user["avatar_url"] as? String ?? ""
                     let userImageURL: URL = URL(string: "\(userImage)")!
                     let imageData = try? Data(contentsOf: userImageURL)
                     self.imageView.image = UIImage(data: imageData!)
@@ -149,10 +149,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     //}
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //moneyfowardパソコン
         //let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "myCell")
-        //myパソコン
-        //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
         let cell = repoTableView.dequeueReusableCell(withIdentifier: "userCell")!
        
         let repository = repositries[indexPath.row]
