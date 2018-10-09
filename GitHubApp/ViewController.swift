@@ -18,11 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapGesture(_:)))
         personalAccessToken.delegate = self
-        self.view.addGestureRecognizer(tapRecognizer)
-
-        caution.text = "If you don't have personal access token, please create via your Personal access tokens settings page. \n \n Select scope \n ☑︎rep  \n ☑︎user"
         
         // デフォルト値を設定
         defaults.register(defaults: ["personalAccessToken": ""])
@@ -68,11 +64,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    @objc func tapGesture(_ sender: UITapGestureRecognizer) {
+    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
         personalAccessToken.resignFirstResponder()
     }
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         personalAccessToken.resignFirstResponder()

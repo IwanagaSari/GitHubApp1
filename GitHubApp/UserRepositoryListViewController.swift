@@ -144,9 +144,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    //セルの高さ
-    //func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //}
+    
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "myCell")
@@ -158,9 +156,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         let description = cell.viewWithTag(2) as! UILabel
         let language = cell.viewWithTag(3) as! UILabel
         let star = cell.viewWithTag(4) as! UILabel
-        
-        //行数を可変に設定
-        description.numberOfLines = 0
         
         let repoName = repository["name"] as! String
         repoLabel.text = "\(repoName)"

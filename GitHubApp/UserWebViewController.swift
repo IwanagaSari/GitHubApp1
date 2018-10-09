@@ -7,56 +7,42 @@
 //
 
 import UIKit
+import WebKit
 
-class UserWebViewController: UIViewController, UIWebViewDelegate {
+class UserWebViewController: UIViewController {
     
     var webURL: String?
    
-    @IBOutlet weak var userWebView: UIWebView!
+    @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var titleLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userWebView.delegate = self
-        
         let myURL = URL(string: "\(webURL!)")
         let myURLRequest = URLRequest(url: myURL!)
         
         print(myURLRequest)
-        userWebView.loadRequest(myURLRequest)
+        webView.load(myURLRequest)
     
-        
-
         // Do any additional setup after loading the view.
     }
-    
-    func webViewDidStartLoad(_ webView: UIWebView) {
-        //インジケータを表示
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    }
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {        
-        //3.インジケータを非表示
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    }
-    
 
     @IBAction func backButton(_ sender: UIButton) {
-        userWebView.goBack()
+        webView.goBack()
     }
     
     @IBAction func pressButton(_ sender: UIButton) {
-        userWebView.goForward()
+        webView.goForward()
     }
     
     @IBAction func reloadButton(_ sender: UIButton) {
-        userWebView.reload()
+        webView.reload()
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
-        userWebView.stopLoading()
+        webView.stopLoading()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
