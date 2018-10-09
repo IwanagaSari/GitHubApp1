@@ -20,12 +20,30 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     var accessToken :String = ""
     var nameLabel : String?
     
-    var repositries: [[String: Any]] = []{
+    
+    struct User: Codable{
+        let name: String
+        let followers: Int
+        let following: Int
+        let avatar_url: String?
+    }
+    
+    struct Repositry: Codable{
+        let name: String?
+        let description: String?
+        let language: String?
+        let stargazers_count: Int?
+        let clone_url: String
+        let fork: Bool
+    }
+    
+    var repositries: [Repositry] = []{
         didSet {
             repoTableView.reloadData()
         }
     }
     var user: [String: Any] = [:]{
+    //var user: [User] = []{
         didSet {
             repoTableView.reloadData()
         }
@@ -77,22 +95,25 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         
         func queue1(){
             //print("queue1")
+            //let decoder: JSONDecoder = JSONDecoder()
             let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
               do {
+                //let json: [User] = try JSONDecoder().decode([User].self, from: data!)
+        
                 let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)as! [String: Any]
-                
                 DispatchQueue.main.async() { () -> Void in
                     self.user = json
                     
-                    let fullNameLabel = self.user["name"] as? String
+                    
+                    let fullNameLabel = self.user["name"] as! String
                     self.fullname.text = fullNameLabel
-                    let follower = self.user["followers"] as? Int
-                        self.follower.text = "\(follower!)"
+                    let follower = self.user["followers"] as! Int
+                        self.follower.text = "\(follower)"
                     
-                    let following = self.user["following"] as? Int
-                    self.following.text = "\(following!)"
+                    let following = self.user["following"] as! Int
+                    self.following.text = "\(following)"
                     
-                    let userImage = self.user["avatar_url"] as? String ?? ""
+                    let userImage = self.user["avatar_url"] as! String
                     let userImageURL: URL = URL(string: "\(userImage)")!
                     let imageData = try? Data(contentsOf: userImageURL)
                     self.imageView.image = UIImage(data: imageData!)
@@ -108,14 +129,15 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         func queue2(){
         let task2: URLSessionTask = URLSession.shared.dataTask(with: repoURL, completionHandler: {data, response, error in
             do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)as! [Any]
+                let jsons: [Repositry] = try JSONDecoder().decode([Repositry].self, from: data!)
+                //let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)as! [Any]
                 
-                let articles = (json.map { (article) -> [String: Any] in
-                    return article as! [String: Any]
-                })
+                //let articles = (json.map { (article) -> [String: Any] in
+                    //return article as! [String: Any]
+                //})
                 
                 DispatchQueue.main.async() { () -> Void in
-                    self.repositries = articles.filter { repo in !(repo["fork"] as! Bool) }
+                    self.repositries = jsons.filter { repo in !(repo.fork) }
                     self.reposCount.text = String(self.repositries.count)
                     //print(self.repositries[0]["fork"] as! Bool)
                     
@@ -127,6 +149,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         })
         task2.resume() //実行する
         }
+        
      
     }
     
@@ -157,17 +180,18 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         let language = cell.viewWithTag(3) as! UILabel
         let star = cell.viewWithTag(4) as! UILabel
         
-        let repoName = repository["name"] as! String
-        repoLabel.text = "\(repoName)"
+            
+        let repoName = repository.name
+        repoLabel.text = repoName
         
-        let repoDescription = repository["description"] as? String
+        let repoDescription = repository.description
         description.text = repoDescription
         
-        let  repoLanguage = repository["language"] as? String
+        let  repoLanguage = repository.language
         language.text = repoLanguage
         
-        let repoStar = repository["stargazers_count"] as? Int
-            star.text = "\(repoStar!)"
+        let repoStar = repository.stargazers_count
+        star.text = "\(repoStar!)"
 
         return cell
     }
@@ -176,7 +200,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let repository = repositries[indexPath.row]
-        selectedURL = repository["clone_url"] as? String
+        selectedURL = repository.clone_url
         
         performSegue(withIdentifier: "toWebView", sender: IndexPath.self)
         

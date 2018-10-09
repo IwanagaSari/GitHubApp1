@@ -12,11 +12,22 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var userListTabelView: UITableView!
     
-    var users: [[String: Any]] = []{
+    struct User: Codable{
+        let login: String
+        let avatar_url: String
+    }
+    
+    var users: [User] = []{
         didSet {
             userListTabelView.reloadData()
         }
     }
+    //var users: [[String: Any]] = []{
+        //didSet {
+            //userListTabelView.reloadData()
+        //}
+    //}
+    
     var selectedUserName :String?
     var selectedUserFullName :String?
     var accessToken :String = ""
@@ -33,22 +44,20 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
             do {
                 //print(String(data: data!, encoding: .utf8))
+                let jsons: [User] = try JSONDecoder().decode([User].self, from: data!)
+                //let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [Any]
                 
-                let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [Any]
-                
-                let articles = json.map { (article) -> [String: Any] in
-                    return article as! [String: Any]
-                }
+                //let articles = json.map { (article) -> [String: Any] in
+                    //return article as! [String: Any]
+                //}
                 DispatchQueue.main.async() { () -> Void in
-                self.users = articles
-                   
+                //self.users = articles
+                    self.users = jsons
                 }
-            
             }
             catch {
                 print(error)
             }
-        
         })
         task.resume() //実行する
         // Do any additional setup after loading the view.
@@ -75,8 +84,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
         
         let article = users[indexPath.row]
-        let userName = article["login"] as! String
-        let userImage = article["avatar_url"] as! String
+        let userName = article.login
+        let userImage = article.avatar_url
         let userImageURL: URL = URL(string: "\(userImage)")!
         let imageData = try? Data(contentsOf: userImageURL)
         
@@ -95,7 +104,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let article = users[indexPath.row]
-        selectedUserName = article["login"] as? String
+        selectedUserName = article.login
         
         performSegue(withIdentifier: "toUserRepositoryList", sender: IndexPath.self)
         
