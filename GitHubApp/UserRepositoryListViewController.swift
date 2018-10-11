@@ -105,7 +105,10 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
 
             //let decoder: JSONDecoder = JSONDecoder()
-        let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, _, error in
+        let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
+            if let response = response as? HTTPURLResponse {
+                print("response.statusCode2 = \(response.statusCode)")
+            }
             do {
                 //let json: [User] = try JSONDecoder().decode([User].self, from: data!)
 
@@ -139,7 +142,10 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         var repoURL = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel!)/repos")!)
         repoURL.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
 
-        let task2: URLSessionTask = URLSession.shared.dataTask(with: repoURL, completionHandler: {data, _, error in
+        let task2: URLSessionTask = URLSession.shared.dataTask(with: repoURL, completionHandler: {data, response, error in
+            if let response = response as? HTTPURLResponse {
+                print("response.statusCode3 = \(response.statusCode)")
+            }
             do {
                 let jsons: [Repositry] = try JSONDecoder().decode([Repositry].self, from: data!)
                 //let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)as! [Any]
@@ -152,7 +158,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
                     self.repositries = jsons.filter { repo in !(repo.fork) }
                     self.reposCount.text = String(self.repositries.count)
                     //print(self.repositries[0]["fork"] as! Bool)
-
                 }
             } catch {
                 print(error)

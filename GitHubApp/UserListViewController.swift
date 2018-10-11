@@ -41,7 +41,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         // ビューに表示
         fetchUsers { _, _ in
         }
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -56,8 +55,11 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
 
              //let task = URLSession.shared.dataTask(with: req) { data, _, error in
-             let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, _, error in
-                // ここにレスポンスの状態(エラーとか、正常とか)をみる処理があるとなお良いと思います
+             let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
+                // エラー処理
+                if let response = response as? HTTPURLResponse {
+                    print("response.statusCode1 = \(response.statusCode)")
+                }
                 let decoder = JSONDecoder()
              do {
                 let users: [User] = try decoder.decode([User].self, from: data!)
