@@ -18,13 +18,13 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var reposCount: UILabel!
 
     var accessToken: String = ""
-    var nameLabel: String?
+    var nameLabel: String = ""
 
     struct User: Codable {
         let name: String?
         let followers: Int?
         let following: Int?
-        let avatarUrl: String?
+        let avatar_url: String?
     }
 
     struct Repositry: Codable {
@@ -41,8 +41,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             repoTableView.reloadData()
         }
     }
-    var user: [String: Any] = [:] {
-    //var user: [User] = []{
+    var user: User = User(name: nil, followers: nil, following: nil, avatar_url: nil) {
         didSet {
             repoTableView.reloadData()
         }
@@ -66,79 +65,67 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         following.textColor = UIColor.white
         name.text = nameLabel
 
-        fetchAPI()
-        //API通信処理
+        let api = GitHubAPI(accessToken: self.accessToken, nameLabel: self.nameLabel)
 
+        api.fetchUser(completion: { user, _ in
+            self.user = user ?? User(name: nil, followers: nil, following: nil, avatar_url: nil)
+
+            let fullNameLabel = self.user.name
+            self.fullname.text = fullNameLabel
+            let follower: Int? = self.user.followers
+            self.follower.text = follower.flatMap { String($0) }
+
+            let following = self.user.following
+            self.following.text = following.flatMap { String($0) }
+
+            let userImage = self.user.avatar_url
+            if let image = userImage {
+                let userImageURL: URL = URL(string: "\(image)")!
+                let imageData = try? Data(contentsOf: userImageURL)
+                self.imageView.image = UIImage(data: imageData!)
+            } else {
+                self.imageView.image = nil
+            }
+
+        })
+        api.fetchRepositry(completion: { repositries, _ in
+            self.repositries = (repositries?.filter { repo in !(repo.fork) } ?? [])
+            self.reposCount.text = String(self.repositries.count)
+
+        })
     }
-    //通信処理(とデータ変換)
-    //class GitHubAPI {
-    func fetchAPI() {
+    class GitHubAPI {
+        private let accessToken: String
+        var nameLabel: String?
 
+        init(accessToken: String, nameLabel: String) {
+            self.accessToken = accessToken
+            self.nameLabel = nameLabel
+        }
+
+    func fetchUser (completion: @escaping ((User?, Error?) -> Void)) {
         var req = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel!)")!)
         req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
 
-        var repoURL = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel!)/repos")!)
-        repoURL.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
-
-        //二つの非同期処理
-        let dispatchGroup = DispatchGroup()
-        let dispatchQueue1 = DispatchQueue(label: "user情報取得", attributes: .concurrent)
-        let dispatchQueue2 = DispatchQueue(label: "repo情報取得", attributes: .concurrent)
-
-        dispatchGroup.enter()
-        dispatchQueue1.async(group: dispatchGroup) {
-            [weak self] in
-            self?.queue1() //処理１：user情報取得
-        }
-
-        dispatchQueue2.async(group: dispatchGroup) {
-            [weak self] in
-            self?.queue2() //処理２：repo情報取得
-        }
-        dispatchGroup.leave()
-    }
-    //}
-
-    func queue1() {
-        //上にも同じ処理書いてるからまとめれるかも
-        var req = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel!)")!)
-        req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
-
-            //let decoder: JSONDecoder = JSONDecoder()
         let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
             if let response = response as? HTTPURLResponse {
                 print("response.statusCode2 = \(response.statusCode)")
             }
             do {
-                //let json: [User] = try JSONDecoder().decode([User].self, from: data!)
-
-                let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)as? [String: Any]
+                let user: User = try JSONDecoder().decode(User.self, from: data!)
 
                 DispatchQueue.main.async { () -> Void in
-                    self.user = json!
-
-                    let fullNameLabel = self.user["name"] as? String
-                    self.fullname.text = fullNameLabel
-                    let follower = self.user["followers"] as! Int
-                    self.follower.text = "\(follower)"
-
-                    let following = self.user["following"] as! Int
-                    self.following.text = "\(following)"
-
-                    let userImage = self.user["avatar_url"] as! String
-                    let userImageURL: URL = URL(string: "\(userImage)")!
-                    let imageData = try? Data(contentsOf: userImageURL)
-                    self.imageView.image = UIImage(data: imageData!)
+                    completion(user, nil)
                 }
             } catch {
               print(error)
+              completion(nil, error)
             }
         })
         task.resume() //実行する
     }
 
-    func queue2() {
-        //上にも同じ処理書いてるからまとめれるかも
+    func fetchRepositry(completion: @escaping (([Repositry]?, Error?) -> Void)) {
         var repoURL = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel!)/repos")!)
         repoURL.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
 
@@ -147,29 +134,22 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
                 print("response.statusCode3 = \(response.statusCode)")
             }
             do {
-                let jsons: [Repositry] = try JSONDecoder().decode([Repositry].self, from: data!)
-                //let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)as! [Any]
-
-                //let articles = (json.map { (article) -> [String: Any] in
-                    //return article as! [String: Any]
-                //})
+                let repositries: [Repositry] = try JSONDecoder().decode([Repositry].self, from: data!)
 
                 DispatchQueue.main.async { () -> Void in
-                    self.repositries = jsons.filter { repo in !(repo.fork) }
-                    self.reposCount.text = String(self.repositries.count)
-                    //print(self.repositries[0]["fork"] as! Bool)
+                    completion(repositries, nil)
                 }
             } catch {
                 print(error)
+                completion(nil, error)
             }
         })
         task2.resume() //実行する
     }
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        self.title = "Repository"
     }
 
     //行数の指定
@@ -183,7 +163,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
 
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "myCell")
+
         let cell = repoTableView.dequeueReusableCell(withIdentifier: "userCell")!
 
         let repository = repositries[indexPath.row]
@@ -224,15 +204,4 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         userWebViewController?.webURL = selectedURL
 
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

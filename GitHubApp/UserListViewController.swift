@@ -22,13 +22,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             userListTabelView.reloadData()
         }
     }
-    //var users: [[String: Any]] = []{
-        //didSet {
-            //userListTabelView.reloadData()
-        //}
-    //}
 
-    var selectedUserName: String?
+    var selectedUserName: String = ""
     var selectedUserFullName: String?
     var accessToken: String = ""
 
@@ -39,18 +34,30 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         userListTabelView.dataSource = self
 
         // ビューに表示
-        fetchUsers { _, _ in
+        let api = GitHubAPI(accessToken: self.accessToken)
+
+        api.fetchUsers(completion: { users, _ in
+            self.users = users ?? []
+        })
+
+        api.fetchUsers { _, _ in
+            print()
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = "User"
     }
 
     //通信処理(とデータ変換)
-    //class GitHubAPI {  これをつけるとaccessTokenが使えなかった。
-         func fetchUsers(completion: (([User]?, Error?) -> Void)) {
+    class GitHubAPI {
+        private let accessToken: String
+
+        init(accessToken: String) {
+            self.accessToken = accessToken
+        }
+
+        func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
             var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
             req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
 
@@ -65,17 +72,18 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                 let users: [User] = try decoder.decode([User].self, from: data!)
 
                 DispatchQueue.main.async { () -> Void in
-                    //self.users = articles
-                    self.users = users
+                    completion(users, nil)
                 }
 
              } catch {
                 print(error)
+                completion(nil, error)
+
                 }
             })
             task.resume()
          }
-    //}
+    }
 
     //行数の指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,7 +95,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "myCell")
 
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
 
@@ -120,14 +127,5 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         userRepositoryListViewController?.nameLabel = selectedUserName
         userRepositoryListViewController?.accessToken = accessToken
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -173,6 +173,7 @@
 				EAD73616215A4B7600486083 /* Sources */,
 				EAD73617215A4B7600486083 /* Frameworks */,
 				EAD73618215A4B7600486083 /* Resources */,
+				862C74BB216CD847000F77CF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -225,6 +226,9 @@
 		EAD73612215A4B7600486083 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "岩永 彩里";
@@ -295,6 +299,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		862C74BB216CD847000F77CF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\nswiftlint\nswiftlint autocorrect \nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EAD73616215A4B7600486083 /* Sources */ = {
