@@ -4,8 +4,6 @@
 <dict>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
-	<key>NSAppTransportSecurity</key>
-	<dict/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

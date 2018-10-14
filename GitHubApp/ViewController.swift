@@ -19,20 +19,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
         personalAccessToken.delegate = self
 
         // デフォルト値を設定
-        defaults.register(defaults: ["personalAccessToken": ""])
-        //前回保存したデータを読み込み、表示する
-        personalAccessToken.text = readData()
-    }
-    //データを読み込む
-    func readData() -> String {
-        let token = defaults.object(forKey: "personalAccessToken") as? String
-        return token ?? ""
-    }
-    //データを保存
-    func saveData(str: String) {
-        defaults.set(str, forKey: "personalAccessToken")
-        defaults.synchronize()
 
+        let token = AccessToken(defaults: self.defaults, tokenText: "")
+        personalAccessToken.text = token.readData()
+    }
+    //アクセストークンを取得するクラス
+    class AccessToken {
+        let defaults: UserDefaults
+        let tokenText: String
+
+        init(defaults: UserDefaults, tokenText: String) {
+            self.defaults = defaults
+            self.defaults.register(defaults: ["personalAccessToken": ""])
+            self.tokenText = tokenText
+        }
+
+        //データを読み込む
+        func readData() -> String {
+            let token = defaults.object(forKey: "personalAccessToken") as? String
+            return token ?? ""
+        }
+        //データを保存
+        func saveData() {
+            defaults.set(tokenText, forKey: "personalAccessToken")
+            defaults.synchronize()
+        }
     }
 
     @IBAction func enterButton(_ sender: UIButton) {
@@ -46,7 +57,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.performSegue(withIdentifier: "toUserListView", sender: nil)
 
             let tokenText = personalAccessToken.text
-            saveData(str: tokenText!)
+            let token = AccessToken(defaults: self.defaults, tokenText: tokenText ?? "")
+            token.saveData()
         }
 
     }
