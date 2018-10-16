@@ -25,7 +25,6 @@ class GitHubAPI: NSObject {
                 completion(nil, error)
                 return
             }
-            let decoder = JSONDecoder()
             //decoder.keyDecodingStrategy = .convertFromSnakeCase  SnakeCaseを自動で変換してくれる
             // API上のエラー処理
             if let response = response as? HTTPURLResponse { //通信上のエラーがある場合はresponseはnil
@@ -33,7 +32,7 @@ class GitHubAPI: NSObject {
                 //print(String(data: data!, encoding: .utf8))
                 if response.statusCode >= 300 {
                     do {
-                        let dataMessage: ErrorData = try decoder.decode(ErrorData.self, from: data!)
+                        let dataMessage: ErrorData = try JSONDecoder().decode(ErrorData.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
                         completion(nil, dataMessage)
                     } catch {
@@ -43,7 +42,7 @@ class GitHubAPI: NSObject {
                 }
             }
             do {
-                let users: [User] = try decoder.decode([User].self, from: data!)
+                let users: [User] = try JSONDecoder().decode([User].self, from: data!)
 
                 DispatchQueue.main.async { () -> Void in
                     //let image = UIImage(data:data!)
@@ -64,8 +63,24 @@ class GitHubAPI: NSObject {
         req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
+
+            if let error = error {
+                completion(nil, error)
+                return
+            }
             if let response = response as? HTTPURLResponse {
                 print("response.statusCode2 = \(response.statusCode)")
+
+                if response.statusCode >= 300 {
+                    do {
+                        let dataMessage: ErrorData = try JSONDecoder().decode(ErrorData.self, from: data!)
+                        print("test:\(dataMessage.localizedDescription)")
+                        completion(nil, dataMessage)
+                    } catch {
+                        print(error)
+                        completion(nil, error) //
+                    }
+                }
             }
             do {
                 let user: UserDetail = try JSONDecoder().decode(UserDetail.self, from: data!)
@@ -86,8 +101,23 @@ class GitHubAPI: NSObject {
         repoURL.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let task2: URLSessionTask = URLSession.shared.dataTask(with: repoURL, completionHandler: {data, response, error in
+            if let error = error {  //このエラーはdetaTaskのエラー
+                completion(nil, error)
+                return
+            }
             if let response = response as? HTTPURLResponse {
                 print("response.statusCode3 = \(response.statusCode)")
+
+                if response.statusCode >= 300 {
+                    do {
+                        let dataMessage: ErrorData = try JSONDecoder().decode(ErrorData.self, from: data!)
+                        print("test:\(dataMessage.localizedDescription)")
+                        completion(nil, dataMessage)
+                    } catch {
+                        print(error)
+                        completion(nil, error) //
+                    }
+                }
             }
             do {
                 let repositries: [Repositry] = try JSONDecoder().decode([Repositry].self, from: data!)

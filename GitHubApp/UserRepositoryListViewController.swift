@@ -49,7 +49,14 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         following.textColor = UIColor.white
         name.text = nameLabel
 
-        gitHubAPI.fetchUser(nameLabel: nameLabel, completion: { user, _ in
+        gitHubAPI.fetchUser(nameLabel: nameLabel, completion: { user, error in
+            if let error = error {
+                let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
+                let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+                alertController.addAction(action)
+                self.present(alertController, animated: true, completion: nil)
+                print("reason:\(error.localizedDescription)")
+            }
             self.user = user ?? UserDetail(name: nil, followers: nil, following: nil, avatarUrl: nil)
 
             let fullNameLabel = self.user.name
@@ -70,7 +77,15 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             }
 
         })
-        gitHubAPI.fetchRepositry(nameLabel: nameLabel, completion: { repositries, _ in
+        gitHubAPI.fetchRepositry(nameLabel: nameLabel, completion: { repositries, error in
+            if let error = error {
+                let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
+                let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+                alertController.addAction(action)
+                self.present(alertController, animated: true, completion: nil)
+                print("reason:\(error.localizedDescription)")
+            }
+
             self.repositries = (repositries?.filter { repo in !(repo.fork) } ?? [])
             self.reposCount.text = String(self.repositries.count)
 
