@@ -12,20 +12,25 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var userListTabelView: UITableView!
 
-    struct User: Codable {
-        let login: String
-        let avatar_url: String
-    }
-
     var users: [User] = [] {
         didSet {
             userListTabelView.reloadData()
         }
     }
 
+    //var images: [Image] = []
+    //{
+      //  didSet {
+        //    userListTabelView.reloadData()
+        //}
+    //9}
+
     var selectedUserName: String = ""
     var selectedUserFullName: String?
     var accessToken: String = ""
+
+    //let gitHubAPI = GitHubAPI()
+    lazy var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +38,24 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         userListTabelView.delegate = self
         userListTabelView.dataSource = self
 
-        // ビューに表示
-        let api = GitHubAPI(accessToken: self.accessToken)
-
-        api.fetchUsers(completion: { users, _ in
+        gitHubAPI.fetchUsers(completion: { users, error in
             self.users = users ?? []
+
+            if let error = error {
+                let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
+                let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+                alertController.addAction(action)
+                self.present(alertController, animated: true, completion: nil)
+                print("reason:\(error.localizedDescription)")
+                //ここでアラートを出す
+            }
         })
 
-        api.fetchUsers { _, _ in
-            print()
-        }
+        //GitHubAPI.fetchImages(completion: { images, _ in
+          //  self.images = images ?? []
+            //print(self.images)
+        //})
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -50,40 +63,29 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     //通信処理(とデータ変換)
-    class GitHubAPI {
-        private let accessToken: String
+    //class GitHubAPI {
 
-        init(accessToken: String) {
-            self.accessToken = accessToken
-        }
+         //func fetchImages(completion: @escaping (([Image]?, Error?) -> Void)) {
+           // var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
+            //req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
 
-        func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
-            var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
-            req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
+            //let task2: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, _, error in
+              //  do {
+                //let images: [Image] = try JSONDecoder().decode([Image].self, from: data!)
 
-             //let task = URLSession.shared.dataTask(with: req) { data, _, error in
-             let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
-                // エラー処理
-                if let response = response as? HTTPURLResponse {
-                    print("response.statusCode1 = \(response.statusCode)")
-                }
-                let decoder = JSONDecoder()
-             do {
-                let users: [User] = try decoder.decode([User].self, from: data!)
+                //DispatchQueue.main.async { () -> Void in
+                //completion(images, nil)
+                //}
+                //} catch {
+                //print(error)
+                //completion(nil, error)
+                //}
 
-                DispatchQueue.main.async { () -> Void in
-                    completion(users, nil)
-                }
+            //})
+            //task2.resume()
+        //}
 
-             } catch {
-                print(error)
-                completion(nil, error)
-
-                }
-            })
-            task.resume()
-         }
-    }
+    //}
 
     //行数の指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,14 +100,14 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
 
-        let article = users[indexPath.row]
-        let userName = article.login
-        let userImage = article.avatar_url
+        let user = users[indexPath.row]
+        let userName = user.login
+        let userImage = user.avatarUrl
         let userImageURL: URL = URL(string: "\(userImage)")!
         let imageData = try? Data(contentsOf: userImageURL)
 
         cell.textLabel?.text = "\(userName)"
-        cell.imageView?.image = UIImage(data: imageData!)
+        cell.imageView?.image = UIImage(data: imageData! )
 
     return cell
     }

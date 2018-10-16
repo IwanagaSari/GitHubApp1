@@ -15,6 +15,10 @@
 		8617D66D2162E7E6004FC10A /* UserWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617D66C2162E7E6004FC10A /* UserWebViewController.swift */; };
 		86E360EB2164721A000910DF /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E360E921647219000910DF /* star.png */; };
 		86E360EC2164721A000910DF /* maru.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E360EA2164721A000910DF /* maru.png */; };
+		EAB5A46A2175D84900004D29 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A4692175D84900004D29 /* GitHubAPI.swift */; };
+		EAB5A46C2175DA9F00004D29 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46B2175DA9F00004D29 /* User.swift */; };
+		EAB5A46E2175F7F800004D29 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46D2175F7F800004D29 /* Repository.swift */; };
+		EAB5A4702175FA3000004D29 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46F2175FA3000004D29 /* APIError.swift */; };
 		EAD7361E215A4B7600486083 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7361D215A4B7600486083 /* AppDelegate.swift */; };
 		EAD73620215A4B7600486083 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7361F215A4B7600486083 /* ViewController.swift */; };
 		EAD73623215A4B7600486083 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD73621215A4B7600486083 /* Main.storyboard */; };
@@ -52,6 +56,10 @@
 		8617D66C2162E7E6004FC10A /* UserWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWebViewController.swift; sourceTree = "<group>"; };
 		86E360E921647219000910DF /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		86E360EA2164721A000910DF /* maru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maru.png; sourceTree = "<group>"; };
+		EAB5A4692175D84900004D29 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
+		EAB5A46B2175DA9F00004D29 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EAB5A46D2175F7F800004D29 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		EAB5A46F2175FA3000004D29 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		EAD7361A215A4B7600486083 /* GitHubApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD7361D215A4B7600486083 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAD7361F215A4B7600486083 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +149,10 @@
 				EAD73651215A59B400486083 /* UserListViewController.swift */,
 				EAD73653215A5A1900486083 /* UserRepositoryListViewController.swift */,
 				8617D66C2162E7E6004FC10A /* UserWebViewController.swift */,
+				EAB5A4692175D84900004D29 /* GitHubAPI.swift */,
+				EAB5A46B2175DA9F00004D29 /* User.swift */,
+				EAB5A46D2175F7F800004D29 /* Repository.swift */,
+				EAB5A46F2175FA3000004D29 /* APIError.swift */,
 			);
 			path = GitHubApp;
 			sourceTree = "<group>";
@@ -326,10 +338,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8617D66D2162E7E6004FC10A /* UserWebViewController.swift in Sources */,
+				EAB5A46A2175D84900004D29 /* GitHubAPI.swift in Sources */,
 				EAD73654215A5A1900486083 /* UserRepositoryListViewController.swift in Sources */,
+				EAB5A46E2175F7F800004D29 /* Repository.swift in Sources */,
 				EAD73652215A59B400486083 /* UserListViewController.swift in Sources */,
 				EAD73620215A4B7600486083 /* ViewController.swift in Sources */,
 				EAD7361E215A4B7600486083 /* AppDelegate.swift in Sources */,
+				EAB5A46C2175DA9F00004D29 /* User.swift in Sources */,
+				EAB5A4702175FA3000004D29 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

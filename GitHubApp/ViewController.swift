@@ -68,7 +68,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
         let userListViewController = segue.destination as? UserListViewController
         userListViewController?.accessToken = personalAccessToken.text ?? ""
-
     }
 
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {

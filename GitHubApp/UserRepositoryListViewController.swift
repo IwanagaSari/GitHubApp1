@@ -20,33 +20,18 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     var accessToken: String = ""
     var nameLabel: String = ""
 
-    struct User: Codable {
-        let name: String?
-        let followers: Int?
-        let following: Int?
-        let avatar_url: String?
-    }
-
-    struct Repositry: Codable {
-        let name: String?
-        let description: String?
-        let language: String?
-        let stargazers_count: Int?
-        let clone_url: String
-        let fork: Bool
-    }
-
     var repositries: [Repositry] = [] {
         didSet {
             repoTableView.reloadData()
         }
     }
-    var user: User = User(name: nil, followers: nil, following: nil, avatar_url: nil) {
+    var user: UserDetail = UserDetail(name: nil, followers: nil, following: nil, avatarUrl: nil) {
         didSet {
             repoTableView.reloadData()
         }
     }
     var selectedURL: String?
+    lazy var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +42,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         //セルの高さを自動で計算
         self.repoTableView.estimatedRowHeight = 135
         repoTableView.rowHeight = UITableView.automaticDimension
-        //repoTableView.rowHeight = UITableViewAutomaticDimension
 
         fullname.numberOfLines = 0
         fullname.textColor = UIColor.white
@@ -65,10 +49,8 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         following.textColor = UIColor.white
         name.text = nameLabel
 
-        let api = GitHubAPI(accessToken: self.accessToken, nameLabel: self.nameLabel)
-
-        api.fetchUser(completion: { user, _ in
-            self.user = user ?? User(name: nil, followers: nil, following: nil, avatar_url: nil)
+        gitHubAPI.fetchUser(nameLabel: nameLabel, completion: { user, _ in
+            self.user = user ?? UserDetail(name: nil, followers: nil, following: nil, avatarUrl: nil)
 
             let fullNameLabel = self.user.name
             self.fullname.text = fullNameLabel
@@ -78,7 +60,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             let following = self.user.following
             self.following.text = following.flatMap { String($0) }
 
-            let userImage = self.user.avatar_url
+            let userImage = self.user.avatarUrl
             if let image = userImage {
                 let userImageURL: URL = URL(string: "\(image)")!
                 let imageData = try? Data(contentsOf: userImageURL)
@@ -88,64 +70,11 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             }
 
         })
-        api.fetchRepositry(completion: { repositries, _ in
+        gitHubAPI.fetchRepositry(nameLabel: nameLabel, completion: { repositries, _ in
             self.repositries = (repositries?.filter { repo in !(repo.fork) } ?? [])
             self.reposCount.text = String(self.repositries.count)
 
         })
-    }
-    class GitHubAPI {
-        private let accessToken: String
-        var nameLabel: String?
-
-        init(accessToken: String, nameLabel: String) {
-            self.accessToken = accessToken
-            self.nameLabel = nameLabel
-        }
-
-    func fetchUser (completion: @escaping ((User?, Error?) -> Void)) {
-        var req = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel!)")!)
-        req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
-
-        let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
-            if let response = response as? HTTPURLResponse {
-                print("response.statusCode2 = \(response.statusCode)")
-            }
-            do {
-                let user: User = try JSONDecoder().decode(User.self, from: data!)
-
-                DispatchQueue.main.async { () -> Void in
-                    completion(user, nil)
-                }
-            } catch {
-              print(error)
-              completion(nil, error)
-            }
-        })
-        task.resume() //実行する
-    }
-
-    func fetchRepositry(completion: @escaping (([Repositry]?, Error?) -> Void)) {
-        var repoURL = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel!)/repos")!)
-        repoURL.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
-
-        let task2: URLSessionTask = URLSession.shared.dataTask(with: repoURL, completionHandler: {data, response, error in
-            if let response = response as? HTTPURLResponse {
-                print("response.statusCode3 = \(response.statusCode)")
-            }
-            do {
-                let repositries: [Repositry] = try JSONDecoder().decode([Repositry].self, from: data!)
-
-                DispatchQueue.main.async { () -> Void in
-                    completion(repositries, nil)
-                }
-            } catch {
-                print(error)
-                completion(nil, error)
-            }
-        })
-        task2.resume() //実行する
-    }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -182,7 +111,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         let  repoLanguage = repository.language
         language?.text = repoLanguage
 
-        let repoStar = repository.stargazers_count
+        let repoStar = repository.stargazersCount
         star?.text = "\(repoStar!)"
 
         return cell
@@ -192,7 +121,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let repository = repositries[indexPath.row]
-        selectedURL = repository.clone_url
+        selectedURL = repository.cloneUrl
 
         performSegue(withIdentifier: "toWebView", sender: IndexPath.self)
 
