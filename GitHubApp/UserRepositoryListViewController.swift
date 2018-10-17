@@ -136,7 +136,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let repository = repositries[indexPath.row]
-        selectedURL = repository.cloneUrl
+        selectedURL = repository.htmlUrl
 
         performSegue(withIdentifier: "toWebView", sender: IndexPath.self)
 

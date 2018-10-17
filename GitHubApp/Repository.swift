@@ -13,7 +13,7 @@ import Foundation
         let description: String?
         let language: String?
         let stargazersCount: Int?
-        let cloneUrl: String
+        let htmlUrl: String
         let fork: Bool
 
         enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ import Foundation
             case description
             case language
             case stargazersCount = "stargazers_count"
-            case cloneUrl = "clone_url"
+            case htmlUrl = "html_url"
             case fork
         }
     }
