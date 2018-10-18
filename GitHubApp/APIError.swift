@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ErrorData: Codable, LocalizedError {
+struct APIError: Codable, LocalizedError {
     let message: String
 
     var errorDescription: String? {

@@ -43,10 +43,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         self.repoTableView.estimatedRowHeight = 135
         repoTableView.rowHeight = UITableView.automaticDimension
 
-        fullname.numberOfLines = 0
-        fullname.textColor = UIColor.white
-        follower.textColor = UIColor.white
-        following.textColor = UIColor.white
         name.text = nameLabel
 
         gitHubAPI.fetchUser(nameLabel: nameLabel, completion: { user, error in

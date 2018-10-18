@@ -32,7 +32,7 @@ class GitHubAPI: NSObject {
                 //print(String(data: data!, encoding: .utf8))
                 if response.statusCode >= 300 {
                     do {
-                        let dataMessage: ErrorData = try JSONDecoder().decode(ErrorData.self, from: data!)
+                        let dataMessage: APIError = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
                         completion(nil, dataMessage)
                     } catch {
@@ -73,7 +73,7 @@ class GitHubAPI: NSObject {
 
                 if response.statusCode >= 300 {
                     do {
-                        let dataMessage: ErrorData = try JSONDecoder().decode(ErrorData.self, from: data!)
+                        let dataMessage: APIError = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
                         completion(nil, dataMessage)
                     } catch {
@@ -110,7 +110,7 @@ class GitHubAPI: NSObject {
 
                 if response.statusCode >= 300 {
                     do {
-                        let dataMessage: ErrorData = try JSONDecoder().decode(ErrorData.self, from: data!)
+                        let dataMessage: APIError = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
                         completion(nil, dataMessage)
                     } catch {
