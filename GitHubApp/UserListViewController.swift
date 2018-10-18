@@ -18,18 +18,10 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
-    //var images: [Image] = []
-    //{
-      //  didSet {
-        //    userListTabelView.reloadData()
-        //}
-    //9}
-
     var selectedUserName: String = ""
     var selectedUserFullName: String?
     var accessToken: String = ""
 
-    //let gitHubAPI = GitHubAPI()
     lazy var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
     override func viewDidLoad() {
@@ -47,46 +39,9 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                 alertController.addAction(action)
                 self.present(alertController, animated: true, completion: nil)
                 print("reason:\(error.localizedDescription)")
-                //ここでアラートを出す
             }
         })
-
-        //GitHubAPI.fetchImages(completion: { images, _ in
-          //  self.images = images ?? []
-            //print(self.images)
-        //})
-
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    //通信処理(とデータ変換)
-    //class GitHubAPI {
-
-         //func fetchImages(completion: @escaping (([Image]?, Error?) -> Void)) {
-           // var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
-            //req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
-
-            //let task2: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, _, error in
-              //  do {
-                //let images: [Image] = try JSONDecoder().decode([Image].self, from: data!)
-
-                //DispatchQueue.main.async { () -> Void in
-                //completion(images, nil)
-                //}
-                //} catch {
-                //print(error)
-                //completion(nil, error)
-                //}
-
-            //})
-            //task2.resume()
-        //}
-
-    //}
-
     //行数の指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
