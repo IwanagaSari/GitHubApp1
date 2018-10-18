@@ -6,7 +6,7 @@
 //  Copyright © 2018年 岩永 彩里. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class GitHubAPI: NSObject {
     var accessToken = ""
