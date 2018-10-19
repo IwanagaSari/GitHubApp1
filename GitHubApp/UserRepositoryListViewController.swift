@@ -25,12 +25,13 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             repoTableView.reloadData()
         }
     }
-    var user: UserDetail = UserDetail(name: nil, followers: nil, following: nil, avatarUrl: nil) {
+    var user: UserDetail? {
         didSet {
             repoTableView.reloadData()
         }
     }
     var selectedURL: String?
+    
     lazy var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
     override func viewDidLoad() {
@@ -53,17 +54,17 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
                 self.present(alertController, animated: true, completion: nil)
                 print("reason:\(error.localizedDescription)")
             }
-            self.user = user ?? UserDetail(name: nil, followers: nil, following: nil, avatarUrl: nil)
+            self.user = user
 
-            let fullNameLabel = self.user.name
+            let fullNameLabel = self.user?.name
             self.fullname.text = fullNameLabel
-            let follower: Int? = self.user.followers
+            let follower: Int? = self.user?.followers
             self.follower.text = follower.flatMap { String($0) }
 
-            let following = self.user.following
+            let following = self.user?.following
             self.following.text = following.flatMap { String($0) }
 
-            let userImage = self.user.avatarUrl
+            let userImage = self.user?.avatarUrl
             if let image = userImage {
                 let userImageURL: URL = URL(string: "\(image)")!
                 let imageData = try? Data(contentsOf: userImageURL)
@@ -135,13 +136,11 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         selectedURL = repository.htmlUrl
 
         performSegue(withIdentifier: "toWebView", sender: IndexPath.self)
-
     }
 
     //次のページへ値の受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let userWebViewController = segue.destination as? UserWebViewController
         userWebViewController?.webURL = selectedURL
-
     }
 }

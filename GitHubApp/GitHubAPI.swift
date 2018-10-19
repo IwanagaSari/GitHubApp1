@@ -25,7 +25,6 @@ class GitHubAPI: NSObject {
                 completion(nil, error)
                 return
             }
-            //decoder.keyDecodingStrategy = .convertFromSnakeCase  SnakeCaseを自動で変換してくれる
             // API上のエラー処理
             if let response = response as? HTTPURLResponse { //通信上のエラーがある場合はresponseはnil
                 print("response.statusCode1 = \(response.statusCode)")
@@ -37,7 +36,7 @@ class GitHubAPI: NSObject {
                         completion(nil, dataMessage)
                     } catch {
                         print(error)
-                        completion(nil, error) //
+                        completion(nil, error)
                     }
                 }
             }
@@ -45,7 +44,6 @@ class GitHubAPI: NSObject {
                 let users: [User] = try JSONDecoder().decode([User].self, from: data!)
 
                 DispatchQueue.main.async { () -> Void in
-                    //let image = UIImage(data:data!)
                     completion(users, nil)
                 }
 
@@ -93,7 +91,7 @@ class GitHubAPI: NSObject {
                 completion(nil, error)
             }
         })
-        task.resume() //実行する
+        task.resume()
     }
 
     func fetchRepositry(nameLabel: String, completion: @escaping (([Repositry]?, Error?) -> Void)) {
@@ -115,7 +113,7 @@ class GitHubAPI: NSObject {
                         completion(nil, dataMessage)
                     } catch {
                         print(error)
-                        completion(nil, error) //
+                        completion(nil, error)
                     }
                 }
             }
@@ -130,6 +128,6 @@ class GitHubAPI: NSObject {
                 completion(nil, error)
             }
         })
-        task2.resume() //実行する
+        task2.resume() 
     }
 }
