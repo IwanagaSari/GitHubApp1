@@ -48,11 +48,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func enterButton(_ sender: UIButton) {
         if personalAccessToken.text!.isEmpty {
-            let alertController = UIAlertController(title: "Error", message: "personalAccessTokenを入力して下さい。", preferredStyle: UIAlertController.Style.alert)
-
-            let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-            alertController.addAction(action)
-            present(alertController, animated: true, completion: nil)
+            showAlert()
         } else {
             self.performSegue(withIdentifier: "toUserListView", sender: nil)
 
@@ -61,6 +57,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             token.saveData()
         }
 
+    }
+    func showAlert(){
+        let alertController = UIAlertController(title: "Error", message: "personalAccessTokenを入力して下さい。", preferredStyle: UIAlertController.Style.alert)
+        
+        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
     }
 
     //次のページへ値の受け渡し

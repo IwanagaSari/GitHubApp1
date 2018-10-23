@@ -34,13 +34,18 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             self.users = users ?? []
 
             if let error = error {
-                let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
-                let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-                alertController.addAction(action)
-                self.present(alertController, animated: true, completion: nil)
-                print("reason:\(error.localizedDescription)")
+                self.showError(error)
             }
         })
+    }
+    //アラートを表示する
+    func showError(_ error: Error) {
+        let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+        print("reason:\(error.localizedDescription)")
+
     }
     //行数の指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -44,11 +44,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
 
         gitHubAPI.fetchUser(nameLabel: nameLabel, completion: { user, error in
             if let error = error {
-                let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
-                let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-                alertController.addAction(action)
-                self.present(alertController, animated: true, completion: nil)
-                print("reason:\(error.localizedDescription)")
+                self.showError(error)
             }
             self.user = user
 
@@ -72,17 +68,19 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         })
         gitHubAPI.fetchRepositry(nameLabel: nameLabel, completion: { repositries, error in
             if let error = error {
-                let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
-                let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-                alertController.addAction(action)
-                self.present(alertController, animated: true, completion: nil)
-                print("reason:\(error.localizedDescription)")
+                self.showError(error)
             }
-
             self.repositries = (repositries?.filter { repo in !(repo.fork) } ?? [])
             self.reposCount.text = String(self.repositries.count)
-
         })
+    }
+    //アラートを表示する
+    func showError(_ error: Error) {
+        let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+        print("reason:\(error.localizedDescription)")
     }
 
     override func viewWillAppear(_ animated: Bool) {
