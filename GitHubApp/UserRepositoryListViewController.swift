@@ -31,7 +31,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         }
     }
     var selectedURL: String?
-    
+
     lazy var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
     override func viewDidLoad() {
@@ -39,10 +39,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
 
         repoTableView.delegate = self
         repoTableView.dataSource = self
-
-        //セルの高さを自動で計算
-        self.repoTableView.estimatedRowHeight = 135
-        repoTableView.rowHeight = UITableView.automaticDimension
 
         name.text = nameLabel
 
