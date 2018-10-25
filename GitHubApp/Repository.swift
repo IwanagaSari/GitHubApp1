@@ -9,11 +9,11 @@
 import Foundation
 
     struct Repositry: Codable {
-        let name: String?
+        let name: String
         let description: String?
         let language: String?
         let stargazersCount: Int?
-        let htmlUrl: String
+        let url: String
         let fork: Bool
 
         enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ import Foundation
             case description
             case language
             case stargazersCount = "stargazers_count"
-            case htmlUrl = "html_url"
+            case url = "html_url"
             case fork
         }
     }

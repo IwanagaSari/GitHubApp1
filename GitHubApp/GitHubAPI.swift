@@ -9,7 +9,7 @@
 import Foundation
 
 class GitHubAPI: NSObject {
-    var accessToken = ""
+    private let accessToken: String
 
     init(accessToken: String) {
         self.accessToken = accessToken
@@ -128,6 +128,6 @@ class GitHubAPI: NSObject {
                 completion(nil, error)
             }
         })
-        task2.resume() 
+        task2.resume()
     }
 }

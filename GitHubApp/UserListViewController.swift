@@ -19,10 +19,9 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     var selectedUserName: String = ""
-    var selectedUserFullName: String?
     var accessToken: String = ""
 
-    lazy var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
+    lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,11 +60,11 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
 
         let user = users[indexPath.row]
-        let userName = user.login
-        let userImage = user.avatarUrl
+        let userName = user.userName
+        let userImage = user.image
         let userImageURL: URL = URL(string: "\(userImage)")!
-        let imageData = try? Data(contentsOf: userImageURL)
 
+        let imageData = try? Data(contentsOf: userImageURL)
         cell.textLabel?.text = "\(userName)"
         cell.imageView?.image = UIImage(data: imageData! )
 
@@ -78,15 +77,15 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     //セル選択時
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let article = users[indexPath.row]
-        selectedUserName = article.login
+        let user = users[indexPath.row]
+        selectedUserName = user.userName
 
         performSegue(withIdentifier: "toUserRepositoryList", sender: IndexPath.self)
     }
     //次のページへ値の受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let userRepositoryListViewController = segue.destination as?UserRepositoryListViewController
-        userRepositoryListViewController?.nameLabel = selectedUserName
+        userRepositoryListViewController?.userName = selectedUserName
         userRepositoryListViewController?.accessToken = accessToken
     }
 

@@ -18,7 +18,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var reposCount: UILabel!
 
     var accessToken: String = ""
-    var nameLabel: String = ""
+    var userName: String = ""
 
     var repositries: [Repositry] = [] {
         didSet {
@@ -32,7 +32,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     }
     var selectedURL: String?
 
-    lazy var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
+    lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,23 +40,23 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         repoTableView.delegate = self
         repoTableView.dataSource = self
 
-        name.text = nameLabel
+        name.text = userName
 
-        gitHubAPI.fetchUser(nameLabel: nameLabel, completion: { user, error in
+        gitHubAPI.fetchUser(nameLabel: userName, completion: { user, error in
             if let error = error {
                 self.showError(error)
             }
             self.user = user
 
-            let fullNameLabel = self.user?.name
-            self.fullname.text = fullNameLabel
+            let fullName = self.user?.fullName
+            self.fullname.text = fullName
             let follower: Int? = self.user?.followers
             self.follower.text = follower.flatMap { String($0) }
 
             let following = self.user?.following
             self.following.text = following.flatMap { String($0) }
 
-            let userImage = self.user?.avatarUrl
+            let userImage = self.user?.image
             if let image = userImage {
                 let userImageURL: URL = URL(string: "\(image)")!
                 let imageData = try? Data(contentsOf: userImageURL)
@@ -64,9 +64,8 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             } else {
                 self.imageView.image = nil
             }
-
         })
-        gitHubAPI.fetchRepositry(nameLabel: nameLabel, completion: { repositries, error in
+        gitHubAPI.fetchRepositry(nameLabel: userName, completion: { repositries, error in
             if let error = error {
                 self.showError(error)
             }
@@ -86,7 +85,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-
     //行数の指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositries.count
@@ -95,12 +93,10 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = repoTableView.dequeueReusableCell(withIdentifier: "userCell")!
-
         let repository = repositries[indexPath.row]
 
         let repoLabel = cell.viewWithTag(1) as? UILabel
@@ -122,16 +118,13 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
 
         return cell
     }
-
     //セル選択時
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         let repository = repositries[indexPath.row]
-        selectedURL = repository.htmlUrl
+        selectedURL = repository.url
 
         performSegue(withIdentifier: "toWebView", sender: IndexPath.self)
     }
-
     //次のページへ値の受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let userWebViewController = segue.destination as? UserWebViewController

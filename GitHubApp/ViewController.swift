@@ -9,8 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var personalAccessToken: UITextField!
-    @IBOutlet weak var caution: UITextView!
+    @IBOutlet weak private var personalAccessToken: UITextField!
+    @IBOutlet weak private var caution: UITextView!
     let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
@@ -19,31 +19,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         personalAccessToken.delegate = self
 
         // デフォルト値を設定
-
         let token = AccessToken(defaults: self.defaults, tokenText: "")
-        personalAccessToken.text = token.readData()
-    }
-    //アクセストークンを取得するクラス
-    class AccessToken {
-        let defaults: UserDefaults
-        let tokenText: String
-
-        init(defaults: UserDefaults, tokenText: String) {
-            self.defaults = defaults
-            self.defaults.register(defaults: ["personalAccessToken": ""])
-            self.tokenText = tokenText
-        }
-
-        //データを読み込む
-        func readData() -> String {
-            let token = defaults.object(forKey: "personalAccessToken") as? String
-            return token ?? ""
-        }
-        //データを保存
-        func saveData() {
-            defaults.set(tokenText, forKey: "personalAccessToken")
-            defaults.synchronize()
-        }
+        personalAccessToken.text = token.getAccessToken()
     }
 
     @IBAction func enterButton(_ sender: UIButton) {
@@ -53,14 +30,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.performSegue(withIdentifier: "toUserListView", sender: nil)
 
             let tokenText = personalAccessToken.text
-            let token = AccessToken(defaults: self.defaults, tokenText: tokenText ?? "")
-            token.saveData()
+            let accessToken = AccessToken(defaults: self.defaults, tokenText: tokenText ?? "")
+            accessToken.saveAccessToken()
         }
-
     }
-    func showAlert(){
+    func showAlert() {
         let alertController = UIAlertController(title: "Error", message: "personalAccessTokenを入力して下さい。", preferredStyle: UIAlertController.Style.alert)
-        
+
         let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alertController.addAction(action)
         present(alertController, animated: true, completion: nil)
