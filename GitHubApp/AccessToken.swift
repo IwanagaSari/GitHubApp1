@@ -10,23 +10,22 @@ import Foundation
 
 class AccessToken: NSObject {
     let defaults: UserDefaults
-    let tokenText: String
     
-    init(defaults: UserDefaults, tokenText: String) {
+    private static let personalAccessToken: String = "personalAccessToken"
+    
+    var token: String {
+        get {
+            let token = defaults.object(forKey: type(of: self).personalAccessToken) as? String
+            return token ?? ""
+        }
+        set {
+            defaults.set(newValue, forKey: type(of: self).personalAccessToken)
+            defaults.synchronize()
+        }
+    }
+    
+    init(defaults: UserDefaults) {
         self.defaults = defaults
-        self.defaults.register(defaults: ["personalAccessToken": ""])
-        self.tokenText = tokenText
+        self.defaults.register(defaults: [type(of: self).personalAccessToken: ""])
     }
-    
-    //データを読み込む
-    func getAccessToken() -> String {
-        let token = defaults.object(forKey: "personalAccessToken") as? String
-        return token ?? ""
-    }
-    //データを保存
-    func saveAccessToken() {
-        defaults.set(tokenText, forKey: "personalAccessToken")
-        defaults.synchronize()
-    }
-
 }

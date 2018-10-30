@@ -19,19 +19,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         personalAccessToken.delegate = self
 
         // デフォルト値を設定
-        let token = AccessToken(defaults: self.defaults, tokenText: "")
-        personalAccessToken.text = token.getAccessToken()
+        //let token = AccessToken(defaults: self.defaults, tokenText: "")
+        let token = AccessToken(defaults: self.defaults)
+        personalAccessToken.text = token.token
     }
 
-    @IBAction func enterButton(_ sender: UIButton) {
+    @IBAction private func enterButton(_ sender: UIButton) {
         if personalAccessToken.text!.isEmpty {
             showAlert()
         } else {
             self.performSegue(withIdentifier: "toUserListView", sender: nil)
 
             let tokenText = personalAccessToken.text
-            let accessToken = AccessToken(defaults: self.defaults, tokenText: tokenText ?? "")
-            accessToken.saveAccessToken()
+            let accessToken = AccessToken(defaults: self.defaults)
+            accessToken.token = tokenText ?? ""
         }
     }
     func showAlert() {

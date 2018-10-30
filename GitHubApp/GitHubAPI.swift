@@ -29,7 +29,7 @@ class GitHubAPI: NSObject {
             if let response = response as? HTTPURLResponse { //通信上のエラーがある場合はresponseはnil
                 print("response.statusCode1 = \(response.statusCode)")
                 //print(String(data: data!, encoding: .utf8))
-                if response.statusCode >= 300 {
+                if response.statusCode >= 300 || response.statusCode < 200{
                     do {
                         let dataMessage: APIError = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
@@ -69,7 +69,7 @@ class GitHubAPI: NSObject {
             if let response = response as? HTTPURLResponse {
                 print("response.statusCode2 = \(response.statusCode)")
 
-                if response.statusCode >= 300 {
+                if response.statusCode >= 300 || response.statusCode < 200 {
                     do {
                         let dataMessage: APIError = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
@@ -106,7 +106,7 @@ class GitHubAPI: NSObject {
             if let response = response as? HTTPURLResponse {
                 print("response.statusCode3 = \(response.statusCode)")
 
-                if response.statusCode >= 300 {
+                if response.statusCode >= 300 || response.statusCode < 200 {
                     do {
                         let dataMessage: APIError = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
