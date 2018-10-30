@@ -19,26 +19,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
         personalAccessToken.delegate = self
 
         // デフォルト値を設定
-        //let token = AccessToken(defaults: self.defaults, tokenText: "")
-        let token = AccessToken(defaults: self.defaults)
+    
+        let token = Setting(defaults: self.defaults)
         personalAccessToken.text = token.token
     }
 
     @IBAction private func enterButton(_ sender: UIButton) {
         if personalAccessToken.text!.isEmpty {
-            showAlert()
+            showTokenConfirmationAlert()
         } else {
             self.performSegue(withIdentifier: "toUserListView", sender: nil)
 
             let tokenText = personalAccessToken.text
-            let accessToken = AccessToken(defaults: self.defaults)
+            let accessToken = Setting(defaults: self.defaults)
             accessToken.token = tokenText ?? ""
         }
     }
-    func showAlert() {
-        let alertController = UIAlertController(title: "Error", message: "personalAccessTokenを入力して下さい。", preferredStyle: UIAlertController.Style.alert)
+    private func showTokenConfirmationAlert() {
+        let alertController = UIAlertController(title: "Error", message: "personalAccessTokenを入力して下さい。", preferredStyle: .alert)
 
-        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(action)
         present(alertController, animated: true, completion: nil)
     }
