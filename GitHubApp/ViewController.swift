@@ -50,7 +50,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         userListViewController?.accessToken = personalAccessToken.text ?? ""
     }
 
-    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
+    @IBAction private func tapView(_ sender: UITapGestureRecognizer) {
         personalAccessToken.resignFirstResponder()
     }
 
