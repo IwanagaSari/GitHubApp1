@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import  UIKit
 
-class GitHubAPI: NSObject {
+class GitHubAPI {
     private let accessToken: String
 
     init(accessToken: String) {
         self.accessToken = accessToken
     }
-
+    
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
         var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
         req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
@@ -31,7 +32,7 @@ class GitHubAPI: NSObject {
                 //print(String(data: data!, encoding: .utf8))
                 if response.statusCode >= 300 || response.statusCode < 200{
                     do {
-                        let dataMessage: APIError = try JSONDecoder().decode(APIError.self, from: data!)
+                        let dataMessage = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
                         completion(nil, dataMessage)
                     } catch {
@@ -71,7 +72,7 @@ class GitHubAPI: NSObject {
 
                 if response.statusCode >= 300 || response.statusCode < 200 {
                     do {
-                        let dataMessage: APIError = try JSONDecoder().decode(APIError.self, from: data!)
+                        let dataMessage = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
                         completion(nil, dataMessage)
                     } catch {
@@ -108,7 +109,7 @@ class GitHubAPI: NSObject {
 
                 if response.statusCode >= 300 || response.statusCode < 200 {
                     do {
-                        let dataMessage: APIError = try JSONDecoder().decode(APIError.self, from: data!)
+                        let dataMessage = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
                         completion(nil, dataMessage)
                     } catch {
