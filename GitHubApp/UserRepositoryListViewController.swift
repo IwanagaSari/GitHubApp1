@@ -81,10 +81,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         self.present(alertController, animated: true, completion: nil)
         print("reason:\(error.localizedDescription)")
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
     //行数の指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositries.count
