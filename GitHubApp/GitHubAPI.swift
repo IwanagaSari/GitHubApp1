@@ -16,10 +16,10 @@ class GitHubAPI {
         self.accessToken = accessToken
     }
     
-    func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
-        var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
+    private func fetchResponse<ResponseType: Decodable>(request: URLRequest, completion: @escaping ((ResponseType?, Error?) -> Void)) {
+        var req = request
         req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
-
+        
         let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
             //通信上のエラー処理
             if let error = error {  //このエラーはdetaTaskのエラー
@@ -42,93 +42,32 @@ class GitHubAPI {
                 }
             }
             do {
-                let users: [User] = try JSONDecoder().decode([User].self, from: data!)
-
+                let response = try JSONDecoder().decode(ResponseType.self, from: data!)
+                
                 DispatchQueue.main.async { () -> Void in
-                    completion(users, nil)
+                    completion(response, nil)
                 }
-
+                
             } catch let error {
                 print(error)
-                completion(nil, error)  //user取得時のJSONデコード時のエラー
-
+                completion(nil, error)  //user取得時のJSONデコード時のエラー                
             }
         })
         task.resume()
+    }
+    
+    func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
+        let req = URLRequest(url: URL(string: "https://api.github.com/users")!)
+        fetchResponse(request: req, completion: completion)
     }
 
     func fetchUser (nameLabel: String, completion: @escaping ((UserDetail?, Error?) -> Void)) {
-        var req = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel)")!)
-        req.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
-
-        let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
-
-            if let error = error {
-                completion(nil, error)
-                return
-            }
-            if let response = response as? HTTPURLResponse {
-                print("response.statusCode2 = \(response.statusCode)")
-
-                if response.statusCode >= 300 || response.statusCode < 200 {
-                    do {
-                        let dataMessage = try JSONDecoder().decode(APIError.self, from: data!)
-                        print("test:\(dataMessage.localizedDescription)")
-                        completion(nil, dataMessage)
-                    } catch {
-                        print(error)
-                        completion(nil, error) //
-                    }
-                }
-            }
-            do {
-                let user: UserDetail = try JSONDecoder().decode(UserDetail.self, from: data!)
-
-                DispatchQueue.main.async { () -> Void in
-                    completion(user, nil)
-                }
-            } catch {
-                print(error)
-                completion(nil, error)
-            }
-        })
-        task.resume()
+        let req = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel)")!)
+        fetchResponse(request: req, completion: completion)
     }
 
     func fetchRepositry(nameLabel: String, completion: @escaping (([Repositry]?, Error?) -> Void)) {
-        var repoURL = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel)/repos")!)
-        repoURL.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
-
-        let task2: URLSessionTask = URLSession.shared.dataTask(with: repoURL, completionHandler: {data, response, error in
-            if let error = error {  //このエラーはdetaTaskのエラー
-                completion(nil, error)
-                return
-            }
-            if let response = response as? HTTPURLResponse {
-                print("response.statusCode3 = \(response.statusCode)")
-
-                if response.statusCode >= 300 || response.statusCode < 200 {
-                    do {
-                        let dataMessage = try JSONDecoder().decode(APIError.self, from: data!)
-                        print("test:\(dataMessage.localizedDescription)")
-                        completion(nil, dataMessage)
-                    } catch {
-                        print(error)
-                        completion(nil, error)
-                    }
-                }
-            }
-            do {
-                let repositries: [Repositry] = try JSONDecoder().decode([Repositry].self, from: data!)
-
-                DispatchQueue.main.async { () -> Void in
-                    completion(repositries, nil)
-                }
-            } catch {
-                print(error)
-                completion(nil, error)
-            }
-        })
-        task2.resume()
+        let req = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel)/repos")!)
+        fetchResponse(request: req, completion: completion)
     }
 }
