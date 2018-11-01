@@ -85,10 +85,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositries.count
     }
-    //セクションの数
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
