@@ -22,6 +22,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     var accessToken: String = ""
 
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
+    
+    var activityIndicatorView = UIActivityIndicatorView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                 self.showError(error)
             }
         })
+        view.addSubview(activityIndicatorView)
     }
     //アラートを表示する
     func showError(_ error: Error) {
@@ -57,16 +60,27 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell") //再利用しないセル作製
+        //let newCell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
 
         let user = users[indexPath.row]
         let userName = user.userName
         let userImage = user.image
         let userImageURL: URL = URL(string: "\(userImage)")!
+        
+        let task: URLSessionTask = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, response, error in
+            if let data = data {
+                DispatchQueue.main.async { () -> Void in
+                cell.imageView?.image = UIImage(data: data)
+                }
+            } else {
+                cell.imageView?.image = UIImage(named: "loading" )
+            }
+        })
+        task.resume()
 
-        let imageData = try? Data(contentsOf: userImageURL)
         cell.textLabel?.text = "\(userName)"
-        cell.imageView?.image = UIImage(data: imageData! )
+        cell.imageView?.image = UIImage(named: "loading")
 
     return cell
     }
