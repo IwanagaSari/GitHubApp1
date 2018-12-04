@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         personalAccessToken.delegate = self
 
         // デフォルト値を設定
-    
+
         let token = Setting(defaults: self.defaults)
         personalAccessToken.text = token.token
     }

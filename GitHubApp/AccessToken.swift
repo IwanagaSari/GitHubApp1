@@ -10,9 +10,9 @@ import Foundation
 
 class AccessToken: NSObject {
     let defaults: UserDefaults
-    
+
     private static let personalAccessToken: String = "personalAccessToken"
-    
+
     var token: String {
         get {
             let token = defaults.object(forKey: type(of: self).personalAccessToken) as? String
@@ -23,7 +23,7 @@ class AccessToken: NSObject {
             defaults.synchronize()
         }
     }
-    
+
     init(defaults: UserDefaults) {
         self.defaults = defaults
         self.defaults.register(defaults: [type(of: self).personalAccessToken: ""])
