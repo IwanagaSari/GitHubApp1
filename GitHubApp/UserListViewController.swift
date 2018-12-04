@@ -30,6 +30,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
         userListTabelView.delegate = self
         userListTabelView.dataSource = self
+        self.userListTabelView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
 
         gitHubAPI.fetchUsers(completion: { users, error in
             self.users = users ?? []
@@ -68,8 +69,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell") //再利用しないセル作製
-        //let newCell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
 
         let user = users[indexPath.row]
         let userName = user.userName
@@ -78,8 +78,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
         let task: URLSessionTask = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, _, _ in
             if let data = data {
-                DispatchQueue.main.async { () -> Void in
-                cell.imageView?.image = UIImage(data: data)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.0) { () -> Void in
+                    cell.imageView?.image = UIImage(data: data)
                 }
             } else {
                 cell.imageView?.image = UIImage(named: "loading" )
