@@ -10,9 +10,9 @@ import Foundation
 
 final class Setting {
     private let defaults: UserDefaults
-    
+
     private static let personalAccessToken: String = "personalAccessToken"
-    
+
     var token: String {
         get {
             let token = defaults.object(forKey: type(of: self).personalAccessToken) as? String
@@ -23,7 +23,7 @@ final class Setting {
             defaults.synchronize()
         }
     }
-    
+
     init(defaults: UserDefaults) {
         self.defaults = defaults
     }
