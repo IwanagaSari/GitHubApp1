@@ -22,8 +22,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     var accessToken: String = ""
 
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
-    
-    var activityIndicatorView = UIActivityIndicatorView()
+
+    private let activityIndicatorView = UIActivityIndicatorView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,15 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             if let error = error {
                 self.showError(error)
             }
+            DispatchQueue.main.async {
+                // アニメーション終了
+                self.activityIndicatorView.stopAnimating()
+            }
         })
+        activityIndicatorView.center = view.center
+        activityIndicatorView.style = .whiteLarge
+        activityIndicatorView.color = .purple
+        activityIndicatorView.startAnimating()
         view.addSubview(activityIndicatorView)
     }
     //アラートを表示する
@@ -67,8 +75,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let userName = user.userName
         let userImage = user.image
         let userImageURL: URL = URL(string: "\(userImage)")!
-        
-        let task: URLSessionTask = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, response, error in
+
+        let task: URLSessionTask = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, _, _ in
             if let data = data {
                 DispatchQueue.main.async { () -> Void in
                 cell.imageView?.image = UIImage(data: data)
