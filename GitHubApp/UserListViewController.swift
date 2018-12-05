@@ -8,18 +8,6 @@
 
 import UIKit
 
-class UserListCell: UITableViewCell {
-
-    var task: URLSessionTask?
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-
-        task?.cancel()
-    }
-
-}
-
 class UserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var userListTabelView: UITableView!
@@ -36,6 +24,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
     private let activityIndicatorView = UIActivityIndicatorView()
+    let userListCell = UserListCell()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,17 +75,17 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let userImage = user.image
         let userImageURL: URL = URL(string: "\(userImage)")!
 
-        let task: URLSessionTask = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, _, _ in
+        userListCell.fetchImage(userImageURL: userImageURL, completion: { data, _ in
                 if let data = data {
                     DispatchQueue.main.async {
                         cell.imageView?.image = UIImage(data: data)
                     }
                 } else {
+                    DispatchQueue.main.async {
                     cell.imageView?.image = UIImage(named: "loading")
+                    }
                 }
-        })
-        cell.task = task
-        task.resume()
+            })
 
         cell.textLabel?.text = "\(userName)"
         cell.imageView?.image = UIImage(named: "loading")
