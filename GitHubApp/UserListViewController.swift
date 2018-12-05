@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyCell: UITableViewCell {
+class UserListCell: UITableViewCell {
 
     var task: URLSessionTask?
 
@@ -79,7 +79,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! UserListCell
 
         let user = users[indexPath.row]
         let userName = user.userName
@@ -92,7 +92,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                         cell.imageView?.image = UIImage(data: data)
                     }
                 } else {
-                    cell.imageView?.image = UIImage(named: "loading" )
+                    cell.imageView?.image = UIImage(named: "loading")
                 }
         })
         cell.task = task
