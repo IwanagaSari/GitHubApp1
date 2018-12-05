@@ -8,6 +8,18 @@
 
 import UIKit
 
+class MyCell: UITableViewCell {
+
+    var task: URLSessionTask?
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        task?.cancel()
+    }
+
+}
+
 class UserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var userListTabelView: UITableView!
@@ -30,7 +42,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
         userListTabelView.delegate = self
         userListTabelView.dataSource = self
-        self.userListTabelView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
 
         gitHubAPI.fetchUsers(completion: { users, error in
             self.users = users ?? []
@@ -39,7 +50,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                 self.showError(error)
             }
             DispatchQueue.main.async {
-                // アニメーション終了
                 self.activityIndicatorView.stopAnimating()
             }
         })
@@ -64,12 +74,12 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
      //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
+        return 1
     }
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCell
 
         let user = users[indexPath.row]
         let userName = user.userName
@@ -77,20 +87,21 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let userImageURL: URL = URL(string: "\(userImage)")!
 
         let task: URLSessionTask = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, _, _ in
-            if let data = data {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.0) { () -> Void in
-                    cell.imageView?.image = UIImage(data: data)
+                if let data = data {
+                    DispatchQueue.main.async {
+                        cell.imageView?.image = UIImage(data: data)
+                    }
+                } else {
+                    cell.imageView?.image = UIImage(named: "loading" )
                 }
-            } else {
-                cell.imageView?.image = UIImage(named: "loading" )
-            }
         })
+        cell.task = task
         task.resume()
 
         cell.textLabel?.text = "\(userName)"
         cell.imageView?.image = UIImage(named: "loading")
 
-    return cell
+        return cell
     }
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
