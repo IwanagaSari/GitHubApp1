@@ -44,7 +44,7 @@ class GitHubAPI {
             do {
                 let response = try JSONDecoder().decode(ResponseType.self, from: data!)
 
-                DispatchQueue.main.async { () -> Void in
+                DispatchQueue.main.async {
                     completion(response, nil)
                 }
 

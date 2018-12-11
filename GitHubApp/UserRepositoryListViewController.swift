@@ -19,6 +19,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
 
     var accessToken: String = ""
     var userName: String = ""
+    var selectedURL: String?
 
     var repositries: [Repositry] = [] {
         didSet {
@@ -30,9 +31,9 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             repoTableView.reloadData()
         }
     }
-    var selectedURL: String?
 
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
+    let image = Image()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,12 +58,12 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             self.following.text = following.flatMap { String($0) }
 
             let userImage = self.user?.image
-            if let image = userImage {
-                let userImageURL: URL = URL(string: "\(image)")!
-                let imageData = try? Data(contentsOf: userImageURL)
-                self.imageView.image = UIImage(data: imageData!)
+            if let userImageString =  userImage {
+                self.image.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
+                    self.imageView.image = imageToCache
+                })
             } else {
-                self.imageView.image = nil
+                    self.imageView.image = nil
             }
         })
         gitHubAPI.fetchRepositry(nameLabel: userName, completion: { repositries, error in

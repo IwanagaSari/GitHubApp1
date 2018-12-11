@@ -25,6 +25,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
     private let activityIndicatorView = UIActivityIndicatorView()
     let userListCell = UserListCell()
+    let image = Image()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,16 +73,11 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
         let user = users[indexPath.row]
         let userName = user.userName
-        let userImage = user.image
-        let userImageURL: URL = URL(string: "\(userImage)")!
+        let userImageString = user.image
 
-        userListCell.fetchImage(userImageURL: userImageURL, completion: { data, _ in
-                if let data = data {
-                        cell.imageView?.image = UIImage(data: data)
-                } else {
-                    cell.imageView?.image = UIImage(named: "loading")
-                }
-            })
+        image.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
+                cell.imageView?.image = imageToCache
+        })
 
         cell.textLabel?.text = "\(userName)"
         cell.imageView?.image = UIImage(named: "loading")
@@ -102,7 +98,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     //次のページへ値の受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let userRepositoryListViewController = segue.destination as?UserRepositoryListViewController
+        let userRepositoryListViewController = segue.destination as? UserRepositoryListViewController
         userRepositoryListViewController?.userName = selectedUserName
         userRepositoryListViewController?.accessToken = accessToken
     }

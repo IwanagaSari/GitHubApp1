@@ -16,16 +16,4 @@ class UserListCell: UITableViewCell {
 
         task?.cancel()
     }
-
-    func fetchImage(userImageURL: URL, completion: @escaping ((Data?, Error?) -> Void)) {
-        let task: URLSessionTask = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, _, _ in
-            if let data = data {
-                DispatchQueue.main.async {
-                    completion(data, nil)
-                }
-            }
-        })
-        self.task = task
-        task.resume()
-    }
 }

@@ -16,6 +16,7 @@
 		86E360EB2164721A000910DF /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E360E921647219000910DF /* star.png */; };
 		86E360EC2164721A000910DF /* maru.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E360EA2164721A000910DF /* maru.png */; };
 		EAA754D221B7EF4D00130943 /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA754D121B7EF4D00130943 /* UserListCell.swift */; };
+		EAA754D421BFD48000130943 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA754D321BFD48000130943 /* Image.swift */; };
 		EAB5A46A2175D84900004D29 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A4692175D84900004D29 /* GitHubAPI.swift */; };
 		EAB5A46C2175DA9F00004D29 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46B2175DA9F00004D29 /* User.swift */; };
 		EAB5A46E2175F7F800004D29 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46D2175F7F800004D29 /* Repository.swift */; };
@@ -59,6 +60,7 @@
 		86E360E921647219000910DF /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		86E360EA2164721A000910DF /* maru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maru.png; sourceTree = "<group>"; };
 		EAA754D121B7EF4D00130943 /* UserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
+		EAA754D321BFD48000130943 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		EAB5A4692175D84900004D29 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
 		EAB5A46B2175DA9F00004D29 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EAB5A46D2175F7F800004D29 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				EAB5A46F2175FA3000004D29 /* APIError.swift */,
 				EAD124F021B6891500D7FAB9 /* Setting.swift */,
 				EAA754D121B7EF4D00130943 /* UserListCell.swift */,
+				EAA754D321BFD48000130943 /* Image.swift */,
 			);
 			path = GitHubApp;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD124F121B6891500D7FAB9 /* Setting.swift in Sources */,
+				EAA754D421BFD48000130943 /* Image.swift in Sources */,
 				8617D66D2162E7E6004FC10A /* UserWebViewController.swift in Sources */,
 				EAB5A46A2175D84900004D29 /* GitHubAPI.swift in Sources */,
 				EAD73654215A5A1900486083 /* UserRepositoryListViewController.swift in Sources */,
