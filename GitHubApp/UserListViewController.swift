@@ -77,13 +77,9 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
         userListCell.fetchImage(userImageURL: userImageURL, completion: { data, _ in
                 if let data = data {
-                    DispatchQueue.main.async {
                         cell.imageView?.image = UIImage(data: data)
-                    }
                 } else {
-                    DispatchQueue.main.async {
                     cell.imageView?.image = UIImage(named: "loading")
-                    }
                 }
             })
 
