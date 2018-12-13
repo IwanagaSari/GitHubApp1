@@ -23,13 +23,16 @@ final class ImageCache: NSCache<AnyObject, AnyObject> {
         } else {
             let userImageURL: URL = URL(string: "\(userImageString)")!
             let URLSessionTask: URLSessionTask = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, _, _ in
-                if let data = data {
-                    DispatchQueue.main.async {
-                        if let imageToCache = UIImage(data: data) {
-                            ImageCache.sharedInstance.setObject(imageToCache, forKey: userImageString as AnyObject)
-                            print("キャッシュに保存しました")
-                            completion(imageToCache, nil)
-                        }
+                DispatchQueue.main.async {
+                    if let data = data {
+                            if let imageToCache = UIImage(data: data) {
+                                ImageCache.sharedInstance.setObject(imageToCache, forKey: userImageString as AnyObject)
+                                print("キャッシュに保存しました")
+                                completion(imageToCache, nil)
+                            }
+                    } else {
+                        let imageToCache = UIImage(named: "error")
+                        completion(imageToCache, nil)
                     }
                 }
             })
