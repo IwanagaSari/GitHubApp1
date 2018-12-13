@@ -75,9 +75,10 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let userName = user.userName
         let userImageString = user.image
 
-        imageCache.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
+        let task = imageCache.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
                 cell.imageView?.image = imageToCache
         })
+        cell.task = task
 
         cell.textLabel?.text = "\(userName)"
         cell.imageView?.image = UIImage(named: "loading")
