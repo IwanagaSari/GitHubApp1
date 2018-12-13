@@ -14,9 +14,12 @@ final class ImageCache: NSCache<AnyObject, AnyObject> {
 
     func fetchImage(userImageString: String, completion: @escaping ((UIImage?, Error?) -> Void)) {
         //引数で渡されたimageUrlStringがすでにキャッシュとして保存されている場合は、キャッシュからそのimageを取り出し、self.imageに代入し、returnで抜ける。
+
         if let imageFromCache = ImageCache.sharedInstance.object(forKey: userImageString as AnyObject) as? UIImage {
             print("キャッシュに保存されていました")
+            DispatchQueue.main.async {
             completion(imageFromCache, nil)
+            }
         } else {
             let userImageURL: URL = URL(string: "\(userImageString)")!
             let URLSessionTask: URLSessionTask = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, _, _ in
