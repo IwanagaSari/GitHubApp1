@@ -24,6 +24,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
     private let activityIndicatorView = UIActivityIndicatorView()
+    let userListCell = UserListCell()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         activityIndicatorView.style = .whiteLarge
         activityIndicatorView.color = .purple
         activityIndicatorView.startAnimating()
-        view.addSubview(activityIndicatorView)
+        userListTabelView.backgroundView?.addSubview(activityIndicatorView)
     }
     //アラートを表示する
     func showError(_ error: Error) {
