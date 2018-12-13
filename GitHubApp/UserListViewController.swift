@@ -24,7 +24,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
     private let activityIndicatorView = UIActivityIndicatorView()
-    let userListCell = UserListCell()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +59,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     //行数の指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
-    }
-     //セクションの数
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
     }
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
