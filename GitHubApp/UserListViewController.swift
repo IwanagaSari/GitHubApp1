@@ -25,7 +25,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
     private let activityIndicatorView = UIActivityIndicatorView()
     let userListCell = UserListCell()
-    let image = Image()
+    let imageCache = ImageCache.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +75,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let userName = user.userName
         let userImageString = user.image
 
-        image.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
+        imageCache.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
                 cell.imageView?.image = imageToCache
         })
 

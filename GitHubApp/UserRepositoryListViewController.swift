@@ -33,7 +33,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     }
 
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
-    let image = Image()
+    let imageCache = ImageCache.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
 
             let userImage = self.user?.image
             if let userImageString =  userImage {
-                self.image.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
+                self.imageCache.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
                     self.imageView.image = imageToCache
                 })
             } else {

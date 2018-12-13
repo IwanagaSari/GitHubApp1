@@ -70,4 +70,5 @@ class GitHubAPI {
         let req = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel)/repos")!)
         fetchResponse(request: req, completion: completion)
     }
+
 }
