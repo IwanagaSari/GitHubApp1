@@ -1,6 +1,7 @@
 disabled_rules:
 - type_name
 - force_cast
+- trailing_whitespace # 空行を許可
 line_length: 300
 excluded:
 - Pods

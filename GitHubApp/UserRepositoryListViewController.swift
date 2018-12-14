@@ -59,7 +59,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
 
             let userImage = self.user?.image
             if let userImageString =  userImage {
-                self.imageCache.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
+                _ = self.imageCache.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
                     self.imageView.image = imageToCache
                 })
             } else {
