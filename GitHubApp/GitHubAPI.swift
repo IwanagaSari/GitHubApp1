@@ -23,7 +23,7 @@ class GitHubAPI {
         let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: {data, response, error in
             //通信上のエラー処理
             if let error = error {  //このエラーはdetaTaskのエラー
-                completion(nil, error)
+                DispatchQueue.main.async { completion(nil, error) }
                 return
             }
             // API上のエラー処理
@@ -34,23 +34,20 @@ class GitHubAPI {
                     do {
                         let dataMessage = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
-                        completion(nil, dataMessage)
+                        DispatchQueue.main.async { completion(nil, dataMessage) }
                     } catch {
                         print(error)
-                        completion(nil, error)
+                        DispatchQueue.main.async { completion(nil, error) }
                     }
                 }
             }
             do {
                 let response = try JSONDecoder().decode(ResponseType.self, from: data!)
 
-                DispatchQueue.main.async {
-                    completion(response, nil)
-                }
-
+                DispatchQueue.main.async { completion(response, nil) }
             } catch let error {
                 print(error)
-                completion(nil, error)  //user取得時のJSONデコード時のエラー                
+                DispatchQueue.main.async { completion(nil, error) }  //user取得時のJSONデコード時のエラー
             }
         })
         task.resume()
@@ -59,6 +56,7 @@ class GitHubAPI {
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
         let req = URLRequest(url: URL(string: "https://api.github.com/users")!)
         fetchResponse(request: req, completion: completion)
+        
     }
 
     func fetchUser (nameLabel: String, completion: @escaping ((UserDetail?, Error?) -> Void)) {

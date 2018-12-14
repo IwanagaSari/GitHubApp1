@@ -40,11 +40,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             if let error = error {
                 self.showError(error)
             }
-            DispatchQueue.main.async {
-                self.indicator.stopAnimating()
-            }
-        })
-        
+            self.indicator.stopAnimating()
+        })        
         userListTabelView.backgroundView = backgroundView
     }
     //アラートを表示する
