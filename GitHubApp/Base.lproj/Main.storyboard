@@ -154,11 +154,29 @@ Select scope
                         <viewLayoutGuide key="safeArea" id="DkX-BJ-rao"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="lcF-T8-Wzy" id="ce4-R8-ye0"/>
+                        <outlet property="indicator" destination="uVN-8s-lfJ" id="nY6-0E-u2n"/>
                         <outlet property="userListTabelView" destination="gnq-wo-LxD" id="3ow-nb-dCI"/>
                         <segue destination="7Em-rR-zZU" kind="show" identifier="toUserRepositoryList" id="0ke-3R-jZ4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zTJ-mo-Pvp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="lcF-T8-Wzy">
+                    <rect key="frame" x="0.0" y="0.0" width="198" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uVN-8s-lfJ">
+                            <rect key="frame" x="89" y="54" width="20" height="20"/>
+                            <color key="color" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="uVN-8s-lfJ" firstAttribute="centerX" secondItem="lcF-T8-Wzy" secondAttribute="centerX" id="mJV-dW-TN0"/>
+                        <constraint firstItem="uVN-8s-lfJ" firstAttribute="centerY" secondItem="lcF-T8-Wzy" secondAttribute="centerY" id="rIE-LD-pTs"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="mTA-Uw-L9t"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="1605.5999999999999" y="775.86206896551732"/>
         </scene>

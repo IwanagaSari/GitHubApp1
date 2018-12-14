@@ -11,7 +11,9 @@ import UIKit
 class UserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var userListTabelView: UITableView!
-
+    @IBOutlet var backgroundView: UIView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
     var users: [User] = [] {
         didSet {
             userListTabelView.reloadData()
@@ -23,7 +25,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
 
-    private let activityIndicatorView = UIActivityIndicatorView()
     let userListCell = UserListCell()
     let imageCache = ImageCache.sharedInstance
 
@@ -40,14 +41,11 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                 self.showError(error)
             }
             DispatchQueue.main.async {
-                self.activityIndicatorView.stopAnimating()
+                self.indicator.stopAnimating()
             }
         })
-        activityIndicatorView.center = view.center
-        activityIndicatorView.style = .whiteLarge
-        activityIndicatorView.color = .purple
-        activityIndicatorView.startAnimating()
-        view.addSubview(activityIndicatorView)
+        
+        userListTabelView.backgroundView = backgroundView
     }
     //アラートを表示する
     func showError(_ error: Error) {
