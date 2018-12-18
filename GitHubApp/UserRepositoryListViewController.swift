@@ -21,19 +21,18 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     var userName: String = ""
     var selectedURL: String?
 
-    var repositries: [Repositry] = [] {
+    private var repositries: [Repositry] = [] {
         didSet {
             repoTableView.reloadData()
         }
     }
-    var user: UserDetail? {
+    private var user: UserDetail? {
         didSet {
             repoTableView.reloadData()
         }
     }
-
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
-    let imageCache = ImageCache.sharedInstance
+    private let imageCache = ImageDownloader.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +56,9 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             let following = self.user?.following
             self.following.text = following.flatMap { String($0) }
 
-            let userImage = self.user?.image
-            if let userImageString =  userImage {
-                _ = self.imageCache.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
+            let imageUrl = self.user?.image
+            if let imageUrlString =  imageUrl {
+                _ = self.imageCache.fetchImage(imageUrlString: imageUrlString, completion: { imageToCache, _ in
                     self.imageView.image = imageToCache
                 })
             } else {
@@ -75,7 +74,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         })
     }
     //アラートを表示する
-    func showError(_ error: Error) {
+    private func showError(_ error: Error) {
         let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
         let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alertController.addAction(action)

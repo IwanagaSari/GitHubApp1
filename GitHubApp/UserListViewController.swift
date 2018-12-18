@@ -14,19 +14,15 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
-    var users: [User] = [] {
+    private var users: [User] = [] {
         didSet {
             userListTabelView.reloadData()
         }
     }
-
     var selectedUserName: String = ""
     var accessToken: String = ""
-
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
-
-    let userListCell = UserListCell()
-    let imageCache = ImageCache.sharedInstance
+    private let imageDownloader = ImageDownloader.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,9 +64,9 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
         let user = users[indexPath.row]
         let userName = user.userName
-        let userImageString = user.image
+        let imageUrlString = user.image
 
-        let task = imageCache.fetchImage(userImageString: userImageString, completion: { imageToCache, _ in
+        let task = imageDownloader.fetchImage(imageUrlString: imageUrlString, completion: { imageToCache, _ in
                 cell.imageView?.image = imageToCache
         })
         cell.task = task
@@ -86,7 +82,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     //セル選択時
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         let user = users[indexPath.row]
         selectedUserName = user.userName
 
@@ -98,5 +93,4 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         userRepositoryListViewController?.userName = selectedUserName
         userRepositoryListViewController?.accessToken = accessToken
     }
-
 }
