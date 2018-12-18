@@ -13,7 +13,7 @@
         <!--Input Token View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="inputTokenViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="InputTokenViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -280,7 +280,7 @@ Select scope
                                 <rect key="frame" x="0.0" y="234" width="375" height="433"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
                                         <rect key="frame" x="0.0" y="28" width="375" height="152"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fu5-KW-BGm" id="oCv-3o-5r2">
@@ -428,22 +428,6 @@ Select scope
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83U-DT-7ug">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GitHub,  Inc." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXk-P7-AP9">
-                                        <rect key="frame" x="120" y="12" width="135" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="H6j-Vp-MQ6"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ee-lj-FEp">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <subviews>
@@ -506,29 +490,26 @@ Select scope
                                 </constraints>
                             </view>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUJ-P6-pad">
-                                <rect key="frame" x="0.0" y="108" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5XA-Zi-ZfN">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5XA-Zi-ZfN">
                                 <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="H0a-PH-KR3" firstAttribute="trailing" secondItem="83U-DT-7ug" secondAttribute="trailing" id="0Ev-MS-bgW"/>
-                            <constraint firstItem="83U-DT-7ug" firstAttribute="top" secondItem="H0a-PH-KR3" secondAttribute="top" id="ABr-Le-hSa"/>
                             <constraint firstItem="H0a-PH-KR3" firstAttribute="trailing" secondItem="4ee-lj-FEp" secondAttribute="trailing" id="Af4-z8-FWI"/>
                             <constraint firstItem="5XA-Zi-ZfN" firstAttribute="centerY" secondItem="tcv-0d-kNI" secondAttribute="centerY" id="IM6-dF-Hsx"/>
                             <constraint firstItem="4ee-lj-FEp" firstAttribute="leading" secondItem="H0a-PH-KR3" secondAttribute="leading" id="OVa-yD-hob"/>
                             <constraint firstItem="5XA-Zi-ZfN" firstAttribute="centerX" secondItem="tcv-0d-kNI" secondAttribute="centerX" id="PrR-iP-cbx"/>
                             <constraint firstItem="H0a-PH-KR3" firstAttribute="bottom" secondItem="4ee-lj-FEp" secondAttribute="bottom" id="UhY-gh-Ksf"/>
-                            <constraint firstItem="83U-DT-7ug" firstAttribute="leading" secondItem="H0a-PH-KR3" secondAttribute="leading" id="Way-TH-hJb"/>
+                            <constraint firstItem="MUJ-P6-pad" firstAttribute="top" secondItem="H0a-PH-KR3" secondAttribute="top" id="fut-8I-vDC"/>
                             <constraint firstItem="MUJ-P6-pad" firstAttribute="leading" secondItem="H0a-PH-KR3" secondAttribute="leading" id="sCz-nT-t80"/>
-                            <constraint firstItem="MUJ-P6-pad" firstAttribute="top" secondItem="83U-DT-7ug" secondAttribute="bottom" id="vBw-i2-3Ax"/>
                             <constraint firstItem="H0a-PH-KR3" firstAttribute="trailing" secondItem="MUJ-P6-pad" secondAttribute="trailing" id="vIc-Mm-wox"/>
                             <constraint firstItem="4ee-lj-FEp" firstAttribute="top" secondItem="MUJ-P6-pad" secondAttribute="bottom" id="zLN-MB-ypB"/>
                         </constraints>
@@ -536,7 +517,6 @@ Select scope
                     </view>
                     <connections>
                         <outlet property="indicator" destination="5XA-Zi-ZfN" id="3q8-R0-cYJ"/>
-                        <outlet property="titleLabel" destination="uXk-P7-AP9" id="6iD-QL-pCV"/>
                         <outlet property="webView" destination="MUJ-P6-pad" id="15e-4d-kwh"/>
                     </connections>
                 </viewController>

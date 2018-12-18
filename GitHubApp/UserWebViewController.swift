@@ -50,7 +50,6 @@ class UserWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegat
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         indicator.stopAnimating()
-        indicator.removeFromSuperview()
     }
  
 }
