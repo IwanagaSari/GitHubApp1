@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Input Token View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="inputTokenViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,7 +124,7 @@ Select scope
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="6fd-v9-IdN" style="IBUITableViewCellStyleDefault" id="GOZ-fW-bz0" customClass="UserListCell" customModule="GitHubApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="6fd-v9-IdN" style="IBUITableViewCellStyleDefault" id="GOZ-fW-bz0" customClass="UserListCell" customModule="GitHubApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GOZ-fW-bz0" id="U4M-od-2qS">
@@ -513,13 +513,18 @@ Select scope
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5XA-Zi-ZfN">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="H0a-PH-KR3" firstAttribute="trailing" secondItem="83U-DT-7ug" secondAttribute="trailing" id="0Ev-MS-bgW"/>
                             <constraint firstItem="83U-DT-7ug" firstAttribute="top" secondItem="H0a-PH-KR3" secondAttribute="top" id="ABr-Le-hSa"/>
                             <constraint firstItem="H0a-PH-KR3" firstAttribute="trailing" secondItem="4ee-lj-FEp" secondAttribute="trailing" id="Af4-z8-FWI"/>
+                            <constraint firstItem="5XA-Zi-ZfN" firstAttribute="centerY" secondItem="tcv-0d-kNI" secondAttribute="centerY" id="IM6-dF-Hsx"/>
                             <constraint firstItem="4ee-lj-FEp" firstAttribute="leading" secondItem="H0a-PH-KR3" secondAttribute="leading" id="OVa-yD-hob"/>
+                            <constraint firstItem="5XA-Zi-ZfN" firstAttribute="centerX" secondItem="tcv-0d-kNI" secondAttribute="centerX" id="PrR-iP-cbx"/>
                             <constraint firstItem="H0a-PH-KR3" firstAttribute="bottom" secondItem="4ee-lj-FEp" secondAttribute="bottom" id="UhY-gh-Ksf"/>
                             <constraint firstItem="83U-DT-7ug" firstAttribute="leading" secondItem="H0a-PH-KR3" secondAttribute="leading" id="Way-TH-hJb"/>
                             <constraint firstItem="MUJ-P6-pad" firstAttribute="leading" secondItem="H0a-PH-KR3" secondAttribute="leading" id="sCz-nT-t80"/>
@@ -530,6 +535,7 @@ Select scope
                         <viewLayoutGuide key="safeArea" id="H0a-PH-KR3"/>
                     </view>
                     <connections>
+                        <outlet property="indicator" destination="5XA-Zi-ZfN" id="3q8-R0-cYJ"/>
                         <outlet property="titleLabel" destination="uXk-P7-AP9" id="6iD-QL-pCV"/>
                         <outlet property="webView" destination="MUJ-P6-pad" id="15e-4d-kwh"/>
                     </connections>
