@@ -11,7 +11,7 @@ import UIKit
 class InputTokenViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak private var personalAccessToken: UITextField!
     @IBOutlet weak private var caution: UITextView!
-    let defaults = UserDefaults.standard
+    private let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,9 +53,8 @@ class InputTokenViewController: UIViewController, UITextFieldDelegate {
         personalAccessToken.resignFirstResponder()
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool { //ここはprivateつけられないんですね
         personalAccessToken.resignFirstResponder()
         return true
     }
-
 }

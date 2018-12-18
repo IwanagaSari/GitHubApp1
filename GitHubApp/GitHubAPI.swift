@@ -43,7 +43,6 @@ class GitHubAPI {
             }
             do {
                 let response = try JSONDecoder().decode(ResponseType.self, from: data!)
-
                 DispatchQueue.main.async { completion(response, nil) }
             } catch let error {
                 print(error)
@@ -68,5 +67,4 @@ class GitHubAPI {
         let req = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel)/repos")!)
         fetchResponse(request: req, completion: completion)
     }
-
 }

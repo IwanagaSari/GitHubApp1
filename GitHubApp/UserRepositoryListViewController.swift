@@ -32,7 +32,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         }
     }
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
-    private let imageCache = ImageDownloader.sharedInstance
+    private let imageCache = ImageDownloader.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
