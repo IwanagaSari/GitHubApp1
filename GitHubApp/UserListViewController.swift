@@ -22,7 +22,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     var selectedUserName: String = ""
     var accessToken: String = ""
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
-    private let imageDownloader = ImageDownloader.sharedInstance
+    private let imageDownloader = ImageDownloader.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,8 +66,12 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let userName = user.userName
         let imageUrlString = user.image
 
-        let task = imageDownloader.fetchImage(imageUrlString: imageUrlString, completion: { imageToCache, _ in
+        let task = imageDownloader.fetchImage(imageUrlString: imageUrlString, completion: { imageToCache, error in
+            if error != nil {
+                cell.imageView?.image = UIImage(named: "error")
+            } else {
                 cell.imageView?.image = imageToCache
+            }
         })
         cell.task = task
 
@@ -81,7 +85,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         return 80
     }
     //セル選択時
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
         selectedUserName = user.userName
 
