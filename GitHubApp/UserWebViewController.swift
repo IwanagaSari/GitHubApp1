@@ -9,12 +9,13 @@
 import UIKit
 import WebKit
 
-class UserWebViewController: UIViewController {
+class UserWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
 
     var webURL: String?
 
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +23,9 @@ class UserWebViewController: UIViewController {
         let myURL = URL(string: "\(webURL!)")
         let myURLRequest = URLRequest(url: myURL!)
 
-        print(myURLRequest)
         webView.load(myURLRequest)
-
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
     }
 
     @IBAction func backButton(_ sender: UIButton) {
@@ -42,4 +43,14 @@ class UserWebViewController: UIViewController {
     @IBAction func cancelButton(_ sender: UIButton) {
         webView.stopLoading()
     }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        indicator.startAnimating()
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        indicator.stopAnimating()
+        indicator.removeFromSuperview()
+    }
+ 
 }
