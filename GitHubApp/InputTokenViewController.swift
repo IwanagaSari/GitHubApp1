@@ -8,7 +8,7 @@
 
 import UIKit
 
-class inputTokenViewController: UIViewController, UITextFieldDelegate {
+class InputTokenViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak private var personalAccessToken: UITextField!
     @IBOutlet weak private var caution: UITextView!
     let defaults = UserDefaults.standard
@@ -19,7 +19,6 @@ class inputTokenViewController: UIViewController, UITextFieldDelegate {
         personalAccessToken.delegate = self
 
         // デフォルト値を設定
-
         let token = Setting(defaults: self.defaults)
         personalAccessToken.text = token.token
     }
