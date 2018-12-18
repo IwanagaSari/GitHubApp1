@@ -9,34 +9,29 @@
 import UIKit
 
 final class ImageDownloader: NSCache<AnyObject, AnyObject> {
-    static let sharedInstance = ImageDownloader()
+    static let shared = ImageDownloader()
 
     func fetchImage(imageUrlString: String, completion: @escaping ((UIImage?, Error?) -> Void)) -> URLSessionTask? {
-        //引数で渡されたimageUrlStringがすでにキャッシュとして保存されている場合は、キャッシュからそのimageを取り出し、self.imageに代入し、returnで抜ける。
-
-        if let imageFromCache = ImageDownloader.sharedInstance.object(forKey: imageUrlString as AnyObject) as? UIImage {
-            print("キャッシュに保存されていました")
+        //キャッシュとして保存されている場合
+        if let imageFromCache = ImageDownloader.shared.object(forKey: imageUrlString as AnyObject) as? UIImage {
             DispatchQueue.main.async { completion(imageFromCache, nil) }
-            
             return nil
+        //キャッシュとして保存されていなかった場合
         } else {
             let userImageURL: URL = URL(string: "\(imageUrlString)")!
             let task = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, _, _ in
                     if let data = data {
-                            if let imageToCache = UIImage(data: data) {
-                                ImageDownloader.sharedInstance.setObject(imageToCache, forKey: imageUrlString as AnyObject)
-                                print("キャッシュに保存しました")
-                                DispatchQueue.main.async { completion(imageToCache, nil) }
-                            }
+                        if let imageToCache = UIImage(data: data) {
+                            ImageDownloader.shared.setObject(imageToCache, forKey: imageUrlString as AnyObject)
+                            DispatchQueue.main.async { completion(imageToCache, nil) }
+                        }
                     } else {
                         let imageToCache = UIImage(named: "error")
                         DispatchQueue.main.async { completion(imageToCache, nil) }
                     }
             })
             task.resume()
-            
             return task
         }
     }
-
 }
