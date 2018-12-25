@@ -19,8 +19,7 @@ final class ImageDownloader {
             return nil
         //キャッシュとして保存されていなかった場合
         } else {
-            let userImageURL = URL(string: "\(url)")!
-            let task = URLSession.shared.dataTask(with: userImageURL, completionHandler: { data, _, error in
+            let task = URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
                     if let data = data {
                         if let imageToCache = UIImage(data: data) {
                             ImageDownloader.shared.setObject(imageToCache, forKey: url as NSURL)
