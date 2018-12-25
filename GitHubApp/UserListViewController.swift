@@ -22,7 +22,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     var selectedUserName: String = ""
     var accessToken: String = ""
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
-    private let imageDownloader = ImageDownloader.shared
+    private let imageDownloader = ImageDownloader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,8 +65,9 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let user = users[indexPath.row]
         let userName = user.userName
         let imageUrlString = user.image
+        let imageUrl = URL(string: imageUrlString)!
 
-        let task = imageDownloader.fetchImage(imageUrlString: imageUrlString, completion: { imageToCache, error in
+        let task = imageDownloader.fetchImage(url: imageUrl, completion: { imageToCache, error in
             if error != nil {
                 cell.imageView?.image = UIImage(named: "error")
             } else {

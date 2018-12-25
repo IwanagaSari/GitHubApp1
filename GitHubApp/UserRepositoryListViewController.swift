@@ -32,7 +32,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         }
     }
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
-    private let imageCache = ImageDownloader.shared
+    private let imageCache = ImageDownloader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +56,10 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             let following = self.user?.following
             self.following.text = following.flatMap { String($0) }
 
-            let imageUrl = self.user?.image
-            if let imageUrlString =  imageUrl {
-                _ = self.imageCache.fetchImage(imageUrlString: imageUrlString, completion: { imageToCache, _ in
+            let imageUrlString = self.user?.image
+            let imageUrl = URL(string: imageUrlString!)
+            if let imageUrl =  imageUrl {
+                _ = self.imageCache.fetchImage(url: imageUrl, completion: { imageToCache, _ in
                     self.imageView.image = imageToCache
                 })
             } else {
