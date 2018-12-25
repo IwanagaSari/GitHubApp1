@@ -52,8 +52,8 @@ class InputTokenViewController: UIViewController, UITextFieldDelegate {
     @IBAction private func tapView(_ sender: UITapGestureRecognizer) {
         personalAccessToken.resignFirstResponder()
     }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool { //ここはprivateつけられないんですね
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool { 
         personalAccessToken.resignFirstResponder()
         return true
     }

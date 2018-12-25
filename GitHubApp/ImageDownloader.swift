@@ -18,7 +18,7 @@ final class ImageDownloader: NSCache<AnyObject, AnyObject> {
             return nil
         //キャッシュとして保存されていなかった場合
         } else {
-            let userImageURL: URL = URL(string: "\(imageUrlString)")!
+            let userImageURL = URL(string: imageUrlString)!
             let task = URLSession.shared.dataTask(with: userImageURL, completionHandler: {data, _, error in
                     if let data = data {
                         if let imageToCache = UIImage(data: data) {
