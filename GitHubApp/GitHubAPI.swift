@@ -58,7 +58,7 @@ class GitHubAPI {
         
     }
 
-    func fetchUser (nameLabel: String, completion: @escaping ((UserDetail?, Error?) -> Void)) {
+    func fetchUser(nameLabel: String, completion: @escaping ((UserDetail?, Error?) -> Void)) {
         let req = URLRequest(url: URL(string: "https://api.github.com/users/\(nameLabel)")!)
         fetchResponse(request: req, completion: completion)
     }

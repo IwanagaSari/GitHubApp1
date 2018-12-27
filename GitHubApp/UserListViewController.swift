@@ -59,12 +59,10 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! UserListCell
-
         let user = users[indexPath.row]
         let userName = user.userName
-        let imageUrlString = user.image
+        let imageUrlString = user.image        
         let imageUrl = URL(string: imageUrlString)!
 
         let task = imageDownloader.fetchImage(url: imageUrl, completion: { imageToCache, error in
@@ -89,7 +87,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
         selectedUserName = user.userName
-
         performSegue(withIdentifier: "toUserRepositoryList", sender: IndexPath.self)
     }
     //次のページへ値の受け渡し
