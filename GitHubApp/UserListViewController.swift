@@ -11,17 +11,18 @@ import UIKit
 class UserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var userListTabelView: UITableView!
-
-    var users: [User] = [] {
+    @IBOutlet var backgroundView: UIView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
+    private var users: [User] = [] {
         didSet {
             userListTabelView.reloadData()
         }
     }
-
     var selectedUserName: String = ""
     var accessToken: String = ""
-
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
+    private let imageDownloader = ImageDownloader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +36,12 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             if let error = error {
                 self.showError(error)
             }
-        })
+            self.indicator.stopAnimating()
+        })        
+        userListTabelView.backgroundView = backgroundView
     }
     //アラートを表示する
-    func showError(_ error: Error) {
+    private func showError(_ error: Error) {
         let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
         let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alertController.addAction(action)
@@ -52,31 +55,38 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
      //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
+        return 1
     }
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! UserListCell
 
         let user = users[indexPath.row]
         let userName = user.userName
-        let userImage = user.image
-        let userImageURL: URL = URL(string: "\(userImage)")!
+        let imageUrlString = user.image
+        let imageUrl = URL(string: imageUrlString)!
 
-        let imageData = try? Data(contentsOf: userImageURL)
+        let task = imageDownloader.fetchImage(url: imageUrl, completion: { imageToCache, error in
+            if error != nil {
+                cell.imageView?.image = UIImage(named: "error")
+            } else {
+                cell.imageView?.image = imageToCache
+            }
+        })
+        cell.task = task
+
         cell.textLabel?.text = "\(userName)"
-        cell.imageView?.image = UIImage(data: imageData! )
+        cell.imageView?.image = UIImage(named: "loading")
 
-    return cell
+        return cell
     }
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
     //セル選択時
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
         selectedUserName = user.userName
 
@@ -84,9 +94,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     //次のページへ値の受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let userRepositoryListViewController = segue.destination as?UserRepositoryListViewController
+        let userRepositoryListViewController = segue.destination as? UserRepositoryListViewController
         userRepositoryListViewController?.userName = selectedUserName
         userRepositoryListViewController?.accessToken = accessToken
     }
-
 }

@@ -1,6 +1,7 @@
 disabled_rules:
 - type_name
 - force_cast
+- trailing_whitespace # 空行を許可
 line_length: 300
 excluded:
 - Pods
@@ -16,3 +17,6 @@ variable_name_min_length:
 function_body_length:
 - 100 # warning
 - 200 # error
+opt_in_rules:
+- closure_end_indentation # クロージャの{と}は同じインデント
+- closure_spacing # クロージャの{の後と}の前にはスペース

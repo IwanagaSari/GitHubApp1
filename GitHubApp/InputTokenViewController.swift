@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  InputTokenViewController.swift
 //  GitHubApp
 //
 //  Created by 岩永 彩里 on 2018/09/25.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class InputTokenViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak private var personalAccessToken: UITextField!
     @IBOutlet weak private var caution: UITextView!
-    let defaults = UserDefaults.standard
+    private let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         personalAccessToken.delegate = self
 
         // デフォルト値を設定
-
         let token = Setting(defaults: self.defaults)
         personalAccessToken.text = token.token
     }
@@ -53,10 +52,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction private func tapView(_ sender: UITapGestureRecognizer) {
         personalAccessToken.resignFirstResponder()
     }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool { 
         personalAccessToken.resignFirstResponder()
         return true
     }
-
 }

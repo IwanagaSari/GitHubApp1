@@ -19,20 +19,20 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
 
     var accessToken: String = ""
     var userName: String = ""
-
-    var repositries: [Repositry] = [] {
-        didSet {
-            repoTableView.reloadData()
-        }
-    }
-    var user: UserDetail? {
-        didSet {
-            repoTableView.reloadData()
-        }
-    }
     var selectedURL: String?
 
+    private var repositries: [Repositry] = [] {
+        didSet {
+            repoTableView.reloadData()
+        }
+    }
+    private var user: UserDetail? {
+        didSet {
+            repoTableView.reloadData()
+        }
+    }
     lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
+    private let imageCache = ImageDownloader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,13 +56,14 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             let following = self.user?.following
             self.following.text = following.flatMap { String($0) }
 
-            let userImage = self.user?.image
-            if let image = userImage {
-                let userImageURL: URL = URL(string: "\(image)")!
-                let imageData = try? Data(contentsOf: userImageURL)
-                self.imageView.image = UIImage(data: imageData!)
+            let imageUrlString = self.user?.image
+            let imageUrl = URL(string: imageUrlString!)
+            if let imageUrl =  imageUrl {
+                _ = self.imageCache.fetchImage(url: imageUrl, completion: { imageToCache, _ in
+                    self.imageView.image = imageToCache
+                })
             } else {
-                self.imageView.image = nil
+                    self.imageView.image = nil
             }
         })
         gitHubAPI.fetchRepositry(nameLabel: userName, completion: { repositries, error in
@@ -74,7 +75,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         })
     }
     //アラートを表示する
-    func showError(_ error: Error) {
+    private func showError(_ error: Error) {
         let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
         let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alertController.addAction(action)
