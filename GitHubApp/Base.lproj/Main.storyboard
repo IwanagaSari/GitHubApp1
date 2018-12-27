@@ -100,7 +100,7 @@ Select scope
                     <connections>
                         <outlet property="caution" destination="K2K-8N-ZFM" id="dXx-Mm-sdj"/>
                         <outlet property="personalAccessToken" destination="ua5-Ve-mA9" id="agC-Eg-yvj"/>
-                        <segue destination="pG2-Te-If4" kind="show" identifier="toUserListView" id="Wzx-YI-6dw"/>
+                        <segue destination="2RG-cV-3mz" kind="show" identifier="toUserListView" id="Rsz-kX-rv8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -113,72 +113,62 @@ Select scope
             <point key="canvasLocation" x="797.60000000000002" y="792.95352323838085"/>
         </scene>
         <!--Users-->
-        <scene sceneID="Fw0-qo-qDI">
+        <scene sceneID="CaP-Bu-TUv">
             <objects>
-                <viewController title="Users" id="pG2-Te-If4" customClass="UserListViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="UD9-2A-4i5">
+                <tableViewController title="Users" id="2RG-cV-3mz" customClass="UserListViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lTc-sI-TSq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gnq-wo-LxD">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="6fd-v9-IdN" style="IBUITableViewCellStyleDefault" id="GOZ-fW-bz0" customClass="UserListCell" customModule="GitHubApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GOZ-fW-bz0" id="U4M-od-2qS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6fd-v9-IdN">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="DkX-BJ-rao" firstAttribute="trailing" secondItem="gnq-wo-LxD" secondAttribute="trailing" id="0rd-bc-JsJ"/>
-                            <constraint firstAttribute="bottom" secondItem="gnq-wo-LxD" secondAttribute="bottom" id="aYQ-A5-88O"/>
-                            <constraint firstItem="gnq-wo-LxD" firstAttribute="top" secondItem="DkX-BJ-rao" secondAttribute="top" id="hOq-3N-1wR"/>
-                            <constraint firstItem="gnq-wo-LxD" firstAttribute="leading" secondItem="DkX-BJ-rao" secondAttribute="leading" id="zte-d9-71p"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="DkX-BJ-rao"/>
-                    </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="6fd-v9-IdN" style="IBUITableViewCellStyleDefault" id="GOZ-fW-bz0" customClass="UserListCell" customModule="GitHubApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GOZ-fW-bz0" id="U4M-od-2qS">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6fd-v9-IdN">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2RG-cV-3mz" id="hBy-bI-MJ8"/>
+                            <outlet property="delegate" destination="2RG-cV-3mz" id="kbT-sO-dlc"/>
+                        </connections>
+                    </tableView>
                     <connections>
-                        <outlet property="backgroundView" destination="lcF-T8-Wzy" id="ce4-R8-ye0"/>
-                        <outlet property="indicator" destination="uVN-8s-lfJ" id="nY6-0E-u2n"/>
-                        <outlet property="userListTabelView" destination="gnq-wo-LxD" id="3ow-nb-dCI"/>
-                        <segue destination="7Em-rR-zZU" kind="show" identifier="toUserRepositoryList" id="0ke-3R-jZ4"/>
+                        <outlet property="backgroundView" destination="4Ls-ta-kjw" id="gRJ-Zp-Z5g"/>
+                        <outlet property="indicator" destination="Sbb-BG-gUp" id="7N9-xj-RAk"/>
+                        <segue destination="7Em-rR-zZU" kind="show" identifier="toUserRepositoryList" id="Utz-7z-QWi"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zTJ-mo-Pvp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="lcF-T8-Wzy">
-                    <rect key="frame" x="0.0" y="0.0" width="198" height="128"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZBR-PK-gGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="4Ls-ta-kjw">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uVN-8s-lfJ">
-                            <rect key="frame" x="89" y="54" width="20" height="20"/>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Sbb-BG-gUp">
+                            <rect key="frame" x="101.5" y="45.5" width="37" height="37"/>
                             <color key="color" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="uVN-8s-lfJ" firstAttribute="centerX" secondItem="lcF-T8-Wzy" secondAttribute="centerX" id="mJV-dW-TN0"/>
-                        <constraint firstItem="uVN-8s-lfJ" firstAttribute="centerY" secondItem="lcF-T8-Wzy" secondAttribute="centerY" id="rIE-LD-pTs"/>
+                        <constraint firstItem="Sbb-BG-gUp" firstAttribute="centerX" secondItem="4Ls-ta-kjw" secondAttribute="centerX" id="5NO-QO-xN2"/>
+                        <constraint firstItem="Sbb-BG-gUp" firstAttribute="centerY" secondItem="4Ls-ta-kjw" secondAttribute="centerY" id="fqz-YD-KlN"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="mTA-Uw-L9t"/>
+                    <viewLayoutGuide key="safeArea" id="mcR-Bt-cDs"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1605.5999999999999" y="775.86206896551732"/>
+            <point key="canvasLocation" x="1593" y="793"/>
         </scene>
         <!--Repository-->
         <scene sceneID="PSs-YA-N2F">
@@ -280,7 +270,7 @@ Select scope
                                 <rect key="frame" x="0.0" y="234" width="375" height="433"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
                                         <rect key="frame" x="0.0" y="28" width="375" height="152"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fu5-KW-BGm" id="oCv-3o-5r2">
