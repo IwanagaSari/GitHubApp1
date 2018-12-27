@@ -408,7 +408,7 @@ Select scope
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6f-1o-gBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2540" y="775.86206896551732"/>
+            <point key="canvasLocation" x="2436" y="793"/>
         </scene>
         <!--User Web View Controller-->
         <scene sceneID="mh4-vx-vF6">
@@ -419,7 +419,7 @@ Select scope
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ee-lj-FEp">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1k3-62-5pp">
                                         <rect key="frame" x="20" y="11" width="25" height="25"/>
@@ -465,6 +465,11 @@ Select scope
                                             <action selector="reloadButton:" destination="wbd-Jg-91A" eventType="touchUpInside" id="UKT-GS-yD9"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxj-2R-XAN">
+                                        <rect key="frame" x="124" y="44" width="68" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="back_icon.png"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -480,7 +485,7 @@ Select scope
                                 </constraints>
                             </view>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUJ-P6-pad">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="515"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -505,6 +510,15 @@ Select scope
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="H0a-PH-KR3"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="fbU-83-KjV"/>
+                        <barButtonItem title="Item" id="eha-sT-k2H"/>
+                        <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="qIr-Di-xW8"/>
+                        <barButtonItem systemItem="refresh" id="upV-3q-0LO"/>
+                        <barButtonItem width="139" style="plain" systemItem="fixedSpace" id="pCe-Q7-o3j"/>
+                        <barButtonItem systemItem="stop" id="SnE-Vn-lbY"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="indicator" destination="5XA-Zi-ZfN" id="3q8-R0-cYJ"/>
                         <outlet property="webView" destination="MUJ-P6-pad" id="15e-4d-kwh"/>
@@ -512,7 +526,7 @@ Select scope
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQv-uU-VqX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3429.5999999999999" y="771.36431784107947"/>
+            <point key="canvasLocation" x="3349.5999999999999" y="792.95352323838085"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z2d-Qm-Fng">
