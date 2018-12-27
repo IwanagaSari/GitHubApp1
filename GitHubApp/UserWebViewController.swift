@@ -36,11 +36,11 @@ class UserWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegat
         webView.goForward()
     }
 
-    @IBAction func reloadButton(_ sender: UIButton) {
+    @IBAction func reloadButton(_ sender: UIBarButtonItem) {
         webView.reload()
     }
-
-    @IBAction func cancelButton(_ sender: UIButton) {
+    
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         webView.stopLoading()
     }
     

@@ -13,7 +13,7 @@
         <!--Input Token View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="InputTokenViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" customClass="InputTokenViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -173,7 +173,7 @@ Select scope
         <!--Repository-->
         <scene sceneID="PSs-YA-N2F">
             <objects>
-                <viewController title="Repository" id="7Em-rR-zZU" customClass="UserRepositoryListViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Repository" hidesBottomBarWhenPushed="YES" id="7Em-rR-zZU" customClass="UserRepositoryListViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6S9-p4-HjJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -418,74 +418,8 @@ Select scope
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ee-lj-FEp">
-                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1k3-62-5pp">
-                                        <rect key="frame" x="20" y="11" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="WJr-UV-Izz"/>
-                                            <constraint firstAttribute="width" constant="25" id="why-9C-b0z"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="back_icon.png"/>
-                                        <connections>
-                                            <action selector="backButton:" destination="wbd-Jg-91A" eventType="touchUpInside" id="Zlq-gq-1sT"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAc-HX-fKG">
-                                        <rect key="frame" x="80" y="11" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="n3y-KM-x6k"/>
-                                            <constraint firstAttribute="width" constant="25" id="p0r-50-D1D"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="go_icon.png"/>
-                                        <connections>
-                                            <action selector="pressButton:" destination="wbd-Jg-91A" eventType="touchUpInside" id="L3V-Vu-zNO"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQU-i7-5fu">
-                                        <rect key="frame" x="315" y="11" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="QNc-6f-cry"/>
-                                            <constraint firstAttribute="height" constant="25" id="czR-WC-7KP"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="stop_icon.png"/>
-                                        <connections>
-                                            <action selector="cancelButton:" destination="wbd-Jg-91A" eventType="touchUpInside" id="8So-fQ-HrJ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgV-9n-Mu6">
-                                        <rect key="frame" x="175" y="11" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="Bf5-gW-RSo"/>
-                                            <constraint firstAttribute="height" constant="25" id="P8R-wM-JCm"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="reload_icon.png"/>
-                                        <connections>
-                                            <action selector="reloadButton:" destination="wbd-Jg-91A" eventType="touchUpInside" id="UKT-GS-yD9"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxj-2R-XAN">
-                                        <rect key="frame" x="124" y="44" width="68" height="55"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button" image="back_icon.png"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="5DI-0b-DGd"/>
-                                    <constraint firstAttribute="trailing" secondItem="nQU-i7-5fu" secondAttribute="trailing" constant="35" id="ANd-Kv-A7r"/>
-                                    <constraint firstItem="1k3-62-5pp" firstAttribute="leading" secondItem="4ee-lj-FEp" secondAttribute="leading" constant="20" id="P3d-p0-BgX"/>
-                                    <constraint firstAttribute="bottom" secondItem="AAc-HX-fKG" secondAttribute="bottom" constant="8" id="Psa-zk-mrf"/>
-                                    <constraint firstItem="qgV-9n-Mu6" firstAttribute="centerX" secondItem="4ee-lj-FEp" secondAttribute="centerX" id="Tz2-hG-q7I"/>
-                                    <constraint firstAttribute="bottom" secondItem="1k3-62-5pp" secondAttribute="bottom" constant="8" id="UR3-LD-7vN"/>
-                                    <constraint firstItem="AAc-HX-fKG" firstAttribute="leading" secondItem="1k3-62-5pp" secondAttribute="trailing" constant="35" id="aZn-oz-XE3"/>
-                                    <constraint firstAttribute="bottom" secondItem="qgV-9n-Mu6" secondAttribute="bottom" constant="8" id="taf-IL-y7H"/>
-                                    <constraint firstAttribute="bottom" secondItem="nQU-i7-5fu" secondAttribute="bottom" constant="8" id="z1x-7Q-pCR"/>
-                                </constraints>
-                            </view>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUJ-P6-pad">
-                                <rect key="frame" x="0.0" y="64" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="558"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -495,18 +429,40 @@ Select scope
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5XA-Zi-ZfN">
                                 <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
                             </activityIndicatorView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyo-cX-8tV">
+                                <rect key="frame" x="0.0" y="622" width="375" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Ow0-Dh-Bll"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Item" id="Lrc-V8-Shp"/>
+                                    <barButtonItem title="Item" id="qh9-eH-lq5"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="3aD-zh-d0I"/>
+                                    <barButtonItem systemItem="refresh" id="q5F-4K-6FQ">
+                                        <connections>
+                                            <action selector="reloadButton:" destination="wbd-Jg-91A" id="8Ol-cu-VAg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Uae-Yi-DkN"/>
+                                    <barButtonItem systemItem="stop" id="1qk-8H-HCT">
+                                        <connections>
+                                            <action selector="cancelButton:" destination="wbd-Jg-91A" id="hp6-zX-VQ8"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="H0a-PH-KR3" firstAttribute="trailing" secondItem="4ee-lj-FEp" secondAttribute="trailing" id="Af4-z8-FWI"/>
+                            <constraint firstItem="Lyo-cX-8tV" firstAttribute="top" secondItem="MUJ-P6-pad" secondAttribute="bottom" id="Frh-PN-twb"/>
                             <constraint firstItem="5XA-Zi-ZfN" firstAttribute="centerY" secondItem="tcv-0d-kNI" secondAttribute="centerY" id="IM6-dF-Hsx"/>
-                            <constraint firstItem="4ee-lj-FEp" firstAttribute="leading" secondItem="H0a-PH-KR3" secondAttribute="leading" id="OVa-yD-hob"/>
                             <constraint firstItem="5XA-Zi-ZfN" firstAttribute="centerX" secondItem="tcv-0d-kNI" secondAttribute="centerX" id="PrR-iP-cbx"/>
-                            <constraint firstItem="H0a-PH-KR3" firstAttribute="bottom" secondItem="4ee-lj-FEp" secondAttribute="bottom" id="UhY-gh-Ksf"/>
+                            <constraint firstItem="Lyo-cX-8tV" firstAttribute="bottom" secondItem="H0a-PH-KR3" secondAttribute="bottom" id="QrM-wB-bDK"/>
                             <constraint firstItem="MUJ-P6-pad" firstAttribute="top" secondItem="H0a-PH-KR3" secondAttribute="top" id="fut-8I-vDC"/>
+                            <constraint firstItem="Lyo-cX-8tV" firstAttribute="trailing" secondItem="H0a-PH-KR3" secondAttribute="trailing" id="hoz-jD-bA5"/>
                             <constraint firstItem="MUJ-P6-pad" firstAttribute="leading" secondItem="H0a-PH-KR3" secondAttribute="leading" id="sCz-nT-t80"/>
                             <constraint firstItem="H0a-PH-KR3" firstAttribute="trailing" secondItem="MUJ-P6-pad" secondAttribute="trailing" id="vIc-Mm-wox"/>
-                            <constraint firstItem="4ee-lj-FEp" firstAttribute="top" secondItem="MUJ-P6-pad" secondAttribute="bottom" id="zLN-MB-ypB"/>
+                            <constraint firstItem="Lyo-cX-8tV" firstAttribute="leading" secondItem="H0a-PH-KR3" secondAttribute="leading" id="xBe-OQ-Dyn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="H0a-PH-KR3"/>
                     </view>
@@ -518,7 +474,6 @@ Select scope
                         <barButtonItem width="139" style="plain" systemItem="fixedSpace" id="pCe-Q7-o3j"/>
                         <barButtonItem systemItem="stop" id="SnE-Vn-lbY"/>
                     </toolbarItems>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="indicator" destination="5XA-Zi-ZfN" id="3q8-R0-cYJ"/>
                         <outlet property="webView" destination="MUJ-P6-pad" id="15e-4d-kwh"/>
@@ -548,11 +503,7 @@ Select scope
         </scene>
     </scenes>
     <resources>
-        <image name="back_icon.png" width="120" height="120"/>
-        <image name="go_icon.png" width="120" height="120"/>
         <image name="maru.png" width="150" height="150"/>
-        <image name="reload_icon.png" width="120" height="120"/>
         <image name="star.png" width="205" height="205"/>
-        <image name="stop_icon.png" width="120" height="120"/>
     </resources>
 </document>
