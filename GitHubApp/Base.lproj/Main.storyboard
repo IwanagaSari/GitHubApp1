@@ -435,15 +435,24 @@ Select scope
                                     <constraint firstAttribute="height" constant="45" id="Ow0-Dh-Bll"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Item" id="Lrc-V8-Shp"/>
-                                    <barButtonItem title="Item" id="qh9-eH-lq5"/>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="3aD-zh-d0I"/>
+                                    <barButtonItem title="Item" image="back_icon" id="Lrc-V8-Shp">
+                                        <connections>
+                                            <action selector="backButton:" destination="wbd-Jg-91A" id="qAg-d1-xvP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="gkb-lI-X1S"/>
+                                    <barButtonItem title="Item" image="go_icon" id="qh9-eH-lq5">
+                                        <connections>
+                                            <action selector="pressButton:" destination="wbd-Jg-91A" id="qIf-yL-LkK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="71" style="plain" systemItem="fixedSpace" id="3aD-zh-d0I"/>
                                     <barButtonItem systemItem="refresh" id="q5F-4K-6FQ">
                                         <connections>
                                             <action selector="reloadButton:" destination="wbd-Jg-91A" id="8Ol-cu-VAg"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Uae-Yi-DkN"/>
+                                    <barButtonItem width="100" style="plain" systemItem="fixedSpace" id="Uae-Yi-DkN"/>
                                     <barButtonItem systemItem="stop" id="1qk-8H-HCT">
                                         <connections>
                                             <action selector="cancelButton:" destination="wbd-Jg-91A" id="hp6-zX-VQ8"/>
@@ -503,6 +512,8 @@ Select scope
         </scene>
     </scenes>
     <resources>
+        <image name="back_icon" width="30" height="30"/>
+        <image name="go_icon" width="30" height="30"/>
         <image name="maru.png" width="150" height="150"/>
         <image name="star.png" width="205" height="205"/>
     </resources>
