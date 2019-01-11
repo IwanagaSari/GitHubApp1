@@ -71,10 +71,6 @@ class UserListViewController: UITableViewController {
 
         return cell
     }
-    //セルの高さ
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
     //セル選択時
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
