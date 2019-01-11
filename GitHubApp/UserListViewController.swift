@@ -49,10 +49,6 @@ class UserListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
-     //セクションの数
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     //セルの内容
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! UserListCell
