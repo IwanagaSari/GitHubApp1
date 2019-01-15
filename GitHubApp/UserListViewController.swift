@@ -54,7 +54,7 @@ class UserListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! UserListCell
         let user = users[indexPath.row]
         let userName = user.userName
-        let imageUrlString = user.image        
+        let imageUrlString = user.image
         let imageUrl = URL(string: imageUrlString)!
 
         let task = imageDownloader.fetchImage(url: imageUrl, completion: { imageToCache, error in
