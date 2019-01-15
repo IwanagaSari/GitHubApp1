@@ -8,20 +8,20 @@
 
 import Foundation
 
-    struct Repositry: Codable {
-        let name: String
-        let description: String?
-        let language: String?
-        let stargazersCount: Int?
-        let url: String
-        let fork: Bool
-
-        enum CodingKeys: String, CodingKey {
-            case name
-            case description
-            case language
-            case stargazersCount = "stargazers_count"
-            case url = "html_url"
-            case fork
-        }
+struct Repositry: Codable {
+    let name: String
+    let description: String?
+    let language: String?
+    let stargazersCount: Int?
+    let url: String
+    let fork: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case description
+        case language
+        case stargazersCount = "stargazers_count"
+        case url = "html_url"
+        case fork
     }
+}
