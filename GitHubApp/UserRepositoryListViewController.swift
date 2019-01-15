@@ -122,7 +122,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         let repositoryURL = URL(string: "\(repository.url)")
         if let repositoryURL = repositoryURL{
             let safari = SFSafariViewController(url: repositoryURL)
-            safari.delegate = self
             present(safari, animated: true, completion: nil)
         }
     }
