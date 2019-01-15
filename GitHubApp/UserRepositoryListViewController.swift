@@ -127,11 +127,3 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         }
     }
 }
-
-extension UserRepositoryListViewController: SFSafariViewControllerDelegate {
-    
-    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
-        print("完了しました。")
-    }
-
-}
