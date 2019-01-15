@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class UserRepositoryListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var repoTableView: UITableView!
@@ -21,7 +22,6 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     
     var accessToken: String = ""
     var userName: String = ""
-    var selectedURL: String?
 
     private var repositries: [Repositry] = [] {
         didSet {
@@ -118,13 +118,20 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     //セル選択時
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repository = repositries[indexPath.row]
-        selectedURL = repository.url
+        
+        let repositoryURL = URL(string: "\(repository.url)")
+        if let repositoryURL = repositoryURL{
+            let safari = SFSafariViewController(url: repositoryURL)
+            safari.delegate = self
+            present(safari, animated: true, completion: nil)
+        }
+    }
+}
 
-        performSegue(withIdentifier: "toWebView", sender: IndexPath.self)
+extension UserRepositoryListViewController: SFSafariViewControllerDelegate {
+    
+    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
+        print("完了しました。")
     }
-    //次のページへ値の受け渡し
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let userWebViewController = segue.destination as? UserWebViewController
-        userWebViewController?.webURL = selectedURL
-    }
+
 }
