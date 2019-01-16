@@ -59,14 +59,15 @@ class UserListViewController: UITableViewController {
 
         let task = imageDownloader.fetchImage(url: imageUrl, completion: { imageToCache, error in
             if error != nil {
-                cell.imageView?.image = UIImage(named: "error")
+                cell.userImageView.image = UIImage(named: "error")
             } else {
-                cell.imageView?.image = imageToCache
+                cell.userImageView.image = imageToCache
             }
+            cell.userImageLoadingIndicator.stopAnimating()
         })
         cell.task = task
-
-        cell.textLabel?.text = "\(userName)"
+        
+        cell.userNameLabel.text = "\(userName)"
 
         return cell
     }
