@@ -119,8 +119,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repository = repositries[indexPath.row]
         
-        let repositoryURL = URL(string: "\(repository.url)")
-        if let repositoryURL = repositoryURL{
+        if let repositoryURL = URL(string: "\(repository.url)") {
             let safari = SFSafariViewController(url: repositoryURL)
             present(safari, animated: true, completion: nil)
         }
