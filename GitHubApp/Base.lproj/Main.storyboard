@@ -301,7 +301,7 @@ Select scope
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxr-LP-zqx">
-                                                    <rect key="frame" x="30" y="16" width="315" height="21"/>
+                                                    <rect key="frame" x="30" y="16" width="354" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="2ty-y3-6LW"/>
                                                     </constraints>
@@ -310,7 +310,7 @@ Select scope
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1K-3j-a7l">
-                                                    <rect key="frame" x="30" y="42" width="315" height="69"/>
+                                                    <rect key="frame" x="30" y="42" width="354" height="69"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
