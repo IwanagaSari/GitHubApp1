@@ -67,7 +67,6 @@ class UserListViewController: UITableViewController {
         cell.task = task
 
         cell.textLabel?.text = "\(userName)"
-        cell.imageView?.image = UIImage(named: "loading")
 
         return cell
     }
