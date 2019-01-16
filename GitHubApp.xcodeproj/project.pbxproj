@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8617D6682162E520004FC10A /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8617D6632162E520004FC10A /* menu_icon.png */; };
 		86E360EB2164721A000910DF /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E360E921647219000910DF /* star.png */; };
 		86E360EC2164721A000910DF /* maru.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E360EA2164721A000910DF /* maru.png */; };
 		EAA754D221B7EF4D00130943 /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA754D121B7EF4D00130943 /* UserListCell.swift */; };
@@ -46,7 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8617D6632162E520004FC10A /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		86E360E921647219000910DF /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		86E360EA2164721A000910DF /* maru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maru.png; sourceTree = "<group>"; };
 		EAA754D121B7EF4D00130943 /* UserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 			children = (
 				86E360EA2164721A000910DF /* maru.png */,
 				86E360E921647219000910DF /* star.png */,
-				8617D6632162E520004FC10A /* menu_icon.png */,
 			);
 			path = "UIWebView_images 2";
 			sourceTree = "<group>";
@@ -277,7 +274,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8617D6682162E520004FC10A /* menu_icon.png in Resources */,
 				86E360EB2164721A000910DF /* star.png in Resources */,
 				EAD73628215A4B7600486083 /* LaunchScreen.storyboard in Resources */,
 				86E360EC2164721A000910DF /* maru.png in Resources */,
