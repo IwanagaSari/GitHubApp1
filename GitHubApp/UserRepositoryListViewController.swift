@@ -18,7 +18,8 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var reposCount: UILabel!
     @IBOutlet var backgroundView: UIView!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var userRepositoriesIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var userImageIndicator: UIActivityIndicatorView!
     
     var accessToken: String = ""
     var userName: String = ""
@@ -67,6 +68,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             } else {
                     self.imageView.image = nil
             }
+            self.userImageIndicator.stopAnimating()
         })
         gitHubAPI.fetchRepositry(nameLabel: userName, completion: { repositries, error in
             if let error = error {
@@ -74,7 +76,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             }
             self.repositries = (repositries?.filter { repo in !(repo.fork) } ?? [])
             self.reposCount.text = String(self.repositries.count)
-            self.indicator.stopAnimating()
+            self.userRepositoriesIndicator.stopAnimating()
         })
         repoTableView.backgroundView = backgroundView
     }

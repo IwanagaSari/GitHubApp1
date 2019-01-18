@@ -265,6 +265,9 @@ Select scope
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="GNk-Da-A1R">
+                                        <rect key="frame" x="65" y="65" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -283,10 +286,12 @@ Select scope
                                     <constraint firstItem="KOx-0O-13I" firstAttribute="leading" secondItem="aEI-Lt-1P6" secondAttribute="trailing" constant="10" id="ebB-Iu-aOj"/>
                                     <constraint firstItem="DFZ-bS-4mQ" firstAttribute="top" secondItem="vZe-WD-8dl" secondAttribute="bottom" id="gkI-ff-Dx1"/>
                                     <constraint firstItem="DbV-F0-7Bb" firstAttribute="leading" secondItem="aEI-Lt-1P6" secondAttribute="trailing" constant="10" id="lpN-bJ-pDQ"/>
+                                    <constraint firstItem="GNk-Da-A1R" firstAttribute="centerX" secondItem="aEI-Lt-1P6" secondAttribute="centerX" id="qpN-oc-1KO"/>
                                     <constraint firstItem="3A9-fI-D7e" firstAttribute="leading" secondItem="DFZ-bS-4mQ" secondAttribute="trailing" constant="30" id="soS-SP-SGV"/>
                                     <constraint firstAttribute="bottom" secondItem="aEI-Lt-1P6" secondAttribute="bottom" constant="10" id="uTR-tb-BVW"/>
                                     <constraint firstAttribute="height" constant="150" id="v2x-oF-mYg"/>
                                     <constraint firstAttribute="bottom" secondItem="DFZ-bS-4mQ" secondAttribute="bottom" constant="10" id="wGf-JP-YgA"/>
+                                    <constraint firstItem="GNk-Da-A1R" firstAttribute="centerY" secondItem="aEI-Lt-1P6" secondAttribute="centerY" id="wQT-b1-geb"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="azp-ch-bSC">
@@ -301,7 +306,7 @@ Select scope
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxr-LP-zqx">
-                                                    <rect key="frame" x="30" y="16" width="354" height="21"/>
+                                                    <rect key="frame" x="30" y="16" width="315" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="2ty-y3-6LW"/>
                                                     </constraints>
@@ -310,7 +315,7 @@ Select scope
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1K-3j-a7l">
-                                                    <rect key="frame" x="30" y="42" width="354" height="69"/>
+                                                    <rect key="frame" x="30" y="42" width="315" height="69"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -424,10 +429,11 @@ Select scope
                         <outlet property="following" destination="3A9-fI-D7e" id="8cB-JI-WLi"/>
                         <outlet property="fullname" destination="KOx-0O-13I" id="Bip-mW-m28"/>
                         <outlet property="imageView" destination="aEI-Lt-1P6" id="vxX-Id-EG9"/>
-                        <outlet property="indicator" destination="s4T-D7-esB" id="alu-3R-1c5"/>
                         <outlet property="name" destination="DbV-F0-7Bb" id="Ype-xf-Uhd"/>
                         <outlet property="repoTableView" destination="azp-ch-bSC" id="5PG-mD-xF4"/>
                         <outlet property="reposCount" destination="dve-jV-hpu" id="RJ6-k8-Rwq"/>
+                        <outlet property="userImageIndicator" destination="GNk-Da-A1R" id="NJG-3j-LD4"/>
+                        <outlet property="userRepositoriesIndicator" destination="s4T-D7-esB" id="oIA-v5-liT"/>
                         <segue destination="wbd-Jg-91A" kind="show" identifier="toWebView" id="f5L-PD-mOk"/>
                     </connections>
                 </viewController>
