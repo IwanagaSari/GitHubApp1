@@ -157,7 +157,7 @@ Select scope
                     <subviews>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Sbb-BG-gUp">
                             <rect key="frame" x="101.5" y="45.5" width="37" height="37"/>
-                            <color key="color" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -396,10 +396,12 @@ Select scope
                         <viewLayoutGuide key="safeArea" id="8KV-Xc-DoE"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="BLt-xF-Ayv" id="bU7-OE-Q3J"/>
                         <outlet property="follower" destination="DFZ-bS-4mQ" id="tZK-ez-jg5"/>
                         <outlet property="following" destination="3A9-fI-D7e" id="8cB-JI-WLi"/>
                         <outlet property="fullname" destination="KOx-0O-13I" id="Bip-mW-m28"/>
                         <outlet property="imageView" destination="aEI-Lt-1P6" id="vxX-Id-EG9"/>
+                        <outlet property="indicator" destination="s4T-D7-esB" id="alu-3R-1c5"/>
                         <outlet property="name" destination="DbV-F0-7Bb" id="Ype-xf-Uhd"/>
                         <outlet property="repoTableView" destination="azp-ch-bSC" id="5PG-mD-xF4"/>
                         <outlet property="reposCount" destination="dve-jV-hpu" id="RJ6-k8-Rwq"/>
@@ -407,6 +409,22 @@ Select scope
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6f-1o-gBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="BLt-xF-Ayv">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="s4T-D7-esB">
+                            <rect key="frame" x="101.5" y="45.5" width="37" height="37"/>
+                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="s4T-D7-esB" firstAttribute="centerX" secondItem="BLt-xF-Ayv" secondAttribute="centerX" id="bVj-FQ-e5f"/>
+                        <constraint firstItem="s4T-D7-esB" firstAttribute="centerY" secondItem="BLt-xF-Ayv" secondAttribute="centerY" id="gGx-NB-dq9"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="wWz-Sy-fTg"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="2436" y="793"/>
         </scene>
