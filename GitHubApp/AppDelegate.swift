@@ -14,7 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        resetStateIfUITesting()
         // Override point for customization after application launch.
         return true
+    }
+    
+    private func  resetStateIfUITesting() {
+        if ProcessInfo.processInfo.arguments.contains("UITest") {
+            print("成功")
+            UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        }
+        
     }
 }
