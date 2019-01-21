@@ -20,6 +20,7 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ua5-Ve-mA9">
                                 <rect key="frame" x="20" y="175" width="335" height="45"/>
+                                <accessibility key="accessibilityConfiguration" identifier="accessToken"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="vEo-G6-brr"/>
                                 </constraints>
