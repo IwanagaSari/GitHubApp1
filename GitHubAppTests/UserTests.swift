@@ -46,7 +46,7 @@ class UserTests: XCTestCase {
         let avatarUrl = testJson["avatar_url"] as! String
         XCTAssertEqual(login, "octocat")
         XCTAssertEqual(avatarUrl, "https://github.com/images/error/octocat_happy.gif")
-                
+        
     }
 
     func testPerformanceExample() {
