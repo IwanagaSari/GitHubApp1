@@ -18,6 +18,7 @@
 		EAB5A46E2175F7F800004D29 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46D2175F7F800004D29 /* Repository.swift */; };
 		EAB5A4702175FA3000004D29 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46F2175FA3000004D29 /* APIError.swift */; };
 		EAB8420D21F72B65008D9AD0 /* InputTokenViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8420C21F72B65008D9AD0 /* InputTokenViewControllerTests.swift */; };
+		EAB8420F21F72FF3008D9AD0 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8420E21F72FF3008D9AD0 /* UserTests.swift */; };
 		EAD124F121B6891500D7FAB9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD124F021B6891500D7FAB9 /* Setting.swift */; };
 		EAD7361E215A4B7600486083 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7361D215A4B7600486083 /* AppDelegate.swift */; };
 		EAD73620215A4B7600486083 /* InputTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7361F215A4B7600486083 /* InputTokenViewController.swift */; };
@@ -59,6 +60,7 @@
 		EAB5A46D2175F7F800004D29 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		EAB5A46F2175FA3000004D29 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		EAB8420C21F72B65008D9AD0 /* InputTokenViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTokenViewControllerTests.swift; sourceTree = "<group>"; };
+		EAB8420E21F72FF3008D9AD0 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		EAD124F021B6891500D7FAB9 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		EAD7361A215A4B7600486083 /* GitHubApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD7361D215A4B7600486083 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				EAD73632215A4B7600486083 /* GitHubAppTests.swift */,
 				EAD73634215A4B7600486083 /* Info.plist */,
 				EAB8420C21F72B65008D9AD0 /* InputTokenViewControllerTests.swift */,
+				EAB8420E21F72FF3008D9AD0 /* UserTests.swift */,
 			);
 			path = GitHubAppTests;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAB8420F21F72FF3008D9AD0 /* UserTests.swift in Sources */,
 				EAD73633215A4B7600486083 /* GitHubAppTests.swift in Sources */,
 				EAB8420D21F72B65008D9AD0 /* InputTokenViewControllerTests.swift in Sources */,
 			);
