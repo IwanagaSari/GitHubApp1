@@ -9,8 +9,9 @@
 import UIKit
 
 class InputTokenViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak private var personalAccessToken: UITextField!
-    @IBOutlet weak private var caution: UITextView!
+    @IBOutlet weak private(set) var personalAccessToken: UITextField!
+    @IBOutlet weak private(set) var caution: UITextView!
+    @IBOutlet weak var enterButton: UIButton!
     private let defaults = UserDefaults.standard
 
     override func viewDidLoad() {

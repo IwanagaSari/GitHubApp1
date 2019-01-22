@@ -7,27 +7,46 @@
 //
 
 import XCTest
+@testable import GitHubApp
+
+// swiftlint:disable identifier_name
 
 class InputTokenViewControllerTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let s = UIStoryboard(name: "Main", bundle: nil)
+        let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
+        XCTAssertNotNil(vc)
+        
+        let setting = Setting(defaults: UserDefaults.standard)
+        setting.token = ""
+        
+        vc?.loadViewIfNeeded()
+        XCTAssertEqual(vc?.personalAccessToken.text, "")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testExample1() {
+        let s = UIStoryboard(name: "Main", bundle: nil)
+        let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
+        XCTAssertNotNil(vc)
+        
+        let setting = Setting(defaults: UserDefaults.standard)
+        setting.token = "test"
+        
+        vc?.loadViewIfNeeded()
+        XCTAssertEqual(vc?.personalAccessToken.text, "test")
+    }
+    
+    func testExample2() {
+        let s = UIStoryboard(name: "Main", bundle: nil)
+        let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
+        XCTAssertNotNil(vc)
+        
+        vc?.loadViewIfNeeded()
+        vc?.personalAccessToken.text = "abc"
+        vc?.enterButton.sendActions(for: .touchUpInside)
+        
+        let setting = Setting(defaults: UserDefaults.standard)
+        XCTAssertEqual(setting.token, "abc")
     }
 
 }

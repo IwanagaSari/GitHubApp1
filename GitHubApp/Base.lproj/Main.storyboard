@@ -13,7 +13,7 @@
         <!--Input Token View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" customClass="InputTokenViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InputTokenViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" customClass="InputTokenViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,6 +100,7 @@ Select scope
                     <navigationItem key="navigationItem" id="g9x-m0-Hxu"/>
                     <connections>
                         <outlet property="caution" destination="K2K-8N-ZFM" id="dXx-Mm-sdj"/>
+                        <outlet property="enterButton" destination="TQ6-9s-plp" id="p2n-rM-Nee"/>
                         <outlet property="personalAccessToken" destination="ua5-Ve-mA9" id="agC-Eg-yvj"/>
                         <segue destination="2RG-cV-3mz" kind="show" identifier="toUserListView" id="Rsz-kX-rv8"/>
                     </connections>
