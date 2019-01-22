@@ -9,8 +9,6 @@
 import XCTest
 @testable import GitHubApp
 
-
-
 class InputTokenViewControllerTests: XCTestCase {
 
     func testExample() {

@@ -21,7 +21,7 @@ class UserTests: XCTestCase {
 
     func testExample() {
         
-        let testJson1: [String: Any] = [
+        let testJson: [String: Any] = [
             "login": "octocat",
             "id": 1,
             "node_id": "MDQ6VXNlcjE=",
@@ -40,12 +40,13 @@ class UserTests: XCTestCase {
             "received_events_url": "https://api.github.com/users/octocat/received_events",
             "type": "User",
             "site_admin": false
-        ]
-        let login = testJson1["login"] as! String
-        let avatarUrl = testJson1["avatar_url"] as! String
+            ]
+        
+        let login = testJson["login"] as! String
+        let avatarUrl = testJson["avatar_url"] as! String
         XCTAssertEqual(login, "octocat")
         XCTAssertEqual(avatarUrl, "https://github.com/images/error/octocat_happy.gif")
-        
+                
     }
 
     func testPerformanceExample() {
