@@ -9,8 +9,6 @@
 import XCTest
 @testable import GitHubApp
 
-// swiftlint:disable identifier_name
-
 class GitHubAppTests: XCTestCase {
 
     override func setUp() {

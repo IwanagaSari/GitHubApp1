@@ -9,7 +9,7 @@
 import XCTest
 @testable import GitHubApp
 
-// swiftlint:disable identifier_name
+
 
 class InputTokenViewControllerTests: XCTestCase {
 
