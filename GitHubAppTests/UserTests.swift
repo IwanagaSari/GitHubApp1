@@ -21,7 +21,8 @@ class UserTests: XCTestCase {
 
     func testExample1() throws {
         let json = """
-{
+[
+  {
     "login": "octocat",
     "id": 1,
     "node_id": "MDQ6VXNlcjE=",
@@ -41,8 +42,10 @@ class UserTests: XCTestCase {
     "type": "User",
     "site_admin": false
   }
+]
 """
-        let user = try JSONDecoder().decode(User.self, from: json.data(using: .utf8)!)
+        let users = try JSONDecoder().decode([User].self, from: json.data(using: .utf8)!)
+        let user = users[0]
         XCTAssertEqual(user.userName, "octocat")
         XCTAssertEqual(user.image, "https://github.com/images/error/octocat_happy.gif")
     }
@@ -87,7 +90,7 @@ class UserTests: XCTestCase {
         XCTAssertEqual(userDetail.fullName, "monalisa octocat")
         XCTAssertEqual(userDetail.followers, 20)
         XCTAssertEqual(userDetail.following, 0)
-        XCTAssertEqual(userDetail.image, "https://github.com/images/error/octocat_happy.gif")        
+        XCTAssertEqual(userDetail.image, "https://github.com/images/error/octocat_happy.gif")
     }
     
     func testPerformanceExample() {
