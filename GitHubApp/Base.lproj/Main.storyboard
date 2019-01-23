@@ -169,7 +169,7 @@ Select scope
                     </tableView>
                     <connections>
                         <outlet property="backgroundView" destination="4Ls-ta-kjw" id="gRJ-Zp-Z5g"/>
-                        <outlet property="indicator" destination="Sbb-BG-gUp" id="7N9-xj-RAk"/>
+                        <outlet property="backgroundViewindicator" destination="Sbb-BG-gUp" id="7N9-xj-RAk"/>
                         <segue destination="7Em-rR-zZU" kind="show" identifier="toUserRepositoryList" id="Utz-7z-QWi"/>
                     </connections>
                 </tableViewController>
@@ -298,7 +298,7 @@ Select scope
                                 <rect key="frame" x="0.0" y="234" width="375" height="433"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
                                         <rect key="frame" x="0.0" y="28" width="375" height="152"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fu5-KW-BGm" id="oCv-3o-5r2">
