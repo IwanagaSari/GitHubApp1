@@ -43,7 +43,6 @@ class UserListViewController: UITableViewController {
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
         print("reason:\(error.localizedDescription)")
-
     }
     //行数の指定
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
