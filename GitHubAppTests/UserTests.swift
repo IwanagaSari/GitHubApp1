@@ -19,7 +19,7 @@ class UserTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample1() throws {
+    func testDecodeUser() throws {
         let json = """
 [
   {
@@ -50,7 +50,7 @@ class UserTests: XCTestCase {
         XCTAssertEqual(user.image, "https://github.com/images/error/octocat_happy.gif")
     }
     
-    func testExample2() throws {
+    func testDecodeUserDetail() throws {
         let json = """
 {
   "login": "octocat",

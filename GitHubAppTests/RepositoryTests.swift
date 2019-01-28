@@ -20,7 +20,6 @@ class RepositoryTests: XCTestCase {
     }
     
     func testDecodeRepositry() throws {
-        
         let json = """
 [
   {
@@ -142,6 +141,5 @@ class RepositoryTests: XCTestCase {
         XCTAssertEqual(repository.stargazersCount, 80)
         XCTAssertEqual(repository.url, "https://github.com/octocat/Hello-World")
         XCTAssertEqual(repository.fork, true)
-        
     }
 }
