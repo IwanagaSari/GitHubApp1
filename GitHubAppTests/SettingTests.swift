@@ -19,15 +19,14 @@ class SettingTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testToken() {
+    func testSettingToken() {
         let setting = Setting(defaults: UserDefaults.standard)
         setting.token = "test"
         XCTAssertEqual(setting.token, "test")
     }
     
-    func testTokened() {
-        let setting = Setting(defaults: UserDefaults(suiteName: "SettingTests")!)
+    func testSettingTokenForTestonly() {
+        let setting = Setting(defaults: UserDefaults(suiteName: "TestOnly")!)
         XCTAssertEqual(setting.token, "")
     }
-
 }
