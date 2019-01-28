@@ -11,7 +11,7 @@ import XCTest
 
 class InputTokenViewControllerTests: XCTestCase {
 
-    func testExample() {
+    func testTextFieldView1() {
         let s = UIStoryboard(name: "Main", bundle: nil)
         let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
         XCTAssertNotNil(vc)
@@ -22,7 +22,8 @@ class InputTokenViewControllerTests: XCTestCase {
         vc?.loadViewIfNeeded()
         XCTAssertEqual(vc?.personalAccessToken.text, "")
     }
-    func testExample1() {
+    
+    func testTextFieldView2() {
         let s = UIStoryboard(name: "Main", bundle: nil)
         let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
         XCTAssertNotNil(vc)
@@ -34,7 +35,7 @@ class InputTokenViewControllerTests: XCTestCase {
         XCTAssertEqual(vc?.personalAccessToken.text, "test")
     }
     
-    func testExample2() {
+    func testTextFieldView3() {
         let s = UIStoryboard(name: "Main", bundle: nil)
         let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
         XCTAssertNotNil(vc)
