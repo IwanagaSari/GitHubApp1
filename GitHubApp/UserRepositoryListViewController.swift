@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class UserRepositoryListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var repoTableView: UITableView!
@@ -17,11 +18,11 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var reposCount: UILabel!
     @IBOutlet var backgroundView: UIView!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var userRepositoriesIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var userImageIndicator: UIActivityIndicatorView!
     
     var accessToken: String = ""
     var userName: String = ""
-    var selectedURL: String?
 
     private var repositries: [Repositry] = [] {
         didSet {
@@ -67,6 +68,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             } else {
                     self.imageView.image = nil
             }
+            self.userImageIndicator.stopAnimating()
         })
         gitHubAPI.fetchRepositry(nameLabel: userName, completion: { repositries, error in
             if let error = error {
@@ -74,7 +76,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             }
             self.repositries = (repositries?.filter { repo in !(repo.fork) } ?? [])
             self.reposCount.text = String(self.repositries.count)
-            self.indicator.stopAnimating()
+            self.userRepositoriesIndicator.stopAnimating()
         })
         repoTableView.backgroundView = backgroundView
     }
@@ -118,13 +120,10 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     //セル選択時
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repository = repositries[indexPath.row]
-        selectedURL = repository.url
-
-        performSegue(withIdentifier: "toWebView", sender: IndexPath.self)
-    }
-    //次のページへ値の受け渡し
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let userWebViewController = segue.destination as? UserWebViewController
-        userWebViewController?.webURL = selectedURL
+        
+        if let repositoryURL = URL(string: "\(repository.url)") {
+            let safari = SFSafariViewController(url: repositoryURL)
+            present(safari, animated: true, completion: nil)
+        }
     }
 }

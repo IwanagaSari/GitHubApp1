@@ -11,7 +11,7 @@ import UIKit
 class UserListViewController: UITableViewController {
     
     @IBOutlet var backgroundView: UIView!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var backgroundViewindicator: UIActivityIndicatorView!
     
     private var users: [User] = [] {
         didSet {
@@ -32,7 +32,7 @@ class UserListViewController: UITableViewController {
             if let error = error {
                 self.showError(error)
             }
-            self.indicator.stopAnimating()
+            self.backgroundViewindicator.stopAnimating()
         })        
         self.tableView.backgroundView = backgroundView
     }
@@ -56,18 +56,19 @@ class UserListViewController: UITableViewController {
         let userName = user.userName
         let imageUrlString = user.image
         let imageUrl = URL(string: imageUrlString)!
+        cell.userImageLoadingIndicator.startAnimating()
 
         let task = imageDownloader.fetchImage(url: imageUrl, completion: { imageToCache, error in
             if error != nil {
-                cell.imageView?.image = UIImage(named: "error")
+                cell.userImageView.image = UIImage(named: "error")
             } else {
-                cell.imageView?.image = imageToCache
+                cell.userImageView.image = imageToCache
             }
+            cell.userImageLoadingIndicator.stopAnimating()
         })
         cell.task = task
-
-        cell.textLabel?.text = "\(userName)"
-        cell.imageView?.image = UIImage(named: "loading")
+        
+        cell.userNameLabel.text = "\(userName)"
 
         return cell
     }
