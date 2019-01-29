@@ -123,22 +123,45 @@ Select scope
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="6fd-v9-IdN" style="IBUITableViewCellStyleDefault" id="GOZ-fW-bz0" customClass="UserListCell" customModule="GitHubApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" id="GOZ-fW-bz0" customClass="UserListCell" customModule="GitHubApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GOZ-fW-bz0" id="U4M-od-2qS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6fd-v9-IdN">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="79.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oC3-aU-AvF">
+                                            <rect key="frame" x="16" y="0.0" width="83" height="79.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="83" id="4xJ-Yl-jUT"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhu-b0-kDj">
+                                            <rect key="frame" x="122" y="29" width="237" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="PhF-zd-Vo1">
+                                            <rect key="frame" x="47.5" y="30" width="20" height="20"/>
+                                            <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </activityIndicatorView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="oC3-aU-AvF" secondAttribute="bottom" id="8A4-mI-zVM"/>
+                                        <constraint firstItem="oC3-aU-AvF" firstAttribute="leading" secondItem="U4M-od-2qS" secondAttribute="leading" constant="16" id="8Ib-gx-eaG"/>
+                                        <constraint firstItem="oC3-aU-AvF" firstAttribute="centerX" secondItem="PhF-zd-Vo1" secondAttribute="centerX" id="QNL-1S-aUm"/>
+                                        <constraint firstItem="oC3-aU-AvF" firstAttribute="centerY" secondItem="PhF-zd-Vo1" secondAttribute="centerY" id="hMD-du-ESf"/>
+                                        <constraint firstItem="dhu-b0-kDj" firstAttribute="leading" secondItem="oC3-aU-AvF" secondAttribute="trailing" constant="23" id="lkd-t4-g7y"/>
+                                        <constraint firstItem="oC3-aU-AvF" firstAttribute="top" secondItem="U4M-od-2qS" secondAttribute="top" id="t2Y-wA-q8F"/>
+                                        <constraint firstItem="oC3-aU-AvF" firstAttribute="centerY" secondItem="dhu-b0-kDj" secondAttribute="centerY" id="va1-tG-Xwd"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="userImageLoadingIndicator" destination="PhF-zd-Vo1" id="sq9-fA-quC"/>
+                                    <outlet property="userImageView" destination="oC3-aU-AvF" id="VHd-Ot-ktA"/>
+                                    <outlet property="userNameLabel" destination="dhu-b0-kDj" id="5Gz-QC-pmX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -148,7 +171,7 @@ Select scope
                     </tableView>
                     <connections>
                         <outlet property="backgroundView" destination="4Ls-ta-kjw" id="gRJ-Zp-Z5g"/>
-                        <outlet property="indicator" destination="Sbb-BG-gUp" id="7N9-xj-RAk"/>
+                        <outlet property="backgroundViewindicator" destination="Sbb-BG-gUp" id="7N9-xj-RAk"/>
                         <segue destination="7Em-rR-zZU" kind="show" identifier="toUserRepositoryList" id="Utz-7z-QWi"/>
                     </connections>
                 </tableViewController>
@@ -170,7 +193,7 @@ Select scope
                     <viewLayoutGuide key="safeArea" id="mcR-Bt-cDs"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1593" y="793"/>
+            <point key="canvasLocation" x="1592.8" y="792.95352323838085"/>
         </scene>
         <!--Repository-->
         <scene sceneID="PSs-YA-N2F">
@@ -244,6 +267,9 @@ Select scope
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="GNk-Da-A1R">
+                                        <rect key="frame" x="65" y="65" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -262,17 +288,19 @@ Select scope
                                     <constraint firstItem="KOx-0O-13I" firstAttribute="leading" secondItem="aEI-Lt-1P6" secondAttribute="trailing" constant="10" id="ebB-Iu-aOj"/>
                                     <constraint firstItem="DFZ-bS-4mQ" firstAttribute="top" secondItem="vZe-WD-8dl" secondAttribute="bottom" id="gkI-ff-Dx1"/>
                                     <constraint firstItem="DbV-F0-7Bb" firstAttribute="leading" secondItem="aEI-Lt-1P6" secondAttribute="trailing" constant="10" id="lpN-bJ-pDQ"/>
+                                    <constraint firstItem="GNk-Da-A1R" firstAttribute="centerX" secondItem="aEI-Lt-1P6" secondAttribute="centerX" id="qpN-oc-1KO"/>
                                     <constraint firstItem="3A9-fI-D7e" firstAttribute="leading" secondItem="DFZ-bS-4mQ" secondAttribute="trailing" constant="30" id="soS-SP-SGV"/>
                                     <constraint firstAttribute="bottom" secondItem="aEI-Lt-1P6" secondAttribute="bottom" constant="10" id="uTR-tb-BVW"/>
                                     <constraint firstAttribute="height" constant="150" id="v2x-oF-mYg"/>
                                     <constraint firstAttribute="bottom" secondItem="DFZ-bS-4mQ" secondAttribute="bottom" constant="10" id="wGf-JP-YgA"/>
+                                    <constraint firstItem="GNk-Da-A1R" firstAttribute="centerY" secondItem="aEI-Lt-1P6" secondAttribute="centerY" id="wQT-b1-geb"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="azp-ch-bSC">
                                 <rect key="frame" x="0.0" y="234" width="375" height="433"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
                                         <rect key="frame" x="0.0" y="28" width="375" height="152"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fu5-KW-BGm" id="oCv-3o-5r2">
@@ -294,7 +322,7 @@ Select scope
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maru.png" translatesAutoresizingMaskIntoConstraints="NO" id="3Z8-Jb-b2w">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maru" translatesAutoresizingMaskIntoConstraints="NO" id="3Z8-Jb-b2w">
                                                     <rect key="frame" x="30" y="121.5" width="20" height="20"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -302,7 +330,7 @@ Select scope
                                                         <constraint firstAttribute="height" constant="20" id="sdx-v3-Uiy"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.png" translatesAutoresizingMaskIntoConstraints="NO" id="iit-5o-ghT">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="iit-5o-ghT">
                                                     <rect key="frame" x="200" y="121.5" width="20" height="20"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -360,7 +388,7 @@ Select scope
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dve-jV-hpu">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dve-jV-hpu">
                                         <rect key="frame" x="125" y="0.0" width="100" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="9ib-xE-szo"/>
@@ -403,10 +431,11 @@ Select scope
                         <outlet property="following" destination="3A9-fI-D7e" id="8cB-JI-WLi"/>
                         <outlet property="fullname" destination="KOx-0O-13I" id="Bip-mW-m28"/>
                         <outlet property="imageView" destination="aEI-Lt-1P6" id="vxX-Id-EG9"/>
-                        <outlet property="indicator" destination="s4T-D7-esB" id="alu-3R-1c5"/>
                         <outlet property="name" destination="DbV-F0-7Bb" id="Ype-xf-Uhd"/>
                         <outlet property="repoTableView" destination="azp-ch-bSC" id="5PG-mD-xF4"/>
                         <outlet property="reposCount" destination="dve-jV-hpu" id="RJ6-k8-Rwq"/>
+                        <outlet property="userImageIndicator" destination="GNk-Da-A1R" id="NJG-3j-LD4"/>
+                        <outlet property="userRepositoriesIndicator" destination="s4T-D7-esB" id="oIA-v5-liT"/>
                         <segue destination="wbd-Jg-91A" kind="show" identifier="toWebView" id="f5L-PD-mOk"/>
                     </connections>
                 </viewController>
@@ -516,12 +545,16 @@ Select scope
         <scene sceneID="z2d-Qm-Fng">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2ix-OZ-Ieo" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cPS-U7-fSw">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bAk-B4-PJW">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ggf-I4-Cve"/>
                     </connections>
@@ -534,7 +567,7 @@ Select scope
     <resources>
         <image name="back_icon" width="30" height="30"/>
         <image name="go_icon" width="30" height="30"/>
-        <image name="maru.png" width="150" height="150"/>
-        <image name="star.png" width="205" height="205"/>
+        <image name="maru" width="150" height="150"/>
+        <image name="star" width="205" height="205"/>
     </resources>
 </document>

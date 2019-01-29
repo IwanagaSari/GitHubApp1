@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8617D6682162E520004FC10A /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8617D6632162E520004FC10A /* menu_icon.png */; };
-		8617D66D2162E7E6004FC10A /* UserWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617D66C2162E7E6004FC10A /* UserWebViewController.swift */; };
-		86E360EB2164721A000910DF /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E360E921647219000910DF /* star.png */; };
-		86E360EC2164721A000910DF /* maru.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E360EA2164721A000910DF /* maru.png */; };
 		EA76B6FC21FEFB690052BE1A /* SettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76B6FB21FEFB690052BE1A /* SettingTests.swift */; };
 		EA76B6FE21FF11FC0052BE1A /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76B6FD21FF11FC0052BE1A /* APIErrorTests.swift */; };
 		EAA754D221B7EF4D00130943 /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA754D121B7EF4D00130943 /* UserListCell.swift */; };
@@ -52,10 +48,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8617D6632162E520004FC10A /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
-		8617D66C2162E7E6004FC10A /* UserWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWebViewController.swift; sourceTree = "<group>"; };
-		86E360E921647219000910DF /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
-		86E360EA2164721A000910DF /* maru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maru.png; sourceTree = "<group>"; };
 		EA76B6FB21FEFB690052BE1A /* SettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTests.swift; sourceTree = "<group>"; };
 		EA76B6FD21FF11FC0052BE1A /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
 		EAA754D121B7EF4D00130943 /* UserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
@@ -110,20 +102,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8617D6612162E520004FC10A /* UIWebView_images 2 */ = {
-			isa = PBXGroup;
-			children = (
-				86E360EA2164721A000910DF /* maru.png */,
-				86E360E921647219000910DF /* star.png */,
-				8617D6632162E520004FC10A /* menu_icon.png */,
-			);
-			path = "UIWebView_images 2";
-			sourceTree = "<group>";
-		};
 		EAD73611215A4B7600486083 = {
 			isa = PBXGroup;
 			children = (
-				8617D6612162E520004FC10A /* UIWebView_images 2 */,
 				EAD7361C215A4B7600486083 /* GitHubApp */,
 				EAD73631215A4B7600486083 /* GitHubAppTests */,
 				EAD7363C215A4B7600486083 /* GitHubAppUITests */,
@@ -152,7 +133,6 @@
 				EAD73629215A4B7600486083 /* Info.plist */,
 				EAD73651215A59B400486083 /* UserListViewController.swift */,
 				EAD73653215A5A1900486083 /* UserRepositoryListViewController.swift */,
-				8617D66C2162E7E6004FC10A /* UserWebViewController.swift */,
 				EAB5A4692175D84900004D29 /* GitHubAPI.swift */,
 				EAB5A46B2175DA9F00004D29 /* User.swift */,
 				EAB5A46D2175F7F800004D29 /* Repository.swift */,
@@ -295,10 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8617D6682162E520004FC10A /* menu_icon.png in Resources */,
-				86E360EB2164721A000910DF /* star.png in Resources */,
 				EAD73628215A4B7600486083 /* LaunchScreen.storyboard in Resources */,
-				86E360EC2164721A000910DF /* maru.png in Resources */,
 				EAD73625215A4B7600486083 /* Assets.xcassets in Resources */,
 				EAD73623215A4B7600486083 /* Main.storyboard in Resources */,
 			);
@@ -347,7 +324,6 @@
 			files = (
 				EAD124F121B6891500D7FAB9 /* Setting.swift in Sources */,
 				EAA754D421BFD48000130943 /* ImageDownloader.swift in Sources */,
-				8617D66D2162E7E6004FC10A /* UserWebViewController.swift in Sources */,
 				EAB5A46A2175D84900004D29 /* GitHubAPI.swift in Sources */,
 				EAD73654215A5A1900486083 /* UserRepositoryListViewController.swift in Sources */,
 				EAB5A46E2175F7F800004D29 /* Repository.swift in Sources */,
