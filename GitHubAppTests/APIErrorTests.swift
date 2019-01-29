@@ -11,14 +11,6 @@ import XCTest
 
 class APIErrorTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testDecodeAPIError() throws {
         let json = """
 {"message":"Problems parsing JSON"}
@@ -26,5 +18,4 @@ class APIErrorTests: XCTestCase {
         let error = try JSONDecoder().decode(APIError.self, from: json.data(using: .utf8)!)
         XCTAssertEqual(error.message, "Problems parsing JSON")
     }
-
 }

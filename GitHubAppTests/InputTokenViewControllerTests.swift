@@ -47,5 +47,4 @@ class InputTokenViewControllerTests: XCTestCase {
         let setting = Setting(defaults: UserDefaults.standard)
         XCTAssertEqual(setting.token, "abc")
     }
-
 }
