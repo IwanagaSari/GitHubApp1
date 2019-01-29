@@ -1,5 +1,5 @@
 //
-//  GitHubAPITests.swift
+//  UserListViewControllerTests.swift
 //  GitHubAppTests
 //
 //  Created by 岩永 彩里 on 2019/01/28.
@@ -19,19 +19,10 @@ class DummyGitHubAPI: GitHubAPIType {
     
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
         completion(userResult.0, userResult.1)
-    }
-    
+    }    
 }
 
-class GitHubAPITests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+class UserListViewControllerTests: XCTestCase {
     
     func testFetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
         let dummyGitHubAPI = DummyGitHubAPI()
@@ -44,5 +35,4 @@ class GitHubAPITests: XCTestCase {
             XCTAssertEqual(usersCount, 0)            
         })
     }
-
 }
