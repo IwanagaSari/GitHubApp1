@@ -326,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD73633215A4B7600486083 /* GitHubAppTests.swift in Sources */,
+				EA76B70021FF2B4A0052BE1A /* GitHubAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
