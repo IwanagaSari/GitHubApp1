@@ -20,3 +20,6 @@ function_body_length:
 opt_in_rules:
 - closure_end_indentation # クロージャの{と}は同じインデント
 - closure_spacing # クロージャの{の後と}の前にはスペース
+identifier_name:
+  min_length: 1
+  max_length: 40
