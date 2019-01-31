@@ -37,7 +37,7 @@ class UserListViewController: UITableViewController {
         self.tableView.backgroundView = backgroundView
     }
     //アラートを表示する
-    private func showError(_ error: Error) {
+    func showError(_ error: Error) {
         let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
         let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alertController.addAction(action)

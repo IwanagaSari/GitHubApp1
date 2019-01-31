@@ -16,6 +16,7 @@ class DummyGitHubAPI: GitHubAPIType {
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
         completion(userResult.0, userResult.1)
     }
+
 }
 
 class UserListViewControllerTests: XCTestCase {
@@ -43,6 +44,7 @@ class UserListViewControllerTests: XCTestCase {
         XCTAssertNotNil(vc)
         
         let api = DummyGitHubAPI()
+        vc?.gitHubAPI = api
         let user = User(userName: "name", image: "image")
         api.userResult = ([user], nil)
         
@@ -55,6 +57,24 @@ class UserListViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.userNameLabel.text, "name")
         //1行目のセルに表示される名前が一致しているか確認したい。１行目を指定する方法がよくわからず、visibleCellsって
         //ものを使ってみたけど、visiblecellって...?
+    }
+    
+    func testUserIsError(completion: @escaping (([User]?, Error?) -> Void)) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
+        XCTAssertNotNil(vc)
         
+        let error = """
+{"message":"Problems parsing JSON"}
+"""
+        
+        let api = DummyGitHubAPI()
+        vc?.gitHubAPI = api
+        api.userResult = ([], error as? Error)
+        
+        vc?.loadViewIfNeeded()
+        
+        XCTAssertTrue(vc?.presentedViewController is UIAlertController)
+        //errorが帰ってきたら、アラートが表示されるかどうかを確認したい。
     }
 }
