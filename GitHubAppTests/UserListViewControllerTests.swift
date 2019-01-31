@@ -9,10 +9,6 @@
 import XCTest
 @testable import GitHubApp
 
-protocol GitHubAPIType {
-    func fetchUsers(completion: @escaping (([User]?, Error?) -> Void))
-} //GitHubAPIのファイルに書くらしい。
-
 class DummyGitHubAPI: GitHubAPIType {
     
     var userResult: ([User]?, Error?)
@@ -24,42 +20,41 @@ class DummyGitHubAPI: GitHubAPIType {
 
 class UserListViewControllerTests: XCTestCase {
     
-    func testUserListView1(completion: @escaping (([User]?, Error?) -> Void)) {
+    func testUserIsEmpty(completion: @escaping (([User]?, Error?) -> Void)) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
         XCTAssertNotNil(vc)
         
-        let dummyGitHubAPI = DummyGitHubAPI()
-        let empty: ([User]?, Error?) = ([], nil)
-        dummyGitHubAPI.userResult = empty
+        let api = DummyGitHubAPI()
+        vc?.gitHubAPI = api
+        
+        api.userResult = ([], nil)
         
         vc?.loadViewIfNeeded()
         
-        let cell = vc?.tableView.visibleCells[0] as! UserListCell
+        let number = vc?.tableView.numberOfRows(inSection: 0)
+        XCTAssertEqual(number, 0)
         
-        dummyGitHubAPI.fetchUsers(completion: { users, error in
-            let user = users?[0]
-            XCTAssertEqual(cell.userNameLabel.text, user?.userName)
-        })
     }
     
-    func testUserListView2(completion: @escaping (([User]?, Error?) -> Void)) {
+    func testUserIsOne(completion: @escaping (([User]?, Error?) -> Void)) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
         XCTAssertNotNil(vc)
         
-        let dummyGitHubAPI = DummyGitHubAPI()
-        
+        let api = DummyGitHubAPI()
         let user = User(userName: "name", image: "image")
-        let fourUsers: ([User]?, Error?) = ([user, user, user, user], nil)
-        dummyGitHubAPI.userResult = fourUsers
+        api.userResult = ([user], nil)
         
         vc?.loadViewIfNeeded()
         
-        dummyGitHubAPI.fetchUsers(completion: { users, error in
-            let cell = vc?.tableView.visibleCells[3] as! UserListCell
-            let user3 = users?[3]
-            XCTAssertEqual(cell.userNameLabel.text, user3?.userName)
-        })
+        let number = vc?.tableView.numberOfRows(inSection: 1)
+        XCTAssertEqual(number, 1)
+        
+        let cell = vc?.tableView.visibleCells[0] as! UserListCell
+        XCTAssertEqual(cell.userNameLabel.text, "name")
+        //1行目のセルに表示される名前が一致しているか確認したい。１行目を指定する方法がよくわからず、visibleCellsって
+        //ものを使ってみたけど、visiblecellって...?
+        
     }
 }

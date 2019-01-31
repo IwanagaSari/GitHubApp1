@@ -20,7 +20,7 @@ class UserListViewController: UITableViewController {
     }
     var selectedUserName: String = ""
     var accessToken: String = ""
-    lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
+    lazy var gitHubAPI: GitHubAPIType = GitHubAPI(accessToken: self.accessToken)
     private let imageDownloader = ImageDownloader()
 
     override func viewDidLoad() {

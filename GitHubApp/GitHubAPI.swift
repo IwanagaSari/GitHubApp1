@@ -9,7 +9,11 @@
 import Foundation
 import  UIKit
 
-class GitHubAPI {
+protocol GitHubAPIType {
+    func fetchUsers(completion: @escaping (([User]?, Error?) -> Void))
+}
+
+class GitHubAPI: GitHubAPIType {
     private let accessToken: String
 
     init(accessToken: String) {
