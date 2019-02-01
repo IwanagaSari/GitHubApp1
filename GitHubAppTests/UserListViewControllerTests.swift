@@ -53,10 +53,8 @@ class UserListViewControllerTests: XCTestCase {
         let number = vc?.tableView.numberOfRows(inSection: 1)
         XCTAssertEqual(number, 1)
         
-        let cell = vc?.tableView.visibleCells[0] as! UserListCell
+        let cell = vc?.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! UserListCell
         XCTAssertEqual(cell.userNameLabel.text, "name")
-        //1行目のセルに表示される名前が一致しているか確認したい。１行目を指定する方法がよくわからず、visibleCellsって
-        //ものを使ってみたけど、visiblecellって...?
     }
     
     func testUserIsError(completion: @escaping (([User]?, Error?) -> Void)) {
@@ -76,5 +74,18 @@ class UserListViewControllerTests: XCTestCase {
         
         XCTAssertTrue(vc?.presentedViewController is UIAlertController)
         //errorが帰ってきたら、アラートが表示されるかどうかを確認したい。
+    }
+    
+    //cellの表示に関するテスト
+    func testSelectedCell() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
+        XCTAssertNotNil(vc?.tableView)
+        
+        vc?.loadViewIfNeeded()
+        
+//        let indexpath = IndexPath(row: 0, section: 1)
+//        vc?.tableView.selectRow(at: indexpath, animated: false, scrollPosition: .none)
+//        XCTAssertEqual(vc?.selectedUserName, "name")
     }
 }
