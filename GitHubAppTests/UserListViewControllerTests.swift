@@ -21,7 +21,7 @@ class DummyGitHubAPI: GitHubAPIType {
 
 class UserListViewControllerTests: XCTestCase {
     
-    func testUserIsEmpty(completion: @escaping (([User]?, Error?) -> Void)) {
+    func testUserIsEmpty() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
         XCTAssertNotNil(vc)
@@ -38,7 +38,7 @@ class UserListViewControllerTests: XCTestCase {
         
     }
     
-    func testUserIsOne(completion: @escaping (([User]?, Error?) -> Void)) {
+    func testUserIsOne() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
         XCTAssertNotNil(vc)
@@ -50,14 +50,14 @@ class UserListViewControllerTests: XCTestCase {
         
         vc?.loadViewIfNeeded()
         
-        let number = vc?.tableView.numberOfRows(inSection: 1)
+        let number = vc?.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(number, 1)
         
-        let cell = vc?.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! UserListCell
+        let cell = vc?.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! UserListCell
         XCTAssertEqual(cell.userNameLabel.text, "name")
     }
     
-    func testUserIsError(completion: @escaping (([User]?, Error?) -> Void)) {
+    func testUserIsError() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
         XCTAssertNotNil(vc)
