@@ -14,7 +14,9 @@ class DummyGitHubAPI: GitHubAPIType {
     var userResult: ([User]?, Error?)
     
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
-        completion(userResult.0, userResult.1)
+        //DispatchQueue.main.async {
+            completion(self.userResult.0, self.userResult.1)
+        //}
     }
 
 }
@@ -58,34 +60,45 @@ class UserListViewControllerTests: XCTestCase {
     }
     
     func testUserIsError() {
+        let window = UIWindow()
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
         XCTAssertNotNil(vc)
         
-        let error = """
-{"message":"Problems parsing JSON"}
-"""
-        
         let api = DummyGitHubAPI()
         vc?.gitHubAPI = api
-        api.userResult = ([], error as? Error)
+        api.userResult = (nil, APIError(message: "test"))
         
-        vc?.loadViewIfNeeded()
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
         
-        XCTAssertTrue(vc?.presentedViewController is UIAlertController)
-        //errorが帰ってきたら、アラートが表示されるかどうかを確認したい。
+//        let expect = expectation(description: #function)
+//
+//        DispatchQueue.main.async {
+//            expect.fulfill()
+//        }
+//
+//        wait(for: [expect], timeout: 1)
+//
+//        XCTAssertTrue(vc?.presentedViewController is UIAlertController)
     }
     
     //cellの表示に関するテスト
     func testSelectedCell() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
-        XCTAssertNotNil(vc?.tableView)
+        let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
+       
+        let api = DummyGitHubAPI()
+        vc.gitHubAPI = api
+        let user = User(userName: "name", image: "image")
+        api.userResult = ([user], nil)
         
-        vc?.loadViewIfNeeded()
+        vc.loadViewIfNeeded()
+        vc.tableView.reloadData()
         
-//        let indexpath = IndexPath(row: 0, section: 1)
-//        vc?.tableView.selectRow(at: indexpath, animated: false, scrollPosition: .none)
-//        XCTAssertEqual(vc?.selectedUserName, "name")
+        let indexPath = IndexPath(row: 0, section: 0)
+        vc.tableView(vc.tableView, didSelectRowAt: indexPath)
+        XCTAssertEqual(vc.selectedUserName, "name")
     }
 }
