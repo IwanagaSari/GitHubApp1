@@ -198,7 +198,7 @@ Select scope
         <!--Repository-->
         <scene sceneID="PSs-YA-N2F">
             <objects>
-                <viewController title="Repository" hidesBottomBarWhenPushed="YES" id="7Em-rR-zZU" customClass="UserRepositoryListViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserRepositoryListViewController" title="Repository" hidesBottomBarWhenPushed="YES" id="7Em-rR-zZU" customClass="UserRepositoryListViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6S9-p4-HjJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

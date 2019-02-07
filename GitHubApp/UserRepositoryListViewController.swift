@@ -34,7 +34,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             repoTableView.reloadData()
         }
     }
-    lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
+    lazy var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
     private let imageCache = ImageDownloader()
 
     override func viewDidLoad() {
