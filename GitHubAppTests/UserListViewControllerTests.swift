@@ -14,9 +14,7 @@ class DummyGitHubAPI: GitHubAPIType {
     var userResult: ([User]?, Error?)
     
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
-        //DispatchQueue.main.async {
             completion(self.userResult.0, self.userResult.1)
-        //}
     }
 
 }
@@ -59,30 +57,9 @@ class UserListViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.userNameLabel.text, "name")
     }
     
-    func testUserIsError() {
-        let window = UIWindow()
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
-        XCTAssertNotNil(vc)
-        
-        let api = DummyGitHubAPI()
-        vc?.gitHubAPI = api
-        api.userResult = (nil, APIError(message: "test"))
-        
-        window.rootViewController = vc
-        window.makeKeyAndVisible()
-        
-//        let expect = expectation(description: #function)
-//
-//        DispatchQueue.main.async {
-//            expect.fulfill()
-//        }
-//
-//        wait(for: [expect], timeout: 1)
-//
-//        XCTAssertTrue(vc?.presentedViewController is UIAlertController)
-    }
+    //TODO: いい方法見つけたらやる
+//    func testUserIsError() {
+//    }
     
     //cellの表示に関するテスト
     func testSelectedCell() {
