@@ -38,6 +38,7 @@ class GitHubAPI: GitHubAPIType {
                     do {
                         let dataMessage = try JSONDecoder().decode(APIError.self, from: data!)
                         print("test:\(dataMessage.localizedDescription)")
+                        //print("test2:\(dataMessage.message)")こっちでもいいのか？
                         DispatchQueue.main.async { completion(nil, dataMessage) }
                     } catch {
                         print(error)
