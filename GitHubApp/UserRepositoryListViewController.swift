@@ -34,7 +34,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             repoTableView.reloadData()
         }
     }
-    lazy var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
+    lazy var gitHubAPI: GitHubAPIType = GitHubAPI(accessToken: self.accessToken)
     private let imageCache = ImageDownloader()
 
     override func viewDidLoad() {
@@ -98,22 +98,22 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         let cell = repoTableView.dequeueReusableCell(withIdentifier: "userCell")!
         let repository = repositries[indexPath.row]
 
-        let repoLabel = cell.viewWithTag(1) as? UILabel
-        let description = cell.viewWithTag(2) as? UILabel
-        let language = cell.viewWithTag(3) as? UILabel
-        let star = cell.viewWithTag(4) as? UILabel
+        let repositoryName = cell.viewWithTag(1) as? UILabel
+        let repositoryDescription = cell.viewWithTag(2) as? UILabel
+        let repositoryLanguage = cell.viewWithTag(3) as? UILabel
+        let repositoryStar = cell.viewWithTag(4) as? UILabel
 
         let repoName = repository.name
-        repoLabel?.text = repoName
+        repositoryName?.text = repoName
 
         let repoDescription = repository.description
-        description?.text = repoDescription
+        repositoryDescription?.text = repoDescription
 
         let  repoLanguage = repository.language
-        language?.text = repoLanguage
+        repositoryLanguage?.text = repoLanguage
 
         let repoStar = repository.stargazersCount
-        star?.text = "\(repoStar!)"
+        repositoryStar?.text = "\(repoStar!)"
 
         return cell
     }
