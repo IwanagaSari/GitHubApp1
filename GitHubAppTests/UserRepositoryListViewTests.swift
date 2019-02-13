@@ -11,10 +11,6 @@ import XCTest
 
 class UserRepositoryListViewTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
     func testUserIsEmpty() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UserRepositoryListViewController") as? UserRepositoryListViewController
@@ -22,12 +18,13 @@ class UserRepositoryListViewTests: XCTestCase {
         
         let api = DummyGitHubAPI()
         vc?.gitHubAPI = api
-        api.userResult = (nil, nil) //nilでいいのか？
+        let user = UserDetail(fullName: "", followers: nil, following: nil, image: "")
+        api.userResult = (user, nil)
         
         vc?.loadViewIfNeeded()
         
-        let number = vc?.repoTableView.numberOfRows(inSection: 0)
-        XCTAssertEqual(number, 0)
+        XCTAssertEqual(user.fullName, "")
+        XCTAssertNil(user.followers)
     }
     
     func testUserIsOne() {
@@ -41,13 +38,7 @@ class UserRepositoryListViewTests: XCTestCase {
         api.userResult = (user, nil)
         vc?.loadViewIfNeeded()
         
-        let number = vc?.repoTableView.numberOfRows(inSection: 0)
-        XCTAssertEqual(number, 1)
-        
-        let indexPath = IndexPath(row: 0, section: 0)
-        let cell = vc?.repoTableView.cellForRow(at: indexPath)
-        //XCTAssertEqual(cell.repoLabel, <#T##expression2: Equatable##Equatable#>)
-        
+        XCTAssertEqual(vc?.fullname.text, "fullName")
     }
 
 }

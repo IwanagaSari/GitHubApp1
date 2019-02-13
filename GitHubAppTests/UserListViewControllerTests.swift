@@ -11,16 +11,17 @@ import XCTest
 
 class DummyGitHubAPI: GitHubAPIType {
     var usersResult: ([User]?, Error?)
+    var repositoryResult: ([Repositry]?, Error?)
     
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
-            completion(self.usersResult.0, self.usersResult.1)
+        completion(self.usersResult.0, self.usersResult.1)
     }
     var userResult: (UserDetail?, Error?)
     func fetchUser(nameLabel: String, completion: @escaping ((UserDetail?, Error?) -> Void)) {
         completion(self.userResult.0, self.userResult.1)
     }
     func fetchRepositry(nameLabel: String, completion: @escaping (([Repositry]?, Error?) -> Void)) {
-        
+        completion(self.repositoryResult.0, self.repositoryResult.1)
     }
 
 }
