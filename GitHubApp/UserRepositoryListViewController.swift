@@ -79,6 +79,8 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             self.userRepositoriesIndicator.stopAnimating()
         })
         repoTableView.backgroundView = backgroundView
+        
+        self.repoTableView.register(UINib(nibName: "RepositoryListCell", bundle: nil), forCellReuseIdentifier: "RepositoryListCell")
     }
     //アラートを表示する
     private func showError(_ error: Error) {
@@ -95,25 +97,20 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = repoTableView.dequeueReusableCell(withIdentifier: "userCell")!
+        let cell = repoTableView.dequeueReusableCell(withIdentifier: "RepositoryListCell") as! RepositoryListCell
         let repository = repositries[indexPath.row]
 
-        let repositoryName = cell.viewWithTag(1) as? UILabel
-        let repositoryDescription = cell.viewWithTag(2) as? UILabel
-        let repositoryLanguage = cell.viewWithTag(3) as? UILabel
-        let repositoryStar = cell.viewWithTag(4) as? UILabel
-
         let repoName = repository.name
-        repositoryName?.text = repoName
+        cell.repositoryName?.text = repoName
 
         let repoDescription = repository.description
-        repositoryDescription?.text = repoDescription
+        cell.repositoryDescription?.text = repoDescription
 
         let  repoLanguage = repository.language
-        repositoryLanguage?.text = repoLanguage
+        cell.repositoryLanguage?.text = repoLanguage
 
         let repoStar = repository.stargazersCount
-        repositoryStar?.text = "\(repoStar!)"
+        cell.repositoryStar?.text = "\(repoStar!)"
 
         return cell
     }
