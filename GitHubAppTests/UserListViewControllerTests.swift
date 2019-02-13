@@ -10,13 +10,14 @@ import XCTest
 @testable import GitHubApp
 
 class DummyGitHubAPI: GitHubAPIType {
+    
     var usersResult: ([User]?, Error?)
     var repositoryResult: ([Repositry]?, Error?)
+    var userResult: (UserDetail?, Error?)
     
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
         completion(self.usersResult.0, self.usersResult.1)
     }
-    var userResult: (UserDetail?, Error?)
     func fetchUser(nameLabel: String, completion: @escaping ((UserDetail?, Error?) -> Void)) {
         completion(self.userResult.0, self.userResult.1)
     }
