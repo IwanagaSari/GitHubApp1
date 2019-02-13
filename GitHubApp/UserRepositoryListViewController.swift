@@ -60,7 +60,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             self.following.text = following.flatMap { String($0) }
 
             let imageUrlString = self.user?.image
-            let imageUrl = URL(string: imageUrlString!)
+            let imageUrl = URL(string: imageUrlString ?? "")
             if let imageUrl =  imageUrl {
                 _ = self.imageCache.fetchImage(url: imageUrl, completion: { imageToCache, _ in
                     self.imageView.image = imageToCache

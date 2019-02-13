@@ -48,9 +48,10 @@ class UserRepositoryListViewTests: XCTestCase {
         let api = DummyGitHubAPI()
         vc?.gitHubAPI = api
         api.repositoryResult = ([], nil)
-        //ここが通らない
-//        let number = vc?.repoTableView.numberOfRows(inSection: 0)
-//        XCTAssertEqual(number, 0)
+        
+        vc?.loadViewIfNeeded()
+        let number = vc?.repoTableView.numberOfRows(inSection: 0)
+        XCTAssertEqual(number, 0)
     }
     
     func testRepositoryIsOne() {
@@ -62,6 +63,8 @@ class UserRepositoryListViewTests: XCTestCase {
         vc?.gitHubAPI = api
         let repository = Repositry(name: "name", description: "description", language: "language", stargazersCount: 1, url: "url", fork: true)
         api.repositoryResult = ([repository], nil)
+        
+        vc?.loadViewIfNeeded()
         XCTAssertEqual(repository.name, "name")
         XCTAssertEqual(repository.stargazersCount, 1)
     }
