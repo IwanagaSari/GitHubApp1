@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		860A5CB32213D9920077CFA1 /* RepositoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860A5CB12213D9920077CFA1 /* RepositoryListCell.swift */; };
 		860A5CB42213D9920077CFA1 /* RepositoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 860A5CB22213D9920077CFA1 /* RepositoryListCell.xib */; };
-		EA296284220C27090030B256 /* UserRepositoryListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA296283220C27090030B256 /* UserRepositoryListViewTests.swift */; };
+		EA296284220C27090030B256 /* UserRepositoryListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA296283220C27090030B256 /* UserRepositoryListViewControllerTests.swift */; };
 		EA6EF75E2200608100732DEA /* UserListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6EF75D2200608100732DEA /* UserListViewControllerTests.swift */; };
 		EA76B6FC21FEFB690052BE1A /* SettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76B6FB21FEFB690052BE1A /* SettingTests.swift */; };
 		EA76B6FE21FF11FC0052BE1A /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76B6FD21FF11FC0052BE1A /* APIErrorTests.swift */; };
@@ -54,7 +54,7 @@
 /* Begin PBXFileReference section */
 		860A5CB12213D9920077CFA1 /* RepositoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListCell.swift; sourceTree = "<group>"; };
 		860A5CB22213D9920077CFA1 /* RepositoryListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryListCell.xib; sourceTree = "<group>"; };
-		EA296283220C27090030B256 /* UserRepositoryListViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryListViewTests.swift; sourceTree = "<group>"; };
+		EA296283220C27090030B256 /* UserRepositoryListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryListViewControllerTests.swift; sourceTree = "<group>"; };
 		EA6EF75D2200608100732DEA /* UserListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewControllerTests.swift; sourceTree = "<group>"; };
 		EA76B6FB21FEFB690052BE1A /* SettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTests.swift; sourceTree = "<group>"; };
 		EA76B6FD21FF11FC0052BE1A /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 				EA76B6FB21FEFB690052BE1A /* SettingTests.swift */,
 				EA76B6FD21FF11FC0052BE1A /* APIErrorTests.swift */,
 				EA6EF75D2200608100732DEA /* UserListViewControllerTests.swift */,
-				EA296283220C27090030B256 /* UserRepositoryListViewTests.swift */,
+				EA296283220C27090030B256 /* UserRepositoryListViewControllerTests.swift */,
 			);
 			path = GitHubAppTests;
 			sourceTree = "<group>";
@@ -361,7 +361,7 @@
 				EA76B6FE21FF11FC0052BE1A /* APIErrorTests.swift in Sources */,
 				EAB8421121F740E4008D9AD0 /* RepositoryTests.swift in Sources */,
 				EA76B6FC21FEFB690052BE1A /* SettingTests.swift in Sources */,
-				EA296284220C27090030B256 /* UserRepositoryListViewTests.swift in Sources */,
+				EA296284220C27090030B256 /* UserRepositoryListViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  UserRepositoryListViewTests.swift
+//  UserRepositoryListViewControllerTests.swift
 //  GitHubAppTests
 //
 //  Created by 岩永 彩里 on 2019/02/07.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import GitHubApp
 
-class UserRepositoryListViewTests: XCTestCase {
+class UserRepositoryListViewControllerTests: XCTestCase {
 
     func testUserIsEmpty() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
