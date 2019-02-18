@@ -101,16 +101,16 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         let repository = repositries[indexPath.row]
 
         let repoName = repository.name
-        cell.repositoryNameLabel?.text = repoName
+        cell.repositoryNameLabel.text = repoName
 
         let repoDescription = repository.description
-        cell.descriptionLabel?.text = repoDescription
+        cell.descriptionLabel.text = repoDescription
 
         let  repoLanguage = repository.language
-        cell.languageLabel?.text = repoLanguage
+        cell.languageLabel.text = repoLanguage
 
         let repoStar = repository.stargazersCount
-        cell.countOfStarsLabel?.text = "\(repoStar!)"
+        cell.countOfStarsLabel.text = "\(repoStar!)"
 
         return cell
     }
