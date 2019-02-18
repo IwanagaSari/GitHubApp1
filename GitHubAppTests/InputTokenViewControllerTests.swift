@@ -10,8 +10,9 @@ import XCTest
 @testable import GitHubApp
 
 class InputTokenViewControllerTests: XCTestCase {
-
-    func testTextFieldView1() {
+    
+    /// 最初の起動時にTextFieldが空かどうかのテスト
+    func testFirstTextField() {
         let s = UIStoryboard(name: "Main", bundle: nil)
         let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
         XCTAssertNotNil(vc)
@@ -23,7 +24,8 @@ class InputTokenViewControllerTests: XCTestCase {
         XCTAssertEqual(vc?.personalAccessToken.text, "")
     }
     
-    func testTextFieldView2() {
+    /// 保存されたトークンがTextFieldに表示されるかどうかのテスト
+    func testStoredTextField() {
         let s = UIStoryboard(name: "Main", bundle: nil)
         let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
         XCTAssertNotNil(vc)
@@ -35,7 +37,8 @@ class InputTokenViewControllerTests: XCTestCase {
         XCTAssertEqual(vc?.personalAccessToken.text, "test")
     }
     
-    func testTextFieldView3() {
+    /// enterボタンが押された時、入力したトークンが保存されているかのテスト
+    func testEnterButtonForStoring() {
         let s = UIStoryboard(name: "Main", bundle: nil)
         let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
         XCTAssertNotNil(vc)
@@ -47,4 +50,5 @@ class InputTokenViewControllerTests: XCTestCase {
         let setting = Setting(defaults: UserDefaults.standard)
         XCTAssertEqual(setting.token, "abc")
     }
+    
 }
