@@ -99,9 +99,8 @@ Select scope
                     </view>
                     <navigationItem key="navigationItem" id="g9x-m0-Hxu"/>
                     <connections>
-                        <outlet property="caution" destination="K2K-8N-ZFM" id="dXx-Mm-sdj"/>
+                        <outlet property="accessTokenTextField" destination="ua5-Ve-mA9" id="agC-Eg-yvj"/>
                         <outlet property="enterButton" destination="TQ6-9s-plp" id="p2n-rM-Nee"/>
-                        <outlet property="personalAccessToken" destination="ua5-Ve-mA9" id="agC-Eg-yvj"/>
                         <segue destination="2RG-cV-3mz" kind="show" identifier="toUserListView" id="Rsz-kX-rv8"/>
                     </connections>
                 </viewController>
@@ -300,7 +299,7 @@ Select scope
                                 <rect key="frame" x="0.0" y="234" width="375" height="433"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
                                         <rect key="frame" x="0.0" y="28" width="375" height="152"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fu5-KW-BGm" id="oCv-3o-5r2">
