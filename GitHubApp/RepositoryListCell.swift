@@ -10,9 +10,9 @@ import UIKit
 
 class RepositoryListCell: UITableViewCell {
 
-    @IBOutlet weak var repositoryName: UILabel!
-    @IBOutlet weak var repositoryDescription: UILabel!
-    @IBOutlet weak var repositoryLanguage: UILabel!
-    @IBOutlet weak var repositoryStar: UILabel!
+    @IBOutlet weak var repositoryNameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
+    @IBOutlet weak var countOfStarsLabel: UILabel!
     
 }
