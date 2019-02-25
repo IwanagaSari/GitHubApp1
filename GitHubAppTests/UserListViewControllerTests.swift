@@ -31,7 +31,8 @@ class UserListViewControllerTests: XCTestCase {
         
         vc?.gitHubAPI = api
     }
-    //Userが空でかえってきた時のテスト
+    
+    /// Userが空でかえってきた時のテスト
     func testUserIsEmpty() {
         api.userResult = ([], nil)
         vc?.loadViewIfNeeded()
@@ -39,7 +40,8 @@ class UserListViewControllerTests: XCTestCase {
         let number = vc?.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(number, 0)
     }
-    //Userが一人かえってきた時のテスト
+    
+    /// Userが一人かえってきた時のテスト
     func testUserIsOne() {
         let user = User(userName: "name", image: "image")
         api.userResult = ([user], nil)
@@ -51,7 +53,8 @@ class UserListViewControllerTests: XCTestCase {
         let cell = vc?.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! UserListCell
         XCTAssertEqual(cell.userNameLabel.text, "name")
     }
-    //cellが選択された時のテスト
+    
+    /// cellが選択された時のテスト
     func testSelectedCell() {
         let user = User(userName: "name", image: "image")
         api.userResult = ([user], nil)
@@ -62,7 +65,9 @@ class UserListViewControllerTests: XCTestCase {
         vc.tableView(vc.tableView, didSelectRowAt: indexPath)
         XCTAssertEqual(vc.selectedUserName, "name")
     }
+    
     //TODO: いい方法見つけたらやる
     //    func testUserIsError() {
     //    }
+    
 }
