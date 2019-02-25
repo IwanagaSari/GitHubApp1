@@ -9,7 +9,6 @@
 import UIKit
 
 class UserListViewController: UITableViewController {
-    
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var backgroundViewindicator: UIActivityIndicatorView!
     
@@ -36,6 +35,7 @@ class UserListViewController: UITableViewController {
         })        
         self.tableView.backgroundView = backgroundView
     }
+    
     //アラートを表示する
     func showError(_ error: Error) {
         let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
@@ -44,10 +44,12 @@ class UserListViewController: UITableViewController {
         self.present(alertController, animated: true, completion: nil)
         print("reason:\(error.localizedDescription)")
     }
+    
     //行数の指定
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
+    
     //セルの内容
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! UserListCell
@@ -71,12 +73,14 @@ class UserListViewController: UITableViewController {
 
         return cell
     }
+    
     //セル選択時
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
         selectedUserName = user.userName
         performSegue(withIdentifier: "toUserRepositoryList", sender: IndexPath.self)
     }
+    
     //次のページへ値の受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let userRepositoryListViewController = segue.destination as? UserRepositoryListViewController
