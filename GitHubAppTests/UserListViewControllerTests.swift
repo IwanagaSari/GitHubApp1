@@ -29,33 +29,30 @@ class DummyGitHubAPI: GitHubAPIType {
 
 class UserListViewControllerTests: XCTestCase {
     
-    func testUserIsEmpty() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
+    private let api = DummyGitHubAPI()
+    private var vc: UserListViewController!
+    
+    override func setUp() {
+        super.setUp()
+        vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
         XCTAssertNotNil(vc)
         
-        let api = DummyGitHubAPI()
         vc?.gitHubAPI = api
-        
+    }
+    
+    /// Userが空でかえってきた時のテスト
+    func testUserIsEmpty() {
         api.usersResult = ([], nil)
-        
         vc?.loadViewIfNeeded()
         
         let number = vc?.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(number, 0)
-        
     }
     
+    /// Userが一人かえってきた時のテスト
     func testUserIsOne() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as? UserListViewController
-        XCTAssertNotNil(vc)
-        
-        let api = DummyGitHubAPI()
-        vc?.gitHubAPI = api
         let user = User(userName: "name", image: "image")
         api.usersResult = ([user], nil)
-        
         vc?.loadViewIfNeeded()
         
         let number = vc?.tableView.numberOfRows(inSection: 0)
@@ -65,20 +62,11 @@ class UserListViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.userNameLabel.text, "name")
     }
     
-    //TODO: いい方法見つけたらやる
-//    func testUserIsError() {
-//    }
-    
-    //cellの表示に関するテスト
+    /// cellが選択された時のテスト
     func testSelectedCell() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
-       
-        let api = DummyGitHubAPI()
-        vc.gitHubAPI = api
         let user = User(userName: "name", image: "image")
         api.usersResult = ([user], nil)
-        
+ 
         vc.loadViewIfNeeded()
         vc.tableView.reloadData()
         
@@ -86,4 +74,9 @@ class UserListViewControllerTests: XCTestCase {
         vc.tableView(vc.tableView, didSelectRowAt: indexPath)
         XCTAssertEqual(vc.selectedUserName, "name")
     }
+    
+    //TODO: いい方法見つけたらやる
+    //    func testUserIsError() {
+    //    }
+    
 }

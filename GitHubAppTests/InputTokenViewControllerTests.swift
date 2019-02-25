@@ -10,7 +10,7 @@ import XCTest
 @testable import GitHubApp
 
 class InputTokenViewControllerTests: XCTestCase {
-
+    
     func testTextFieldView1() {
         let s = UIStoryboard(name: "Main", bundle: nil)
         let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
