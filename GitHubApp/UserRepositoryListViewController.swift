@@ -34,7 +34,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             repoTableView.reloadData()
         }
     }
-    lazy private var gitHubAPI = GitHubAPI(accessToken: self.accessToken)
+    lazy var gitHubAPI: GitHubAPIType = GitHubAPI(accessToken: self.accessToken)
     private let imageCache = ImageDownloader()
 
     override func viewDidLoad() {
@@ -60,7 +60,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             self.following.text = following.flatMap { String($0) }
 
             let imageUrlString = self.user?.image
-            let imageUrl = URL(string: imageUrlString!)
+            let imageUrl = URL(string: imageUrlString ?? "")
             if let imageUrl =  imageUrl {
                 _ = self.imageCache.fetchImage(url: imageUrl, completion: { imageToCache, _ in
                     self.imageView.image = imageToCache
@@ -79,6 +79,8 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             self.userRepositoriesIndicator.stopAnimating()
         })
         repoTableView.backgroundView = backgroundView
+        
+        self.repoTableView.register(UINib(nibName: "RepositoryListCell", bundle: nil), forCellReuseIdentifier: "RepositoryListCell")
     }
     //アラートを表示する
     private func showError(_ error: Error) {
@@ -95,25 +97,20 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = repoTableView.dequeueReusableCell(withIdentifier: "userCell")!
+        let cell = repoTableView.dequeueReusableCell(withIdentifier: "RepositoryListCell") as! RepositoryListCell
         let repository = repositries[indexPath.row]
 
-        let repoLabel = cell.viewWithTag(1) as? UILabel
-        let description = cell.viewWithTag(2) as? UILabel
-        let language = cell.viewWithTag(3) as? UILabel
-        let star = cell.viewWithTag(4) as? UILabel
-
         let repoName = repository.name
-        repoLabel?.text = repoName
+        cell.repositoryNameLabel.text = repoName
 
         let repoDescription = repository.description
-        description?.text = repoDescription
+        cell.descriptionLabel.text = repoDescription
 
         let  repoLanguage = repository.language
-        language?.text = repoLanguage
+        cell.languageLabel.text = repoLanguage
 
         let repoStar = repository.stargazersCount
-        star?.text = "\(repoStar!)"
+        cell.countOfStarsLabel.text = "\(repoStar!)"
 
         return cell
     }
