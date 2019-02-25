@@ -11,6 +11,14 @@ import XCTest
 
 class InputTokenViewControllerTests: XCTestCase {
     
+    var  vc: InputTokenViewController!
+    
+    override func setUp() {
+        super.setUp()
+        
+        vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
+    }
+    
     /// 最初の起動時にTextFieldが空かどうかのテスト
     func testFirstTextField() {
         let s = UIStoryboard(name: "Main", bundle: nil)
@@ -21,7 +29,7 @@ class InputTokenViewControllerTests: XCTestCase {
         setting.token = ""
         
         vc?.loadViewIfNeeded()
-        XCTAssertEqual(vc?.personalAccessToken.text, "")
+        XCTAssertEqual(vc?.accessTokenTextField.text, "")
     }
     
     /// 保存されたトークンがTextFieldに表示されるかどうかのテスト
@@ -34,7 +42,7 @@ class InputTokenViewControllerTests: XCTestCase {
         setting.token = "test"
         
         vc?.loadViewIfNeeded()
-        XCTAssertEqual(vc?.personalAccessToken.text, "test")
+        XCTAssertEqual(vc?.accessTokenTextField.text, "test")
     }
     
     /// enterボタンが押された時、入力したトークンが保存されているかのテスト
@@ -44,7 +52,7 @@ class InputTokenViewControllerTests: XCTestCase {
         XCTAssertNotNil(vc)
         
         vc?.loadViewIfNeeded()
-        vc?.personalAccessToken.text = "abc"
+        vc?.accessTokenTextField.text = "abc"
         vc?.enterButton.sendActions(for: .touchUpInside)
         
         let setting = Setting(defaults: UserDefaults.standard)

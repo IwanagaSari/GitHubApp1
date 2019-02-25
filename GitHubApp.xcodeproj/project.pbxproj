@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA01E49D2223E93300BC9D9F /* InputTokenViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8420C21F72B65008D9AD0 /* InputTokenViewControllerTests.swift */; };
 		EA6EF75E2200608100732DEA /* UserListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6EF75D2200608100732DEA /* UserListViewControllerTests.swift */; };
 		EAA754D221B7EF4D00130943 /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA754D121B7EF4D00130943 /* UserListCell.swift */; };
 		EAA754D421BFD48000130943 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA754D321BFD48000130943 /* ImageDownloader.swift */; };
@@ -14,9 +15,7 @@
 		EAB5A46C2175DA9F00004D29 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46B2175DA9F00004D29 /* User.swift */; };
 		EAB5A46E2175F7F800004D29 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46D2175F7F800004D29 /* Repository.swift */; };
 		EAB5A4702175FA3000004D29 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46F2175FA3000004D29 /* APIError.swift */; };
-		EAB8420D21F72B65008D9AD0 /* InputTokenViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8420C21F72B65008D9AD0 /* InputTokenViewControllerTests.swift */; };
 		EAB8420F21F72FF3008D9AD0 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8420E21F72FF3008D9AD0 /* UserTests.swift */; };
-		EAB8421121F740E4008D9AD0 /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8421021F740E4008D9AD0 /* RepositoryTests.swift */; };
 		EAD124F121B6891500D7FAB9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD124F021B6891500D7FAB9 /* Setting.swift */; };
 		EAD7361E215A4B7600486083 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7361D215A4B7600486083 /* AppDelegate.swift */; };
 		EAD73620215A4B7600486083 /* InputTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7361F215A4B7600486083 /* InputTokenViewController.swift */; };
@@ -151,8 +150,6 @@
 				EAB8420C21F72B65008D9AD0 /* InputTokenViewControllerTests.swift */,
 				EAB8420E21F72FF3008D9AD0 /* UserTests.swift */,
 				EAB8421021F740E4008D9AD0 /* RepositoryTests.swift */,
-				EA76B6FB21FEFB690052BE1A /* SettingTests.swift */,
-				EA76B6FD21FF11FC0052BE1A /* APIErrorTests.swift */,
 			);
 			path = GitHubAppTests;
 			sourceTree = "<group>";
@@ -340,9 +337,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAB8420F21F72FF3008D9AD0 /* UserTests.swift in Sources */,
+				EA01E49D2223E93300BC9D9F /* InputTokenViewControllerTests.swift in Sources */,
 				EAD73633215A4B7600486083 /* GitHubAppTests.swift in Sources */,
 				EA6EF75E2200608100732DEA /* UserListViewControllerTests.swift in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
