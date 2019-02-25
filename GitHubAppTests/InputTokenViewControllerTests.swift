@@ -17,14 +17,11 @@ class InputTokenViewControllerTests: XCTestCase {
         super.setUp()
         
         vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
+        XCTAssertNotNil(vc)
     }
     
     /// 最初の起動時にTextFieldが空かどうかのテスト
     func testFirstTextField() {
-        let s = UIStoryboard(name: "Main", bundle: nil)
-        let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
-        XCTAssertNotNil(vc)
-        
         let setting = Setting(defaults: UserDefaults.standard)
         setting.token = ""
         
@@ -34,10 +31,6 @@ class InputTokenViewControllerTests: XCTestCase {
     
     /// 保存されたトークンがTextFieldに表示されるかどうかのテスト
     func testStoredTextField() {
-        let s = UIStoryboard(name: "Main", bundle: nil)
-        let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
-        XCTAssertNotNil(vc)
-        
         let setting = Setting(defaults: UserDefaults.standard)
         setting.token = "test"
         
@@ -47,10 +40,6 @@ class InputTokenViewControllerTests: XCTestCase {
     
     /// enterボタンが押された時、入力したトークンが保存されているかのテスト
     func testEnterButtonForStoring() {
-        let s = UIStoryboard(name: "Main", bundle: nil)
-        let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
-        XCTAssertNotNil(vc)
-        
         vc?.loadViewIfNeeded()
         vc?.accessTokenTextField.text = "abc"
         vc?.enterButton.sendActions(for: .touchUpInside)
