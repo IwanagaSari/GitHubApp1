@@ -198,7 +198,7 @@ Select scope
         <!--Repository-->
         <scene sceneID="PSs-YA-N2F">
             <objects>
-                <viewController title="Repository" hidesBottomBarWhenPushed="YES" id="7Em-rR-zZU" customClass="UserRepositoryListViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserRepositoryListViewController" title="Repository" hidesBottomBarWhenPushed="YES" id="7Em-rR-zZU" customClass="UserRepositoryListViewController" customModule="GitHubApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6S9-p4-HjJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -300,81 +300,12 @@ Select scope
                                 <rect key="frame" x="0.0" y="234" width="375" height="433"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="152" id="Fu5-KW-BGm">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="152"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Fu5-KW-BGm" customClass="RepositoryListCell" customModule="GitHubApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fu5-KW-BGm" id="oCv-3o-5r2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="151.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxr-LP-zqx">
-                                                    <rect key="frame" x="30" y="16" width="315" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="2ty-y3-6LW"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1K-3j-a7l">
-                                                    <rect key="frame" x="30" y="42" width="315" height="69"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maru" translatesAutoresizingMaskIntoConstraints="NO" id="3Z8-Jb-b2w">
-                                                    <rect key="frame" x="30" y="121.5" width="20" height="20"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="OwQ-vf-cq5"/>
-                                                        <constraint firstAttribute="height" constant="20" id="sdx-v3-Uiy"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="iit-5o-ghT">
-                                                    <rect key="frame" x="200" y="121.5" width="20" height="20"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Zha-Wp-l0T"/>
-                                                        <constraint firstAttribute="width" constant="20" id="v9z-c4-XGX"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開発言語" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ej7-Vq-cpa">
-                                                    <rect key="frame" x="55" y="121" width="125" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="fau-Sm-Ji4"/>
-                                                        <constraint firstAttribute="width" constant="125" id="qTk-N6-YiN"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="スターの数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0o-Sm-A7A">
-                                                    <rect key="frame" x="225" y="121" width="75" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Idt-Ya-YaF"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="xxr-LP-zqx" firstAttribute="top" secondItem="oCv-3o-5r2" secondAttribute="topMargin" constant="5" id="8fE-2v-QUh"/>
-                                                <constraint firstItem="C0o-Sm-A7A" firstAttribute="leading" secondItem="iit-5o-ghT" secondAttribute="trailing" constant="5" id="Ekq-Rn-Cro"/>
-                                                <constraint firstItem="ej7-Vq-cpa" firstAttribute="leading" secondItem="3Z8-Jb-b2w" secondAttribute="trailing" constant="5" id="Idl-4v-UzZ"/>
-                                                <constraint firstItem="xxr-LP-zqx" firstAttribute="leading" secondItem="oCv-3o-5r2" secondAttribute="leadingMargin" constant="15" id="JV0-ao-1zR"/>
-                                                <constraint firstItem="iit-5o-ghT" firstAttribute="leading" secondItem="ej7-Vq-cpa" secondAttribute="trailing" constant="20" id="KRn-Dd-Q67"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="h1K-3j-a7l" secondAttribute="trailing" constant="15" id="Q5R-uX-a5B"/>
-                                                <constraint firstItem="h1K-3j-a7l" firstAttribute="top" secondItem="xxr-LP-zqx" secondAttribute="bottom" constant="5" id="S8G-HZ-l7Q"/>
-                                                <constraint firstItem="C0o-Sm-A7A" firstAttribute="top" secondItem="h1K-3j-a7l" secondAttribute="bottom" constant="10" id="Uz9-d6-4qF"/>
-                                                <constraint firstAttribute="bottom" secondItem="3Z8-Jb-b2w" secondAttribute="bottom" constant="10" id="aPk-Se-f9k"/>
-                                                <constraint firstItem="h1K-3j-a7l" firstAttribute="leading" secondItem="oCv-3o-5r2" secondAttribute="leadingMargin" constant="15" id="j5s-RE-312"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ej7-Vq-cpa" secondAttribute="bottom" id="jI1-LL-HRf"/>
-                                                <constraint firstItem="3Z8-Jb-b2w" firstAttribute="leading" secondItem="oCv-3o-5r2" secondAttribute="leading" constant="30" id="k87-wC-lss"/>
-                                                <constraint firstAttribute="bottom" secondItem="iit-5o-ghT" secondAttribute="bottom" constant="10" id="miE-dI-YwI"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="C0o-Sm-A7A" secondAttribute="bottom" id="rf6-Ea-dFX"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="xxr-LP-zqx" secondAttribute="trailing" constant="15" id="uya-f3-Vn4"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -567,7 +498,5 @@ Select scope
     <resources>
         <image name="back_icon" width="30" height="30"/>
         <image name="go_icon" width="30" height="30"/>
-        <image name="maru" width="150" height="150"/>
-        <image name="star" width="205" height="205"/>
     </resources>
 </document>

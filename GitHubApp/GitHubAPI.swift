@@ -11,9 +11,12 @@ import  UIKit
 
 protocol GitHubAPIType {
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void))
+    func fetchUser(nameLabel: String, completion: @escaping ((UserDetail?, Error?) -> Void))
+    func fetchRepositry(nameLabel: String, completion: @escaping (([Repositry]?, Error?) -> Void))
 }
 
 class GitHubAPI: GitHubAPIType {
+    
     private let accessToken: String
 
     init(accessToken: String) {

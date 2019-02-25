@@ -11,10 +11,18 @@ import XCTest
 
 class DummyGitHubAPI: GitHubAPIType {
     
-    var userResult: ([User]?, Error?)
+    var usersResult: ([User]?, Error?)
+    var repositoryResult: ([Repositry]?, Error?)
+    var userResult: (UserDetail?, Error?)
     
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
-            completion(self.userResult.0, self.userResult.1)
+        completion(self.usersResult.0, self.usersResult.1)
+    }
+    func fetchUser(nameLabel: String, completion: @escaping ((UserDetail?, Error?) -> Void)) {
+        completion(self.userResult.0, self.userResult.1)
+    }
+    func fetchRepositry(nameLabel: String, completion: @escaping (([Repositry]?, Error?) -> Void)) {
+        completion(self.repositoryResult.0, self.repositoryResult.1)
     }
 
 }
@@ -29,7 +37,7 @@ class UserListViewControllerTests: XCTestCase {
         let api = DummyGitHubAPI()
         vc?.gitHubAPI = api
         
-        api.userResult = ([], nil)
+        api.usersResult = ([], nil)
         
         vc?.loadViewIfNeeded()
         
@@ -46,7 +54,7 @@ class UserListViewControllerTests: XCTestCase {
         let api = DummyGitHubAPI()
         vc?.gitHubAPI = api
         let user = User(userName: "name", image: "image")
-        api.userResult = ([user], nil)
+        api.usersResult = ([user], nil)
         
         vc?.loadViewIfNeeded()
         
@@ -69,7 +77,7 @@ class UserListViewControllerTests: XCTestCase {
         let api = DummyGitHubAPI()
         vc.gitHubAPI = api
         let user = User(userName: "name", image: "image")
-        api.userResult = ([user], nil)
+        api.usersResult = ([user], nil)
         
         vc.loadViewIfNeeded()
         vc.tableView.reloadData()
