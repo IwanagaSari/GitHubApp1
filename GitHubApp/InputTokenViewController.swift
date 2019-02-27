@@ -35,6 +35,7 @@ class InputTokenViewController: UIViewController, UITextFieldDelegate {
             accessToken.token = tokenText ?? ""
         }
     }
+    
     private func showTokenConfirmationAlert() {
         let alertController = UIAlertController(title: "Error", message: "personalAccessTokenを入力して下さい。", preferredStyle: .alert)
 
