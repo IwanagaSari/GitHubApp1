@@ -11,37 +11,37 @@ import XCTest
 
 class InputTokenViewControllerTests: XCTestCase {
     
-    func testTextFieldView1() {
-        let s = UIStoryboard(name: "Main", bundle: nil)
-        let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
-        XCTAssertNotNil(vc)
+    var  vc: InputTokenViewController!
+    
+    override func setUp() {
+        super.setUp()
         
+        vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
+        XCTAssertNotNil(vc)
+    }
+    
+    /// 最初の起動時にTextFieldが空かどうかのテスト
+    func testFirstTextField() {
         let setting = Setting(defaults: UserDefaults.standard)
         setting.token = ""
         
         vc?.loadViewIfNeeded()
-        XCTAssertEqual(vc?.personalAccessToken.text, "")
+        XCTAssertEqual(vc?.accessTokenTextField.text, "")
     }
     
-    func testTextFieldView2() {
-        let s = UIStoryboard(name: "Main", bundle: nil)
-        let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
-        XCTAssertNotNil(vc)
-        
+    /// 保存されたトークンがTextFieldに表示されるかどうかのテスト
+    func testStoredTextField() {
         let setting = Setting(defaults: UserDefaults.standard)
         setting.token = "test"
         
         vc?.loadViewIfNeeded()
-        XCTAssertEqual(vc?.personalAccessToken.text, "test")
+        XCTAssertEqual(vc?.accessTokenTextField.text, "test")
     }
     
-    func testTextFieldView3() {
-        let s = UIStoryboard(name: "Main", bundle: nil)
-        let vc = s.instantiateViewController(withIdentifier: "InputTokenViewController") as? InputTokenViewController
-        XCTAssertNotNil(vc)
-        
+    /// enterボタンが押された時、入力したトークンが保存されているかのテスト
+    func testEnterButtonForStoring() {
         vc?.loadViewIfNeeded()
-        vc?.personalAccessToken.text = "abc"
+        vc?.accessTokenTextField.text = "abc"
         vc?.enterButton.sendActions(for: .touchUpInside)
         
         let setting = Setting(defaults: UserDefaults.standard)

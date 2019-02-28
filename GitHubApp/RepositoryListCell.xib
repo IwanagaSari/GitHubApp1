@@ -92,16 +92,16 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="repositoryDescription" destination="oOG-Rk-LEB" id="dNG-0v-JvT"/>
-                <outlet property="repositoryLanguage" destination="mpx-NP-2jv" id="lOa-fo-cOt"/>
-                <outlet property="repositoryName" destination="Zhe-MO-dMt" id="gGq-uR-Zch"/>
-                <outlet property="repositoryStar" destination="Udv-Og-mNf" id="KVG-1h-sz1"/>
+                <outlet property="countOfStarsLabel" destination="Udv-Og-mNf" id="xqD-dA-zEg"/>
+                <outlet property="descriptionLabel" destination="oOG-Rk-LEB" id="IRG-dU-chq"/>
+                <outlet property="languageLabel" destination="mpx-NP-2jv" id="rGv-FO-mwK"/>
+                <outlet property="repositoryNameLabel" destination="Zhe-MO-dMt" id="mXP-iz-qbD"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="146.62668665667167"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="maru" width="72" height="72"/>
-        <image name="star" width="98.400001525878906" height="98.400001525878906"/>
+        <image name="maru" width="150" height="150"/>
+        <image name="star" width="205" height="205"/>
     </resources>
 </document>

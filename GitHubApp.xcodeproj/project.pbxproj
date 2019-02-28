@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA01E49D2223E93300BC9D9F /* InputTokenViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8420C21F72B65008D9AD0 /* InputTokenViewControllerTests.swift */; };
 		860A5CB32213D9920077CFA1 /* RepositoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860A5CB12213D9920077CFA1 /* RepositoryListCell.swift */; };
 		860A5CB42213D9920077CFA1 /* RepositoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 860A5CB22213D9920077CFA1 /* RepositoryListCell.xib */; };
 		EA296284220C27090030B256 /* UserRepositoryListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA296283220C27090030B256 /* UserRepositoryListViewControllerTests.swift */; };
@@ -19,9 +20,7 @@
 		EAB5A46C2175DA9F00004D29 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46B2175DA9F00004D29 /* User.swift */; };
 		EAB5A46E2175F7F800004D29 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46D2175F7F800004D29 /* Repository.swift */; };
 		EAB5A4702175FA3000004D29 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5A46F2175FA3000004D29 /* APIError.swift */; };
-		EAB8420D21F72B65008D9AD0 /* InputTokenViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8420C21F72B65008D9AD0 /* InputTokenViewControllerTests.swift */; };
 		EAB8420F21F72FF3008D9AD0 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8420E21F72FF3008D9AD0 /* UserTests.swift */; };
-		EAB8421121F740E4008D9AD0 /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8421021F740E4008D9AD0 /* RepositoryTests.swift */; };
 		EAD124F121B6891500D7FAB9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD124F021B6891500D7FAB9 /* Setting.swift */; };
 		EAD7361E215A4B7600486083 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7361D215A4B7600486083 /* AppDelegate.swift */; };
 		EAD73620215A4B7600486083 /* InputTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7361F215A4B7600486083 /* InputTokenViewController.swift */; };
@@ -355,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAB8420F21F72FF3008D9AD0 /* UserTests.swift in Sources */,
+				EA01E49D2223E93300BC9D9F /* InputTokenViewControllerTests.swift in Sources */,
 				EAD73633215A4B7600486083 /* GitHubAppTests.swift in Sources */,
 				EA6EF75E2200608100732DEA /* UserListViewControllerTests.swift in Sources */,
 				EAB8420D21F72B65008D9AD0 /* InputTokenViewControllerTests.swift in Sources */,
