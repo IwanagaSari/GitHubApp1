@@ -9,28 +9,27 @@
 import UIKit
 
 class InputTokenViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak private(set) var personalAccessToken: UITextField!
-    @IBOutlet weak private(set) var caution: UITextView!
+    @IBOutlet weak private(set) var accessTokenTextField: UITextField!
     @IBOutlet weak private(set) var enterButton: UIButton!
     private let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        personalAccessToken.delegate = self
+        accessTokenTextField.delegate = self
 
-        // デフォルト値を設定
+        //デフォルト値を設定
         let token = Setting(defaults: self.defaults)
-        personalAccessToken.text = token.token
+        accessTokenTextField.text = token.token
     }
 
     @IBAction private func enterButton(_ sender: UIButton) {
-        if personalAccessToken.text!.isEmpty {
+        if accessTokenTextField.text!.isEmpty {
             showTokenConfirmationAlert()
         } else {
             self.performSegue(withIdentifier: "toUserListView", sender: nil)
 
-            let tokenText = personalAccessToken.text
+            let tokenText = accessTokenTextField.text
             let accessToken = Setting(defaults: self.defaults)
             accessToken.token = tokenText ?? ""
         }
@@ -48,15 +47,15 @@ class InputTokenViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         let userListViewController = segue.destination as? UserListViewController
-        userListViewController?.accessToken = personalAccessToken.text ?? ""
+        userListViewController?.accessToken = accessTokenTextField.text ?? ""
     }
 
     @IBAction private func tapView(_ sender: UITapGestureRecognizer) {
-        personalAccessToken.resignFirstResponder()
+        accessTokenTextField.resignFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool { 
-        personalAccessToken.resignFirstResponder()
+        accessTokenTextField.resignFirstResponder()
         return true
     }
 }

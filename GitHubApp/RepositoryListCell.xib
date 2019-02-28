@@ -92,10 +92,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="countOfStarsLabel" destination="Udv-Og-mNf" id="jA3-LH-B8r"/>
-                <outlet property="descriptionLabel" destination="oOG-Rk-LEB" id="JEh-Ct-Fuo"/>
-                <outlet property="languageLabel" destination="mpx-NP-2jv" id="yjZ-kg-gmt"/>
-                <outlet property="repositoryNameLabel" destination="Zhe-MO-dMt" id="c5M-ue-mKm"/>
+                <outlet property="countOfStarsLabel" destination="Udv-Og-mNf" id="xqD-dA-zEg"/>
+                <outlet property="descriptionLabel" destination="oOG-Rk-LEB" id="IRG-dU-chq"/>
+                <outlet property="languageLabel" destination="mpx-NP-2jv" id="rGv-FO-mwK"/>
+                <outlet property="repositoryNameLabel" destination="Zhe-MO-dMt" id="mXP-iz-qbD"/>
             </connections>
             <point key="canvasLocation" x="14" y="-78"/>
         </tableViewCell>
