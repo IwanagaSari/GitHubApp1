@@ -15,8 +15,6 @@ class UserListCell: UITableViewCell {
 
     var task: URLSessionTask?
     
-    
-    
     override func prepareForReuse() {
         super.prepareForReuse()
 
