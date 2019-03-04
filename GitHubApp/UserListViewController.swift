@@ -10,7 +10,7 @@ import UIKit
 
 class UserListViewController: UITableViewController {
     @IBOutlet var backgroundView: UIView!
-    @IBOutlet weak var backgroundViewindicator: UIActivityIndicatorView!
+    @IBOutlet weak var backgroundViewIndicatorView: UIActivityIndicatorView!
     
     private var users: [User] = [] {
         didSet {
@@ -31,7 +31,7 @@ class UserListViewController: UITableViewController {
             if let error = error {
                 self.showError(error)
             }
-            self.backgroundViewindicator.stopAnimating()
+            self.backgroundViewIndicatorView.stopAnimating()
         })        
         self.tableView.backgroundView = backgroundView
     }
@@ -57,7 +57,7 @@ class UserListViewController: UITableViewController {
         let userName = user.userName
         let imageUrlString = user.image
         let imageUrl = URL(string: imageUrlString)!
-        cell.userImageLoadingIndicator.startAnimating()
+        cell.userImageLoadingIndicatorView.startAnimating()
 
         let task = imageDownloader.fetchImage(url: imageUrl, completion: { imageToCache, error in
             if error != nil {
@@ -65,7 +65,7 @@ class UserListViewController: UITableViewController {
             } else {
                 cell.userImageView.image = imageToCache
             }
-            cell.userImageLoadingIndicator.stopAnimating()
+            cell.userImageLoadingIndicatorView.stopAnimating()
         })
         cell.task = task
         
