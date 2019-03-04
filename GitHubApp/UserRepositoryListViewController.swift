@@ -11,12 +11,12 @@ import SafariServices
 
 class UserRepositoryListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var repoTableView: UITableView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var fullname: UILabel!
-    @IBOutlet weak var follower: UILabel!
-    @IBOutlet weak var following: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var reposCount: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var fullnameLabel: UILabel!
+    @IBOutlet weak var numOfFollowerLabel: UILabel!
+    @IBOutlet weak var numOfFollowingLabel: UILabel!
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var countOfRepositoriesLabel: UILabel!
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var userRepositoriesIndicator: UIActivityIndicatorView!
     @IBOutlet weak var userImageIndicator: UIActivityIndicatorView!
@@ -43,7 +43,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         repoTableView.delegate = self
         repoTableView.dataSource = self
 
-        name.text = userName
+        userNameLabel.text = userName
 
         gitHubAPI.fetchUser(nameLabel: userName, completion: { user, error in
             if let error = error {
@@ -52,21 +52,21 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             self.user = user
 
             let fullName = self.user?.fullName
-            self.fullname.text = fullName
+            self.fullnameLabel.text = fullName
             let follower: Int? = self.user?.followers
-            self.follower.text = follower.flatMap { String($0) }
+            self.numOfFollowerLabel.text = follower.flatMap { String($0) }
 
             let following = self.user?.following
-            self.following.text = following.flatMap { String($0) }
+            self.numOfFollowingLabel.text = following.flatMap { String($0) }
 
             let imageUrlString = self.user?.image
             let imageUrl = URL(string: imageUrlString ?? "")
             if let imageUrl =  imageUrl {
                 _ = self.imageCache.fetchImage(url: imageUrl, completion: { imageToCache, _ in
-                    self.imageView.image = imageToCache
+                    self.userImageView.image = imageToCache
                 })
             } else {
-                    self.imageView.image = nil
+                    self.userImageView.image = nil
             }
             self.userImageIndicator.stopAnimating()
         })
@@ -75,7 +75,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
                 self.showError(error)
             }
             self.repositries = (repositries?.filter { repo in !(repo.fork) } ?? [])
-            self.reposCount.text = String(self.repositries.count)
+            self.countOfRepositoriesLabel.text = String(self.repositries.count)
             self.userRepositoriesIndicator.stopAnimating()
         })
         repoTableView.backgroundView = backgroundView
