@@ -10,7 +10,6 @@ import XCTest
 @testable import GitHubApp
 
 class UserRepositoryListViewControllerTests: XCTestCase {
-    
     private let api = DummyGitHubAPI()
     private var vc: UserRepositoryListViewController!
     

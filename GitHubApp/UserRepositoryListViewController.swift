@@ -82,6 +82,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         
         self.repoTableView.register(UINib(nibName: "RepositoryListCell", bundle: nil), forCellReuseIdentifier: "RepositoryListCell")
     }
+    
     //アラートを表示する
     private func showError(_ error: Error) {
         let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
@@ -90,10 +91,12 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         self.present(alertController, animated: true, completion: nil)
         print("reason:\(error.localizedDescription)")
     }
+    
     //行数の指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositries.count
     }
+    
     //セルの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -114,6 +117,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
 
         return cell
     }
+    
     //セル選択時
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repository = repositries[indexPath.row]

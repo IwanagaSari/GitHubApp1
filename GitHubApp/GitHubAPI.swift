@@ -16,7 +16,6 @@ protocol GitHubAPIType {
 }
 
 class GitHubAPI: GitHubAPIType {
-    
     private let accessToken: String
 
     init(accessToken: String) {

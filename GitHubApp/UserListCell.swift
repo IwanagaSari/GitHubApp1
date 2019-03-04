@@ -9,11 +9,11 @@
 import UIKit
 
 class UserListCell: UITableViewCell {
-    var task: URLSessionTask?
-
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userImageLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var userImageView: UIImageView!
+
+    var task: URLSessionTask?
     
     override func prepareForReuse() {
         super.prepareForReuse()

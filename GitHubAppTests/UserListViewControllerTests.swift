@@ -10,7 +10,6 @@ import XCTest
 @testable import GitHubApp
 
 class DummyGitHubAPI: GitHubAPIType {
-    
     var usersResult: ([User]?, Error?)
     var repositoryResult: ([Repositry]?, Error?)
     var userResult: (UserDetail?, Error?)
@@ -18,17 +17,17 @@ class DummyGitHubAPI: GitHubAPIType {
     func fetchUsers(completion: @escaping (([User]?, Error?) -> Void)) {
         completion(self.usersResult.0, self.usersResult.1)
     }
+    
     func fetchUser(nameLabel: String, completion: @escaping ((UserDetail?, Error?) -> Void)) {
         completion(self.userResult.0, self.userResult.1)
     }
+    
     func fetchRepositry(nameLabel: String, completion: @escaping (([Repositry]?, Error?) -> Void)) {
         completion(self.repositoryResult.0, self.repositoryResult.1)
     }
-
 }
 
 class UserListViewControllerTests: XCTestCase {
-    
     private let api = DummyGitHubAPI()
     private var vc: UserListViewController!
     
@@ -78,5 +77,4 @@ class UserListViewControllerTests: XCTestCase {
     //TODO: いい方法見つけたらやる
     //    func testUserIsError() {
     //    }
-    
 }
