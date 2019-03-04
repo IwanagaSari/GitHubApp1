@@ -34,7 +34,7 @@ class UserRepositoryListViewControllerTests: XCTestCase {
         api.userResult = (user, nil)
         vc?.loadViewIfNeeded()
         
-        XCTAssertEqual(vc?.fullname.text, "fullName")
+        XCTAssertEqual(vc?.fullnameLabel.text, "fullName")
     }
     
     func testRepositoryIsEmpty() {
