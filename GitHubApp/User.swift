@@ -9,11 +9,11 @@
 import Foundation
 
 struct User: Codable {
-    let userName: String
+    let username: String
     let image: String
 
     enum CodingKeys: String, CodingKey {
-        case userName = "login"
+        case username = "login"
         case image = "avatar_url"
     }
 }

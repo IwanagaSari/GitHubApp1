@@ -17,7 +17,7 @@ class UserListViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
-    var selectedUserName: String = ""
+    var selectedUsername: String = ""
     var accessToken: String = ""
     lazy var gitHubAPI: GitHubAPIType = GitHubAPI(accessToken: self.accessToken)
     private let imageDownloader = ImageDownloader()
@@ -54,7 +54,7 @@ class UserListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! UserListCell
         let user = users[indexPath.row]
-        let userName = user.userName
+        let username = user.username
         let imageUrlString = user.image
         let imageUrl = URL(string: imageUrlString)!
         cell.userImageLoadingIndicatorView.startAnimating()
@@ -69,7 +69,7 @@ class UserListViewController: UITableViewController {
         })
         cell.task = task
         
-        cell.userNameLabel.text = "\(userName)"
+        cell.userNameLabel.text = "\(username)"
 
         return cell
     }
@@ -77,14 +77,14 @@ class UserListViewController: UITableViewController {
     //セル選択時
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
-        selectedUserName = user.userName
+        selectedUsername = user.username
         performSegue(withIdentifier: "toUserRepositoryList", sender: IndexPath.self)
     }
     
     //次のページへ値の受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let userRepositoryListViewController = segue.destination as? UserRepositoryListViewController
-        userRepositoryListViewController?.userName = selectedUserName
+        userRepositoryListViewController?.username = selectedUsername
         userRepositoryListViewController?.accessToken = accessToken
     }
 }

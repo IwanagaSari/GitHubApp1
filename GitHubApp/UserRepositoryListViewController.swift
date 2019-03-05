@@ -11,7 +11,7 @@ import SafariServices
 
 class UserRepositoryListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var repoTableView: UITableView!
-    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var fullnameLabel: UILabel!
     @IBOutlet weak var numOfFollowerLabel: UILabel!
     @IBOutlet weak var numOfFollowingLabel: UILabel!
@@ -22,7 +22,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var userImageIndicator: UIActivityIndicatorView!
     
     var accessToken: String = ""
-    var userName: String = ""
+    var username: String = ""
 
     private var repositries: [Repositry] = [] {
         didSet {
@@ -43,9 +43,9 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
         repoTableView.delegate = self
         repoTableView.dataSource = self
 
-        userNameLabel.text = userName
+        usernameLabel.text = username
 
-        gitHubAPI.fetchUser(nameLabel: userName, completion: { user, error in
+        gitHubAPI.fetchUser(nameLabel: username, completion: { user, error in
             if let error = error {
                 self.showError(error)
             }
@@ -70,7 +70,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             }
             self.userImageIndicator.stopAnimating()
         })
-        gitHubAPI.fetchRepositry(nameLabel: userName, completion: { repositries, error in
+        gitHubAPI.fetchRepositry(nameLabel: username, completion: { repositries, error in
             if let error = error {
                 self.showError(error)
             }
