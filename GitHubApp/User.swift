@@ -19,13 +19,13 @@ struct User: Codable {
 }
 
 struct UserDetail: Codable {
-    let fullName: String?
+    let fullname: String?
     let followers: Int?
     let following: Int?
     let image: String?
 
     enum CodingKeys: String, CodingKey {
-        case fullName = "name"
+        case fullname = "name"
         case followers
         case following
         case image = "avatar_url"
