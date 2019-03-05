@@ -299,7 +299,7 @@ Select scope
                                 <rect key="frame" x="0.0" y="234" width="375" height="433"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Fu5-KW-BGm" customClass="RepositoryListCell" customModule="GitHubApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Fu5-KW-BGm" customClass="RepositoryListCell" customModule="GitHubApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fu5-KW-BGm" id="oCv-3o-5r2">
@@ -364,8 +364,8 @@ Select scope
                         <outlet property="repoTableView" destination="azp-ch-bSC" id="5PG-mD-xF4"/>
                         <outlet property="userImageIndicator" destination="GNk-Da-A1R" id="NJG-3j-LD4"/>
                         <outlet property="userImageView" destination="aEI-Lt-1P6" id="vxX-Id-EG9"/>
-                        <outlet property="userNameLabel" destination="DbV-F0-7Bb" id="Ype-xf-Uhd"/>
                         <outlet property="userRepositoriesIndicator" destination="s4T-D7-esB" id="oIA-v5-liT"/>
+                        <outlet property="usernameLabel" destination="DbV-F0-7Bb" id="Ype-xf-Uhd"/>
                         <segue destination="wbd-Jg-91A" kind="show" identifier="toWebView" id="f5L-PD-mOk"/>
                     </connections>
                 </viewController>
