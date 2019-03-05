@@ -16,7 +16,9 @@ GitHubのユーザーを閲覧できるクライアントアプリ
 ユーザーリポジトリ画面  
   ・　リスト上部にユーザーの詳細情報を表示する  
   ・　それ以下はforkedリポジトリではないユーザーのリポジトリを一覧表示する  
-  ・　リポジトリ一覧の行をタップするとWebViewでリポジトリのURLを表示する      
+  ・　リポジトリ一覧の行をタップするとWebViewでリポジトリのURLを表示する 
+
+![Application Structure.pdf](https://github.com/IwanagaSari/GitHubApp1/files/2930821/Application.Structure.pdf)
 
 ## 前提条件
 
