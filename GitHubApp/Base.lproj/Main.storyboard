@@ -159,7 +159,7 @@ Select scope
                                 <connections>
                                     <outlet property="userImageLoadingIndicatorView" destination="PhF-zd-Vo1" id="sq9-fA-quC"/>
                                     <outlet property="userImageView" destination="oC3-aU-AvF" id="VHd-Ot-ktA"/>
-                                    <outlet property="userNameLabel" destination="dhu-b0-kDj" id="5Gz-QC-pmX"/>
+                                    <outlet property="usernameLabel" destination="dhu-b0-kDj" id="5Gz-QC-pmX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

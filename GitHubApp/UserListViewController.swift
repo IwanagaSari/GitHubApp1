@@ -69,7 +69,7 @@ class UserListViewController: UITableViewController {
         })
         cell.task = task
         
-        cell.userNameLabel.text = "\(username)"
+        cell.usernameLabel.text = "\(username)"
 
         return cell
     }
