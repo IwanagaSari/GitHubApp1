@@ -71,7 +71,7 @@ class UserListViewControllerTests: XCTestCase {
         
         let indexPath = IndexPath(row: 0, section: 0)
         vc.tableView(vc.tableView, didSelectRowAt: indexPath)
-        XCTAssertEqual(vc.selectedUserName, "name")
+        XCTAssertEqual(vc.selectedUsername, "name")
     }
     
     //TODO: いい方法見つけたらやる

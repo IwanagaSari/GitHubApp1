@@ -38,7 +38,7 @@ class UserTests: XCTestCase {
 """
         let users = try JSONDecoder().decode([User].self, from: json.data(using: .utf8)!)
         let user = users[0]
-        XCTAssertEqual(user.userName, "octocat")
+        XCTAssertEqual(user.username, "octocat")
         XCTAssertEqual(user.image, "https://github.com/images/error/octocat_happy.gif")
     }
     
