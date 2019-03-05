@@ -13,8 +13,8 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var repoTableView: UITableView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var fullnameLabel: UILabel!
-    @IBOutlet weak var numOfFollowerLabel: UILabel!
-    @IBOutlet weak var numOfFollowingLabel: UILabel!
+    @IBOutlet weak var numberOfFollowersLabel: UILabel!
+    @IBOutlet weak var numberOfFollowingsLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var countOfRepositoriesLabel: UILabel!
     @IBOutlet var backgroundView: UIView!
@@ -54,10 +54,10 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             let fullname = self.user?.fullname
             self.fullnameLabel.text = fullname
             let follower: Int? = self.user?.followers
-            self.numOfFollowerLabel.text = follower.flatMap { String($0) }
+            self.numberOfFollowersLabel.text = follower.flatMap { String($0) }
 
             let following = self.user?.following
-            self.numOfFollowingLabel.text = following.flatMap { String($0) }
+            self.numberOfFollowingsLabel.text = following.flatMap { String($0) }
 
             let imageUrlString = self.user?.image
             let imageUrl = URL(string: imageUrlString ?? "")

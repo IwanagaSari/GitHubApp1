@@ -359,8 +359,8 @@ Select scope
                         <outlet property="backgroundView" destination="BLt-xF-Ayv" id="bU7-OE-Q3J"/>
                         <outlet property="countOfRepositoriesLabel" destination="dve-jV-hpu" id="RJ6-k8-Rwq"/>
                         <outlet property="fullnameLabel" destination="KOx-0O-13I" id="Bip-mW-m28"/>
-                        <outlet property="numOfFollowerLabel" destination="DFZ-bS-4mQ" id="tZK-ez-jg5"/>
-                        <outlet property="numOfFollowingLabel" destination="3A9-fI-D7e" id="8cB-JI-WLi"/>
+                        <outlet property="numberOfFollowersLabel" destination="DFZ-bS-4mQ" id="tZK-ez-jg5"/>
+                        <outlet property="numberOfFollowingsLabel" destination="3A9-fI-D7e" id="8cB-JI-WLi"/>
                         <outlet property="repoTableView" destination="azp-ch-bSC" id="5PG-mD-xF4"/>
                         <outlet property="userImageIndicator" destination="GNk-Da-A1R" id="NJG-3j-LD4"/>
                         <outlet property="userImageView" destination="aEI-Lt-1P6" id="vxX-Id-EG9"/>
