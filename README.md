@@ -36,13 +36,5 @@ GitHubのユーザーを閲覧できるクライアントアプリ
 
 Personal access tokenを持っていない場合、githubアカウントページより作成する必要があります。 
 
-1. GitHubアカウント内のSettingを選択  
-2. Developer settingを選択  
-3. OAuthApps内のPersonal access tokensを選択  
-4. Generate new tokenyを選択し、アカウントパスワードを入力  
-5. Token descriptionを入力する  
-6. Slect scopes内で、以下の項目にチェックを入れる。  
-　　  ☑︎repo  
-　　  ☑︎user  
-7. Generate tokenよりアクセストークンを作成  
-
+[このページ](https://github.com/settings/tokens)で取得して下さい。
+ 
