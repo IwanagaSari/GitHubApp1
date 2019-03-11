@@ -1,5 +1,5 @@
 # GitHubApp1
-iOS課題ーGithub検索アプリ
+iOS課題ーGitHub検索アプリ
 [![Build Status](https://app.bitrise.io/app/5c5ec02abe34b4e7/status.svg?token=-0_hNn1C46srVB9BhZIMew&branch=master)](https://app.bitrise.io/app/5c5ec02abe34b4e7)
 [![codecov](https://codecov.io/gh/IwanagaSari/GitHubApp1/branch/test/graph/badge.svg)](https://codecov.io/gh/IwanagaSari/GitHubApp1)
 
@@ -34,7 +34,7 @@ GitHubのユーザーを閲覧できるクライアントアプリ
   
 ## アクセストークンの取得
 
-Personal access tokenを持っていない場合、githubアカウントページより作成する必要があります。 
+Personal access tokenを持っていない場合、GitHubアカウントページより作成する必要があります。 
 
 [このページ](https://github.com/settings/tokens)で取得して下さい。
  
