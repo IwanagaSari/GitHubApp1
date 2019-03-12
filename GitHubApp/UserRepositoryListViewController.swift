@@ -51,7 +51,7 @@ class UserRepositoryListViewController: UIViewController, UITableViewDelegate, U
             }
             self.user = user
 
-            let fullname = self.user?.fullname
+            let fullname = self.user?.name
             self.fullnameLabel.text = fullname
             let follower: Int? = self.user?.followers
             self.numberOfFollowersLabel.text = follower.flatMap { String($0) }

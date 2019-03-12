@@ -25,7 +25,7 @@ class UserRepositoryListViewControllerTests: XCTestCase {
         let user = UserDetail(fullname: "", followers: nil, following: nil, image: "")
         api.userResult = (user, nil)
         
-        XCTAssertEqual(user.fullname, "")
+        XCTAssertEqual(user.name, "")
         XCTAssertNil(user.followers)
     }
     

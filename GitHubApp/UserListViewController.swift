@@ -54,8 +54,8 @@ class UserListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! UserListCell
         let user = users[indexPath.row]
-        let username = user.username
-        let imageUrlString = user.image
+        let username = user.login
+        let imageUrlString = user.avaterURL
         let imageUrl = URL(string: imageUrlString)!
         cell.userImageLoadingIndicatorView.startAnimating()
 
@@ -77,7 +77,7 @@ class UserListViewController: UITableViewController {
     //セル選択時
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
-        selectedUsername = user.username
+        selectedUsername = user.login
         performSegue(withIdentifier: "toUserRepositoryList", sender: IndexPath.self)
     }
     
