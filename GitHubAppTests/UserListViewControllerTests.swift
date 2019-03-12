@@ -50,7 +50,7 @@ class UserListViewControllerTests: XCTestCase {
     
     /// Userが一人かえってきた時のテスト
     func testUserIsOne() {
-        let user = User(username: "name", image: "image")
+        let user = User(login: "name", avaterURL: "image")
         api.usersResult = ([user], nil)
         vc?.loadViewIfNeeded()
         
@@ -63,7 +63,7 @@ class UserListViewControllerTests: XCTestCase {
     
     /// cellが選択された時のテスト
     func testSelectedCell() {
-        let user = User(username: "name", image: "image")
+        let user = User(login: "name", avaterURL: "image")
         api.usersResult = ([user], nil)
  
         vc.loadViewIfNeeded()
