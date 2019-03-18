@@ -9,8 +9,8 @@
 import UIKit
 
 class UserListCell: UITableViewCell {
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userImageLoadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var userImageLoadingIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var userImageView: UIImageView!
 
     var task: URLSessionTask?

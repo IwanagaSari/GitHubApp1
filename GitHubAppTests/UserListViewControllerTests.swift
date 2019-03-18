@@ -50,7 +50,7 @@ class UserListViewControllerTests: XCTestCase {
     
     /// Userが一人かえってきた時のテスト
     func testUserIsOne() {
-        let user = User(userName: "name", image: "image")
+        let user = User(login: "name", avaterURL: "image")
         api.usersResult = ([user], nil)
         vc?.loadViewIfNeeded()
         
@@ -58,12 +58,12 @@ class UserListViewControllerTests: XCTestCase {
         XCTAssertEqual(number, 1)
         
         let cell = vc?.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! UserListCell
-        XCTAssertEqual(cell.userNameLabel.text, "name")
+        XCTAssertEqual(cell.usernameLabel.text, "name")
     }
     
     /// cellが選択された時のテスト
     func testSelectedCell() {
-        let user = User(userName: "name", image: "image")
+        let user = User(login: "name", avaterURL: "image")
         api.usersResult = ([user], nil)
  
         vc.loadViewIfNeeded()
@@ -71,7 +71,7 @@ class UserListViewControllerTests: XCTestCase {
         
         let indexPath = IndexPath(row: 0, section: 0)
         vc.tableView(vc.tableView, didSelectRowAt: indexPath)
-        XCTAssertEqual(vc.selectedUserName, "name")
+        XCTAssertEqual(vc.selectedUsername, "name")
     }
     
     //TODO: いい方法見つけたらやる

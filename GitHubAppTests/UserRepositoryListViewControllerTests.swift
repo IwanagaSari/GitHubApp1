@@ -22,19 +22,19 @@ class UserRepositoryListViewControllerTests: XCTestCase {
     }
 
     func testUserIsEmpty() {
-        let user = UserDetail(fullName: "", followers: nil, following: nil, image: "")
+        let user = UserDetail(name: "", followers: nil, following: nil, image: "")
         api.userResult = (user, nil)
         
-        XCTAssertEqual(user.fullName, "")
+        XCTAssertEqual(user.name, "")
         XCTAssertNil(user.followers)
     }
     
     func testUserIsOne() {
-        let user = UserDetail(fullName: "fullName", followers: 1, following: 1, image: "image")
+        let user = UserDetail(name: "fullName", followers: 1, following: 1, image: "image")
         api.userResult = (user, nil)
         vc?.loadViewIfNeeded()
         
-        XCTAssertEqual(vc?.fullname.text, "fullName")
+        XCTAssertEqual(vc?.fullnameLabel.text, "fullName")
     }
     
     func testRepositoryIsEmpty() {

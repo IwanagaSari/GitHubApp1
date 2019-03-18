@@ -9,23 +9,23 @@
 import Foundation
 
 struct User: Codable {
-    let userName: String
-    let image: String
+    let login: String
+    let avaterURL: String
 
     enum CodingKeys: String, CodingKey {
-        case userName = "login"
-        case image = "avatar_url"
+        case login
+        case avaterURL = "avatar_url"
     }
 }
 
 struct UserDetail: Codable {
-    let fullName: String?
+    let name: String?
     let followers: Int?
     let following: Int?
     let image: String?
 
     enum CodingKeys: String, CodingKey {
-        case fullName = "name"
+        case name
         case followers
         case following
         case image = "avatar_url"

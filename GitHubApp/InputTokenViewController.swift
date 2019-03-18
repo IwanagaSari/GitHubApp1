@@ -19,8 +19,8 @@ class InputTokenViewController: UIViewController, UITextFieldDelegate {
         accessTokenTextField.delegate = self
 
         //デフォルト値を設定
-        let token = Setting(defaults: self.defaults)
-        accessTokenTextField.text = token.token
+        let setting = Setting(defaults: self.defaults)
+        accessTokenTextField.text = setting.token
     }
 
     @IBAction private func enterButton(_ sender: UIButton) {
@@ -30,8 +30,8 @@ class InputTokenViewController: UIViewController, UITextFieldDelegate {
             self.performSegue(withIdentifier: "toUserListView", sender: nil)
 
             let tokenText = accessTokenTextField.text
-            let accessToken = Setting(defaults: self.defaults)
-            accessToken.token = tokenText ?? ""
+            let setting = Setting(defaults: self.defaults)
+            setting.token = tokenText ?? ""
         }
     }
     

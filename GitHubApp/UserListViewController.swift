@@ -10,14 +10,14 @@ import UIKit
 
 class UserListViewController: UITableViewController {
     @IBOutlet var backgroundView: UIView!
-    @IBOutlet weak var backgroundViewindicator: UIActivityIndicatorView!
+    @IBOutlet weak var backgroundViewIndicatorView: UIActivityIndicatorView!
     
     private var users: [User] = [] {
         didSet {
             self.tableView.reloadData()
         }
     }
-    var selectedUserName: String = ""
+    var selectedUsername: String = ""
     var accessToken: String = ""
     lazy var gitHubAPI: GitHubAPIType = GitHubAPI(accessToken: self.accessToken)
     private let imageDownloader = ImageDownloader()
@@ -31,7 +31,7 @@ class UserListViewController: UITableViewController {
             if let error = error {
                 self.showError(error)
             }
-            self.backgroundViewindicator.stopAnimating()
+            self.backgroundViewIndicatorView.stopAnimating()
         })        
         self.tableView.backgroundView = backgroundView
     }
@@ -54,10 +54,10 @@ class UserListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! UserListCell
         let user = users[indexPath.row]
-        let userName = user.userName
-        let imageUrlString = user.image
+        let username = user.login
+        let imageUrlString = user.avaterURL
         let imageUrl = URL(string: imageUrlString)!
-        cell.userImageLoadingIndicator.startAnimating()
+        cell.userImageLoadingIndicatorView.startAnimating()
 
         let task = imageDownloader.fetchImage(url: imageUrl, completion: { imageToCache, error in
             if error != nil {
@@ -65,11 +65,11 @@ class UserListViewController: UITableViewController {
             } else {
                 cell.userImageView.image = imageToCache
             }
-            cell.userImageLoadingIndicator.stopAnimating()
+            cell.userImageLoadingIndicatorView.stopAnimating()
         })
         cell.task = task
         
-        cell.userNameLabel.text = "\(userName)"
+        cell.usernameLabel.text = "\(username)"
 
         return cell
     }
@@ -77,14 +77,14 @@ class UserListViewController: UITableViewController {
     //セル選択時
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
-        selectedUserName = user.userName
+        selectedUsername = user.login
         performSegue(withIdentifier: "toUserRepositoryList", sender: IndexPath.self)
     }
     
     //次のページへ値の受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let userRepositoryListViewController = segue.destination as? UserRepositoryListViewController
-        userRepositoryListViewController?.userName = selectedUserName
+        userRepositoryListViewController?.username = selectedUsername
         userRepositoryListViewController?.accessToken = accessToken
     }
 }
